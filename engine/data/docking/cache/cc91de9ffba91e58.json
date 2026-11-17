@@ -1,0 +1,38 @@
+{
+  "name": "Carvacrol",
+  "affinity": -5.76,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -5.76,
+    -5.749,
+    -5.722,
+    -5.658,
+    -5.582,
+    -5.573,
+    -5.569,
+    -5.545,
+    -5.539
+  ],
+  "cached": false,
+  "seconds": 1.53,
+  "key": "cc91de9ffba91e58",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\cc91de9ffba91e58.pdbqt",
+  "smiles": "CC(c1ccc(c(c1)O)C)C",
+  "receptor": "3NT1",
+  "box": {
+    "center": [
+      -43.833,
+      -47.237,
+      -43.958
+    ],
+    "size": [
+      26.0,
+      26.0,
+      26.0
+    ],
+    "defined_by": "centroid of NPS (34 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

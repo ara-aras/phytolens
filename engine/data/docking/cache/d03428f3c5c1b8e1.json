@@ -1,0 +1,38 @@
+{
+  "name": "Pipercide",
+  "affinity": -8.646,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -8.646,
+    -8.636,
+    -8.581,
+    -8.427,
+    -7.999,
+    -7.933,
+    -7.88,
+    -7.778,
+    -7.659
+  ],
+  "cached": false,
+  "seconds": 10.2,
+  "key": "d03428f3c5c1b8e1",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\d03428f3c5c1b8e1.pdbqt",
+  "smiles": "CC(CNC(=O)/C=C/C=C/CCCC/C=C/c1ccc2c(c1)OCO2)C",
+  "receptor": "3D83",
+  "box": {
+    "center": [
+      42.169,
+      30.17,
+      34.589
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of GK6 (35 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

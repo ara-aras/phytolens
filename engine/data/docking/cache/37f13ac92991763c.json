@@ -1,0 +1,36 @@
+{
+  "name": "alpha-Amyrin",
+  "affinity": -7.064,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -7.064,
+    -6.871,
+    -6.359,
+    -5.993,
+    -5.549,
+    -5.356,
+    -5.159
+  ],
+  "cached": false,
+  "seconds": 3.54,
+  "key": "37f13ac92991763c",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\37f13ac92991763c.pdbqt",
+  "smiles": "C[C@@H]1CC[C@]2([C@@H]([C@H]1C)C1=CC[C@H]3[C@@]([C@@]1(CC2)C)(C)CC[C@@H]1[C@]3(C)CC[C@@H](C1(C)C)O)C",
+  "receptor": "3D83",
+  "box": {
+    "center": [
+      42.169,
+      30.17,
+      34.589
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of GK6 (35 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

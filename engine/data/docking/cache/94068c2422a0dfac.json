@@ -1,0 +1,38 @@
+{
+  "name": "alpha-Boswellic acid",
+  "affinity": -9.93,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -9.93,
+    -9.621,
+    -9.565,
+    -9.511,
+    -9.183,
+    -9.146,
+    -9.138,
+    -8.974,
+    -8.957
+  ],
+  "cached": false,
+  "seconds": 3.59,
+  "key": "94068c2422a0dfac",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\94068c2422a0dfac.pdbqt",
+  "smiles": "OC(=O)[C@@]1(C)[C@H](O)CC[C@]2([C@H]1CC[C@@]1([C@@H]2CC=C2[C@@]1(C)CC[C@@]1([C@H]2CC(CC1)(C)C)C)C)C",
+  "receptor": "3V99",
+  "box": {
+    "center": [
+      18.394,
+      -78.715,
+      -33.903
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of ACD (53 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

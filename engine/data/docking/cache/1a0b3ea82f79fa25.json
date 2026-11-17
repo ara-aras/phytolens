@@ -1,0 +1,38 @@
+{
+  "name": "3-Acetyl-beta-boswellic acid",
+  "affinity": -9.716,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -9.716,
+    -9.306,
+    -9.229,
+    -9.183,
+    -8.776,
+    -8.605,
+    -8.31,
+    -8.17,
+    -8.078
+  ],
+  "cached": false,
+  "seconds": 4.75,
+  "key": "1a0b3ea82f79fa25",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\1a0b3ea82f79fa25.pdbqt",
+  "smiles": "CC(=O)O[C@@H]1CC[C@]2([C@H]([C@@]1(C)C(=O)O)CC[C@@]1([C@@H]2CC=C2[C@@]1(C)CC[C@@]1([C@H]2[C@@H](C)[C@H](C)CC1)C)C)C",
+  "receptor": "3V99",
+  "box": {
+    "center": [
+      18.394,
+      -78.715,
+      -33.903
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of ACD (53 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

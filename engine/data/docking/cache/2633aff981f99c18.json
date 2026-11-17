@@ -1,0 +1,37 @@
+{
+  "name": "Withaferin A",
+  "affinity": -8.055,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -8.055,
+    -7.917,
+    -7.859,
+    -7.665,
+    -6.947,
+    -6.606,
+    -6.489,
+    -5.915
+  ],
+  "cached": false,
+  "seconds": 8.82,
+  "key": "2633aff981f99c18",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\2633aff981f99c18.pdbqt",
+  "smiles": "OCC1=C(C)C[C@@H](OC1=O)[C@H]([C@H]1CC[C@@H]2[C@]1(C)CC[C@H]1[C@H]2C[C@@H]2[C@]3([C@]1(C)C(=O)C=C[C@@H]3O)O2)C",
+  "receptor": "3NT1",
+  "box": {
+    "center": [
+      -43.833,
+      -47.237,
+      -43.958
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of NPS (34 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

@@ -1,0 +1,38 @@
+{
+  "name": "Acetyleugenol",
+  "affinity": -6.09,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -6.09,
+    -5.999,
+    -5.944,
+    -5.944,
+    -5.664,
+    -5.441,
+    -5.428,
+    -5.325,
+    -5.088
+  ],
+  "cached": false,
+  "seconds": 2.09,
+  "key": "ab3e4bd8c8f6c975",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\ab3e4bd8c8f6c975.pdbqt",
+  "smiles": "C=CCc1ccc(c(c1)OC)OC(=O)C",
+  "receptor": "3NT1",
+  "box": {
+    "center": [
+      -43.833,
+      -47.237,
+      -43.958
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of NPS (34 atoms)"
+  },
+  "exhaustiveness": 4,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

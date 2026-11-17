@@ -1,0 +1,38 @@
+{
+  "name": "Demethoxycurcumin",
+  "affinity": -8.953,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -8.953,
+    -8.906,
+    -8.817,
+    -8.793,
+    -8.707,
+    -8.313,
+    -8.287,
+    -8.102,
+    -8.068
+  ],
+  "cached": false,
+  "seconds": 7.01,
+  "key": "2be29277d7941072",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\2be29277d7941072.pdbqt",
+  "smiles": "COc1cc(/C=C/C(=O)CC(=O)/C=C/c2ccc(cc2)O)ccc1O",
+  "receptor": "3D83",
+  "box": {
+    "center": [
+      42.169,
+      30.17,
+      34.589
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of GK6 (35 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

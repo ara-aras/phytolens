@@ -1,0 +1,38 @@
+{
+  "name": "Guaiacol",
+  "affinity": -4.999,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -4.999,
+    -4.977,
+    -4.86,
+    -4.814,
+    -4.768,
+    -4.637,
+    -4.596,
+    -4.518,
+    -4.418
+  ],
+  "cached": false,
+  "seconds": 1.1,
+  "key": "b500626a8e9599b9",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\b500626a8e9599b9.pdbqt",
+  "smiles": "COc1ccccc1O",
+  "receptor": "3D83",
+  "box": {
+    "center": [
+      42.169,
+      30.17,
+      34.589
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of GK6 (35 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

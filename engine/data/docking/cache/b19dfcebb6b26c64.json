@@ -1,0 +1,38 @@
+{
+  "name": "Eugenol",
+  "affinity": -5.489,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -5.489,
+    -5.413,
+    -5.166,
+    -5.151,
+    -5.119,
+    -5.063,
+    -5.056,
+    -5.028,
+    -4.977
+  ],
+  "cached": false,
+  "seconds": 1.66,
+  "key": "b19dfcebb6b26c64",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\b19dfcebb6b26c64.pdbqt",
+  "smiles": "C=CCc1ccc(c(c1)OC)O",
+  "receptor": "3V99",
+  "box": {
+    "center": [
+      18.394,
+      -78.715,
+      -33.903
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of ACD (53 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

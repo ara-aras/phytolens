@@ -1,0 +1,38 @@
+{
+  "name": "3,7-Dimethyloctan-3-ol",
+  "affinity": -4.892,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -4.892,
+    -4.834,
+    -4.825,
+    -4.723,
+    -4.625,
+    -4.59,
+    -4.551,
+    -4.482,
+    -4.477
+  ],
+  "cached": false,
+  "seconds": 2.43,
+  "key": "ebb5b89179a50587",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\ebb5b89179a50587.pdbqt",
+  "smiles": "CCC(CCCC(C)C)(O)C",
+  "receptor": "3NT1",
+  "box": {
+    "center": [
+      -43.833,
+      -47.237,
+      -43.958
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of NPS (34 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

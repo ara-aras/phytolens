@@ -1,0 +1,1392 @@
+{
+  "generated": "2026-11-17T17:56:33+00:00",
+  "engine": "AutoDock Vina",
+  "vina": "AutoDock Vina v1.2.7",
+  "seed": 42,
+  "exhaustiveness": 8,
+  "box_size": 20.0,
+  "targets": {
+    "PTGS2": {
+      "pdb_id": "3NT1",
+      "ligand_code": "NPS",
+      "box": {
+        "center": [
+          -43.833,
+          -47.237,
+          -43.958
+        ],
+        "size": [
+          20.0,
+          20.0,
+          20.0
+        ],
+        "defined_by": "centroid of NPS (34 atoms)"
+      },
+      "source": "RCSB PDB"
+    },
+    "ALOX5": {
+      "pdb_id": "3V99",
+      "ligand_code": "ACD",
+      "box": {
+        "center": [
+          18.394,
+          -78.715,
+          -33.903
+        ],
+        "size": [
+          20.0,
+          20.0,
+          20.0
+        ],
+        "defined_by": "centroid of ACD (53 atoms)"
+      },
+      "source": "RCSB PDB"
+    },
+    "MAPK14": {
+      "pdb_id": "3D83",
+      "ligand_code": "GK6",
+      "box": {
+        "center": [
+          42.169,
+          30.17,
+          34.589
+        ],
+        "size": [
+          20.0,
+          20.0,
+          20.0
+        ],
+        "defined_by": "centroid of GK6 (35 atoms)"
+      },
+      "source": "RCSB PDB"
+    }
+  },
+  "scores": {
+    "IMPPAT3_PHYID000046": {
+      "name": "Limonene",
+      "targets": {
+        "PTGS2": {
+          "affinity": -5.358,
+          "ligand_efficiency": -0.536,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "771eaf13fcc3d523"
+        },
+        "ALOX5": {
+          "affinity": -5.255,
+          "ligand_efficiency": -0.525,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "d73f64a732188b7e"
+        },
+        "MAPK14": {
+          "affinity": -5.971,
+          "ligand_efficiency": -0.597,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "50bf5d01a6b157ad"
+        }
+      }
+    },
+    "IMPPAT3_PHYID000072": {
+      "name": "Palmitic acid",
+      "targets": {
+        "PTGS2": {
+          "affinity": -5.268,
+          "ligand_efficiency": -0.293,
+          "seconds": 13.36,
+          "cached": false,
+          "key": "38a98bb4b13c9fbc"
+        },
+        "ALOX5": {
+          "affinity": -5.404,
+          "ligand_efficiency": -0.3,
+          "seconds": 9.81,
+          "cached": false,
+          "key": "505c2eba966e7f07"
+        },
+        "MAPK14": {
+          "affinity": -6.028,
+          "ligand_efficiency": -0.335,
+          "seconds": 7.74,
+          "cached": false,
+          "key": "93218810054c8cbb"
+        }
+      }
+    },
+    "IMPPAT3_PHYID000104": {
+      "name": "Cholesterol",
+      "targets": {
+        "PTGS2": {
+          "affinity": -7.995,
+          "ligand_efficiency": -0.286,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "5c78cd165e18dc60"
+        },
+        "ALOX5": {
+          "affinity": -9.173,
+          "ligand_efficiency": -0.328,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "ba16d0c49d1c57f5"
+        },
+        "MAPK14": {
+          "affinity": -10.195,
+          "ligand_efficiency": -0.364,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "61b0da463b9b52cd"
+        }
+      }
+    },
+    "IMPPAT3_PHYID000146": {
+      "name": "beta-Amyrin",
+      "targets": {
+        "PTGS2": {
+          "affinity": -4.079,
+          "ligand_efficiency": -0.132,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "93a5e6d48de43c61"
+        },
+        "ALOX5": {
+          "affinity": -10.004,
+          "ligand_efficiency": -0.323,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "448955f88781f83e"
+        },
+        "MAPK14": {
+          "affinity": -8.147,
+          "ligand_efficiency": -0.263,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "872638be5749e366"
+        }
+      }
+    },
+    "IMPPAT3_PHYID000153": {
+      "name": "alpha-Pinene",
+      "targets": {
+        "PTGS2": {
+          "affinity": -5.312,
+          "ligand_efficiency": -0.531,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "74814e6367c052c9"
+        },
+        "ALOX5": {
+          "affinity": -5.666,
+          "ligand_efficiency": -0.567,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "55d7ddfdc97e3dfc"
+        },
+        "MAPK14": {
+          "affinity": -6.18,
+          "ligand_efficiency": -0.618,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "8993ac0c71780c4f"
+        }
+      }
+    },
+    "IMPPAT3_PHYID000209": {
+      "name": "Cinnamaldehyde",
+      "targets": {
+        "PTGS2": {
+          "affinity": -5.094,
+          "ligand_efficiency": -0.509,
+          "seconds": 1.32,
+          "cached": false,
+          "key": "f793ba64f061a6ba"
+        },
+        "ALOX5": {
+          "affinity": -5.628,
+          "ligand_efficiency": -0.563,
+          "seconds": 1.24,
+          "cached": false,
+          "key": "7d66cd697c09ce23"
+        },
+        "MAPK14": {
+          "affinity": -5.739,
+          "ligand_efficiency": -0.574,
+          "seconds": 1.2,
+          "cached": false,
+          "key": "8e9932680c0962c0"
+        }
+      }
+    },
+    "IMPPAT3_PHYID000212": {
+      "name": "Benzyl Alcohol",
+      "targets": {
+        "PTGS2": {
+          "affinity": -4.61,
+          "ligand_efficiency": -0.576,
+          "seconds": 1.15,
+          "cached": false,
+          "key": "0e771ad773a1cdab"
+        },
+        "ALOX5": {
+          "affinity": -4.705,
+          "ligand_efficiency": -0.588,
+          "seconds": 1.15,
+          "cached": false,
+          "key": "0014a90ea218ecfe"
+        },
+        "MAPK14": {
+          "affinity": -5.033,
+          "ligand_efficiency": -0.629,
+          "seconds": 1.09,
+          "cached": false,
+          "key": "6a7f75b21ac2bec0"
+        }
+      }
+    },
+    "IMPPAT3_PHYID000213": {
+      "name": "Myrcene",
+      "targets": {
+        "PTGS2": {
+          "affinity": -4.455,
+          "ligand_efficiency": -0.446,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "14677457cc391b3b"
+        },
+        "ALOX5": {
+          "affinity": -5.107,
+          "ligand_efficiency": -0.511,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "9028c1d8a2bb0546"
+        },
+        "MAPK14": {
+          "affinity": -5.335,
+          "ligand_efficiency": -0.533,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "40e7d7b7c8c7f1bb"
+        }
+      }
+    },
+    "IMPPAT3_PHYID000217": {
+      "name": "Thymol",
+      "targets": {
+        "PTGS2": {
+          "affinity": -5.884,
+          "ligand_efficiency": -0.535,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "4392a5a65a8e519e"
+        },
+        "ALOX5": {
+          "affinity": -5.587,
+          "ligand_efficiency": -0.508,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "babe614efc8d9e76"
+        },
+        "MAPK14": {
+          "affinity": -6.183,
+          "ligand_efficiency": -0.562,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "dcb8cced7aa9a4ab"
+        }
+      }
+    },
+    "IMPPAT3_PHYID000218": {
+      "name": "Carvacrol",
+      "targets": {
+        "PTGS2": {
+          "affinity": -5.752,
+          "ligand_efficiency": -0.523,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "322897f83620d696"
+        },
+        "ALOX5": {
+          "affinity": -5.479,
+          "ligand_efficiency": -0.498,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "2abe994bc2045e07"
+        },
+        "MAPK14": {
+          "affinity": -6.411,
+          "ligand_efficiency": -0.583,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "918f6405fcbb6821"
+        }
+      }
+    },
+    "IMPPAT3_PHYID000224": {
+      "name": "Citronellol",
+      "targets": {
+        "PTGS2": {
+          "affinity": -5.17,
+          "ligand_efficiency": -0.47,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "b00a53b4b33c1144"
+        },
+        "ALOX5": {
+          "affinity": -5.305,
+          "ligand_efficiency": -0.482,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "053c82c8408fccf3"
+        },
+        "MAPK14": {
+          "affinity": -5.76,
+          "ligand_efficiency": -0.524,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "5fed1712c7614f13"
+        }
+      }
+    },
+    "IMPPAT3_PHYID000225": {
+      "name": "Eucalyptol",
+      "targets": {
+        "PTGS2": {
+          "affinity": -5.372,
+          "ligand_efficiency": -0.488,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "c714c06bb90a7f7c"
+        },
+        "ALOX5": {
+          "affinity": -5.364,
+          "ligand_efficiency": -0.488,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "383e1f34495a4874"
+        },
+        "MAPK14": {
+          "affinity": -6.12,
+          "ligand_efficiency": -0.556,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "b5e0738a48cbc831"
+        }
+      }
+    },
+    "IMPPAT3_PHYID000231": {
+      "name": "Linalyl acetate",
+      "targets": {
+        "PTGS2": {
+          "affinity": -5.987,
+          "ligand_efficiency": -0.428,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "f4f20dd6ec057349"
+        },
+        "ALOX5": {
+          "affinity": -5.828,
+          "ligand_efficiency": -0.416,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "d4a77538d7da0c17"
+        },
+        "MAPK14": {
+          "affinity": -6.369,
+          "ligand_efficiency": -0.455,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "973a52eaaf291ca5"
+        }
+      }
+    },
+    "IMPPAT3_PHYID000243": {
+      "name": "alpha-Amyrin",
+      "targets": {
+        "PTGS2": {
+          "affinity": -5.899,
+          "ligand_efficiency": -0.19,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "5dc4d9d0b4fe1c84"
+        },
+        "ALOX5": {
+          "affinity": -10.069,
+          "ligand_efficiency": -0.325,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "676a0234f481c5c1"
+        },
+        "MAPK14": {
+          "affinity": -7.064,
+          "ligand_efficiency": -0.228,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "37f13ac92991763c"
+        }
+      }
+    },
+    "IMPPAT3_PHYID000256": {
+      "name": "Geraniol",
+      "targets": {
+        "PTGS2": {
+          "affinity": -5.552,
+          "ligand_efficiency": -0.505,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "ed349f1f82c53212"
+        },
+        "ALOX5": {
+          "affinity": -5.496,
+          "ligand_efficiency": -0.5,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "08fd2518b07c04b2"
+        },
+        "MAPK14": {
+          "affinity": -5.981,
+          "ligand_efficiency": -0.544,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "28f006b62ab95fa2"
+        }
+      }
+    },
+    "IMPPAT3_PHYID000261": {
+      "name": "Decanoic acid",
+      "targets": {
+        "PTGS2": {
+          "affinity": -4.677,
+          "ligand_efficiency": -0.39,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "7e56bf754b850e4c"
+        },
+        "ALOX5": {
+          "affinity": -5.046,
+          "ligand_efficiency": -0.421,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "002ed1d7393c996f"
+        },
+        "MAPK14": {
+          "affinity": -5.327,
+          "ligand_efficiency": -0.444,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "e0bb064dcf9aa931"
+        }
+      }
+    },
+    "IMPPAT3_PHYID000300": {
+      "name": "Nicotine",
+      "targets": {
+        "PTGS2": {
+          "affinity": -5.604,
+          "ligand_efficiency": -0.467,
+          "seconds": 1.33,
+          "cached": false,
+          "key": "a2dc421e4eac3d10"
+        },
+        "ALOX5": {
+          "affinity": -5.051,
+          "ligand_efficiency": -0.421,
+          "seconds": 1.22,
+          "cached": false,
+          "key": "9e19db00b3dcd327"
+        },
+        "MAPK14": {
+          "affinity": -6.045,
+          "ligand_efficiency": -0.504,
+          "seconds": 1.2,
+          "cached": false,
+          "key": "769b59b5988c8b02"
+        }
+      }
+    },
+    "IMPPAT3_PHYID000421": {
+      "name": "Eugenol",
+      "targets": {
+        "PTGS2": {
+          "affinity": -5.515,
+          "ligand_efficiency": -0.46,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "a888e66cb7d3c859"
+        },
+        "ALOX5": {
+          "affinity": -5.489,
+          "ligand_efficiency": -0.457,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "b19dfcebb6b26c64"
+        },
+        "MAPK14": {
+          "affinity": -5.876,
+          "ligand_efficiency": -0.49,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "110dabf0e28cb021"
+        }
+      }
+    },
+    "IMPPAT3_PHYID000422": {
+      "name": "Methyleugenol",
+      "targets": {
+        "PTGS2": {
+          "affinity": -5.414,
+          "ligand_efficiency": -0.416,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "2b8e4122f5e4c64d"
+        },
+        "ALOX5": {
+          "affinity": -5.757,
+          "ligand_efficiency": -0.443,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "04336434f1d7a8bd"
+        },
+        "MAPK14": {
+          "affinity": -6.052,
+          "ligand_efficiency": -0.466,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "bfb3ababee5c2bfc"
+        }
+      }
+    },
+    "IMPPAT3_PHYID000452": {
+      "name": "Benzyl benzoate",
+      "targets": {
+        "PTGS2": {
+          "affinity": -6.594,
+          "ligand_efficiency": -0.412,
+          "seconds": 2.68,
+          "cached": false,
+          "key": "8ceb36757b61bfd0"
+        },
+        "ALOX5": {
+          "affinity": -7.087,
+          "ligand_efficiency": -0.443,
+          "seconds": 2.48,
+          "cached": false,
+          "key": "fe0debebb74c7245"
+        },
+        "MAPK14": {
+          "affinity": -7.784,
+          "ligand_efficiency": -0.486,
+          "seconds": 2.34,
+          "cached": false,
+          "key": "b872beff1dfcf453"
+        }
+      }
+    },
+    "IMPPAT3_PHYID000502": {
+      "name": "Levomenol",
+      "targets": {
+        "PTGS2": {
+          "affinity": -6.748,
+          "ligand_efficiency": -0.422,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "98e71dc7c3264fbd"
+        },
+        "ALOX5": {
+          "affinity": -6.569,
+          "ligand_efficiency": -0.411,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "c2b8a5ed56467346"
+        },
+        "MAPK14": {
+          "affinity": -7.665,
+          "ligand_efficiency": -0.479,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "4a93184e54e1bcf4"
+        }
+      }
+    },
+    "IMPPAT3_PHYID000648": {
+      "name": "Benzaldehyde",
+      "targets": {
+        "PTGS2": {
+          "affinity": -4.521,
+          "ligand_efficiency": -0.565,
+          "seconds": 1.14,
+          "cached": false,
+          "key": "7d1c3508d9dbde84"
+        },
+        "ALOX5": {
+          "affinity": -4.687,
+          "ligand_efficiency": -0.586,
+          "seconds": 1.04,
+          "cached": false,
+          "key": "013c035643755ff1"
+        },
+        "MAPK14": {
+          "affinity": -4.886,
+          "ligand_efficiency": -0.611,
+          "seconds": 0.96,
+          "cached": false,
+          "key": "5ebe4da30af710ea"
+        }
+      }
+    },
+    "IMPPAT3_PHYID000674": {
+      "name": "Pulegone",
+      "targets": {
+        "PTGS2": {
+          "affinity": -5.723,
+          "ligand_efficiency": -0.52,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "4f8ed903e43802f6"
+        },
+        "ALOX5": {
+          "affinity": -5.519,
+          "ligand_efficiency": -0.502,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "34ef226a80a83685"
+        },
+        "MAPK14": {
+          "affinity": -6.536,
+          "ligand_efficiency": -0.594,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "994e31fc4f21996d"
+        }
+      }
+    },
+    "IMPPAT3_PHYID000778": {
+      "name": "Anethole",
+      "targets": {
+        "PTGS2": {
+          "affinity": -5.301,
+          "ligand_efficiency": -0.482,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "9504cb8fc4351461"
+        },
+        "ALOX5": {
+          "affinity": -5.552,
+          "ligand_efficiency": -0.505,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "e55371a5e8e2e1f9"
+        },
+        "MAPK14": {
+          "affinity": -6.168,
+          "ligand_efficiency": -0.561,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "d4c04ecd64d27031"
+        }
+      }
+    },
+    "IMPPAT3_PHYID000981": {
+      "name": "Cedrol",
+      "targets": {
+        "PTGS2": {
+          "affinity": -7.595,
+          "ligand_efficiency": -0.475,
+          "seconds": 1.49,
+          "cached": false,
+          "key": "e516caa0c41e5166"
+        },
+        "ALOX5": {
+          "affinity": -6.173,
+          "ligand_efficiency": -0.386,
+          "seconds": 1.37,
+          "cached": false,
+          "key": "a4d38e4ca0daf7f5"
+        },
+        "MAPK14": {
+          "affinity": -7.299,
+          "ligand_efficiency": -0.456,
+          "seconds": 1.44,
+          "cached": false,
+          "key": "02555da360b3a766"
+        }
+      }
+    },
+    "IMPPAT3_PHYID001034": {
+      "name": "1-Undecanol",
+      "targets": {
+        "PTGS2": {
+          "affinity": -4.505,
+          "ligand_efficiency": -0.375,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "5703bd3997037411"
+        },
+        "ALOX5": {
+          "affinity": -4.929,
+          "ligand_efficiency": -0.411,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "6494fd7368c03546"
+        },
+        "MAPK14": {
+          "affinity": -4.874,
+          "ligand_efficiency": -0.406,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "cc710511e7646ca7"
+        }
+      }
+    },
+    "IMPPAT3_PHYID001239": {
+      "name": "D-Limonene",
+      "targets": {
+        "PTGS2": {
+          "affinity": -5.076,
+          "ligand_efficiency": -0.508,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "46903a7c826f0b9a"
+        },
+        "ALOX5": {
+          "affinity": -5.627,
+          "ligand_efficiency": -0.563,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "bac99785f888cf99"
+        },
+        "MAPK14": {
+          "affinity": -5.863,
+          "ligand_efficiency": -0.586,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "7aa3b196f5950a12"
+        }
+      }
+    },
+    "IMPPAT3_PHYID001329": {
+      "name": "Piperine",
+      "targets": {
+        "PTGS2": {
+          "affinity": -7.883,
+          "ligand_efficiency": -0.375,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "da303fc332f7a638"
+        },
+        "ALOX5": {
+          "affinity": -7.403,
+          "ligand_efficiency": -0.353,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "ad9be344cd9e9f5c"
+        },
+        "MAPK14": {
+          "affinity": -8.872,
+          "ligand_efficiency": -0.422,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "f16ee842a1eb118c"
+        }
+      }
+    },
+    "IMPPAT3_PHYID001516": {
+      "name": "ar-Turmerone",
+      "targets": {
+        "PTGS2": {
+          "affinity": -6.584,
+          "ligand_efficiency": -0.411,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "01e4a9893f07ac44"
+        },
+        "ALOX5": {
+          "affinity": -6.913,
+          "ligand_efficiency": -0.432,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "8a14af3e5154cd8f"
+        },
+        "MAPK14": {
+          "affinity": -7.834,
+          "ligand_efficiency": -0.49,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "0d70bab89a22ca26"
+        }
+      }
+    },
+    "IMPPAT3_PHYID001694": {
+      "name": "Safrole",
+      "targets": {
+        "PTGS2": {
+          "affinity": -5.627,
+          "ligand_efficiency": -0.469,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "4d3ef44e11bbd9bf"
+        },
+        "ALOX5": {
+          "affinity": -5.971,
+          "ligand_efficiency": -0.498,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "f4c01905563ee31d"
+        },
+        "MAPK14": {
+          "affinity": -6.334,
+          "ligand_efficiency": -0.528,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "03fca58c2e14ecf0"
+        }
+      }
+    },
+    "IMPPAT3_PHYID002198": {
+      "name": "Guaiacol",
+      "targets": {
+        "PTGS2": {
+          "affinity": -5.233,
+          "ligand_efficiency": -0.581,
+          "seconds": 1.19,
+          "cached": false,
+          "key": "552e9ba6cc189511"
+        },
+        "ALOX5": {
+          "affinity": -4.987,
+          "ligand_efficiency": -0.554,
+          "seconds": 1.18,
+          "cached": false,
+          "key": "2385437dcbb8abe1"
+        },
+        "MAPK14": {
+          "affinity": -4.999,
+          "ligand_efficiency": -0.555,
+          "seconds": 1.1,
+          "cached": false,
+          "key": "b500626a8e9599b9"
+        }
+      }
+    },
+    "IMPPAT3_PHYID002433": {
+      "name": "Linalyl isobutyrate",
+      "targets": {
+        "PTGS2": {
+          "affinity": -5.877,
+          "ligand_efficiency": -0.367,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "6fc3688a82d0e459"
+        },
+        "ALOX5": {
+          "affinity": -5.555,
+          "ligand_efficiency": -0.347,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "d9435db137edf2d3"
+        },
+        "MAPK14": {
+          "affinity": -6.881,
+          "ligand_efficiency": -0.43,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "497a1d1878efef4b"
+        }
+      }
+    },
+    "IMPPAT3_PHYID004731": {
+      "name": "3-Acetyl-beta-boswellic acid",
+      "targets": {
+        "PTGS2": {
+          "affinity": -5.688,
+          "ligand_efficiency": -0.158,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "9516a0da86b8eea4"
+        },
+        "ALOX5": {
+          "affinity": -9.716,
+          "ligand_efficiency": -0.27,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "1a0b3ea82f79fa25"
+        },
+        "MAPK14": {
+          "affinity": -5.75,
+          "ligand_efficiency": -0.16,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "0f961b7602891eb4"
+        }
+      }
+    },
+    "IMPPAT3_PHYID004732": {
+      "name": "11-Keto-beta-boswellic acid",
+      "targets": {
+        "PTGS2": {
+          "affinity": -3.913,
+          "ligand_efficiency": -0.115,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "9e6ed97015d598d3"
+        },
+        "ALOX5": {
+          "affinity": -9.493,
+          "ligand_efficiency": -0.279,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "6e20094c04f12d0d"
+        },
+        "MAPK14": {
+          "affinity": -7.025,
+          "ligand_efficiency": -0.207,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "728f02ec58db6a8e"
+        }
+      }
+    },
+    "IMPPAT3_PHYID004733": {
+      "name": "3-Acetyl-11-keto-beta-boswellic acid",
+      "targets": {
+        "PTGS2": {
+          "affinity": -5.152,
+          "ligand_efficiency": -0.139,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "7623016a5ba211b3"
+        },
+        "ALOX5": {
+          "affinity": -10.125,
+          "ligand_efficiency": -0.274,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "5df99114c955a7a4"
+        },
+        "MAPK14": {
+          "affinity": -6.524,
+          "ligand_efficiency": -0.176,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "ff7994831f80ef24"
+        }
+      }
+    },
+    "IMPPAT3_PHYID004736": {
+      "name": "beta-Boswellic acid",
+      "targets": {
+        "PTGS2": {
+          "affinity": -6.479,
+          "ligand_efficiency": -0.196,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "4cb282614ec11edc"
+        },
+        "ALOX5": {
+          "affinity": -10.186,
+          "ligand_efficiency": -0.309,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "e1b94959c4b9a2bb"
+        },
+        "MAPK14": {
+          "affinity": -6.746,
+          "ligand_efficiency": -0.204,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "a95ebbda6108f267"
+        }
+      }
+    },
+    "IMPPAT3_PHYID004740": {
+      "name": "alpha-Boswellic acid",
+      "targets": {
+        "PTGS2": {
+          "affinity": -4.536,
+          "ligand_efficiency": -0.137,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "7cc3e298da7513c9"
+        },
+        "ALOX5": {
+          "affinity": -9.93,
+          "ligand_efficiency": -0.301,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "94068c2422a0dfac"
+        },
+        "MAPK14": {
+          "affinity": -7.67,
+          "ligand_efficiency": -0.232,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "908e71e2dca11f90"
+        }
+      }
+    },
+    "IMPPAT3_PHYID004741": {
+      "name": "3,7-Dimethyloctan-3-ol",
+      "targets": {
+        "PTGS2": {
+          "affinity": -4.892,
+          "ligand_efficiency": -0.445,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "ebb5b89179a50587"
+        },
+        "ALOX5": {
+          "affinity": -5.391,
+          "ligand_efficiency": -0.49,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "ae2c3a90f41b62a2"
+        },
+        "MAPK14": {
+          "affinity": -5.328,
+          "ligand_efficiency": -0.484,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "790f5a1f74d04ad4"
+        }
+      }
+    },
+    "IMPPAT3_PHYID004907": {
+      "name": "Withanolide D",
+      "targets": {
+        "PTGS2": {
+          "affinity": -8.826,
+          "ligand_efficiency": -0.26,
+          "seconds": 7.69,
+          "cached": false,
+          "key": "101b3f09f782f3ca"
+        },
+        "ALOX5": {
+          "affinity": -10.485,
+          "ligand_efficiency": -0.308,
+          "seconds": 5.9,
+          "cached": false,
+          "key": "13810ca7356433a0"
+        },
+        "MAPK14": {
+          "affinity": -8.682,
+          "ligand_efficiency": -0.255,
+          "seconds": 7.64,
+          "cached": false,
+          "key": "7297837e145809d1"
+        }
+      }
+    },
+    "IMPPAT3_PHYID005594": {
+      "name": "Curcumin",
+      "targets": {
+        "PTGS2": {
+          "affinity": -7.959,
+          "ligand_efficiency": -0.295,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "92be1a4793a593aa"
+        },
+        "ALOX5": {
+          "affinity": -7.572,
+          "ligand_efficiency": -0.28,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "4bfaf2f4eeb9d428"
+        },
+        "MAPK14": {
+          "affinity": -8.91,
+          "ligand_efficiency": -0.33,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "fa3fc6b94f75ff6a"
+        }
+      }
+    },
+    "IMPPAT3_PHYID007942": {
+      "name": "Demethoxycurcumin",
+      "targets": {
+        "PTGS2": {
+          "affinity": -8.079,
+          "ligand_efficiency": -0.323,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "4ded56138209f67c"
+        },
+        "ALOX5": {
+          "affinity": -7.847,
+          "ligand_efficiency": -0.314,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "9c52047c70a24228"
+        },
+        "MAPK14": {
+          "affinity": -8.953,
+          "ligand_efficiency": -0.358,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "2be29277d7941072"
+        }
+      }
+    },
+    "IMPPAT3_PHYID007956": {
+      "name": "4,10-Epizedoarondiol",
+      "targets": {
+        "PTGS2": {
+          "affinity": -7.459,
+          "ligand_efficiency": -0.414,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "408388e64ec39aec"
+        },
+        "ALOX5": {
+          "affinity": -6.452,
+          "ligand_efficiency": -0.358,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "dbbc1c45589fa5f4"
+        },
+        "MAPK14": {
+          "affinity": -6.687,
+          "ligand_efficiency": -0.371,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "c887d6a0d6beeaa4"
+        }
+      }
+    },
+    "IMPPAT3_PHYID007966": {
+      "name": "Procurcumenol",
+      "targets": {
+        "PTGS2": {
+          "affinity": -7.631,
+          "ligand_efficiency": -0.449,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "ee207d21128852fa"
+        },
+        "ALOX5": {
+          "affinity": -6.926,
+          "ligand_efficiency": -0.407,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "a26b2d27438c793e"
+        },
+        "MAPK14": {
+          "affinity": -7.045,
+          "ligand_efficiency": -0.414,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "2c4060502fd845d1"
+        }
+      }
+    },
+    "IMPPAT3_PHYID007983": {
+      "name": "Bisdemethoxycurcumin",
+      "targets": {
+        "PTGS2": {
+          "affinity": -8.081,
+          "ligand_efficiency": -0.351,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "56c450d9865a8e75"
+        },
+        "ALOX5": {
+          "affinity": -7.881,
+          "ligand_efficiency": -0.343,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "1b30bb78ce4ff13c"
+        },
+        "MAPK14": {
+          "affinity": -8.908,
+          "ligand_efficiency": -0.387,
+          "seconds": 0.0,
+          "cached": true,
+          "key": "17a178d6c82d8c7d"
+        }
+      }
+    },
+    "IMPPAT3_PHYID014107": {
+      "name": "Pipercide",
+      "targets": {
+        "PTGS2": {
+          "affinity": -7.075,
+          "ligand_efficiency": -0.272,
+          "seconds": 12.41,
+          "cached": false,
+          "key": "9f51ed9d30b282a0"
+        },
+        "ALOX5": {
+          "affinity": -6.605,
+          "ligand_efficiency": -0.254,
+          "seconds": 8.93,
+          "cached": false,
+          "key": "cf5b021a9451ee78"
+        },
+        "MAPK14": {
+          "affinity": -8.646,
+          "ligand_efficiency": -0.333,
+          "seconds": 10.2,
+          "cached": false,
+          "key": "d03428f3c5c1b8e1"
+        }
+      }
+    },
+    "IMPPAT3_PHYID014119": {
+      "name": "Coumaperine",
+      "targets": {
+        "PTGS2": {
+          "affinity": -6.521,
+          "ligand_efficiency": -0.343,
+          "seconds": 3.48,
+          "cached": false,
+          "key": "37142e0df399c688"
+        },
+        "ALOX5": {
+          "affinity": -7.318,
+          "ligand_efficiency": -0.385,
+          "seconds": 2.93,
+          "cached": false,
+          "key": "7921f99b607dcc75"
+        },
+        "MAPK14": {
+          "affinity": -7.957,
+          "ligand_efficiency": -0.419,
+          "seconds": 2.7,
+          "cached": false,
+          "key": "5c243d8b75ba90dd"
+        }
+      }
+    },
+    "IMPPAT3_PHYID014121": {
+      "name": "(2E,4E,6E)-7-(2H-1,3-benzodioxol-5-yl)-1-(piperidin-1-yl)hepta-2,4,6-trien-1-one",
+      "targets": {
+        "PTGS2": {
+          "affinity": -6.313,
+          "ligand_efficiency": -0.274,
+          "seconds": 4.29,
+          "cached": false,
+          "key": "838d330f9acf1b76"
+        },
+        "ALOX5": {
+          "affinity": -7.903,
+          "ligand_efficiency": -0.344,
+          "seconds": 3.09,
+          "cached": false,
+          "key": "2bdd227070a0f332"
+        },
+        "MAPK14": {
+          "affinity": -8.663,
+          "ligand_efficiency": -0.377,
+          "seconds": 4.98,
+          "cached": false,
+          "key": "6cd0af5eb04e1e6f"
+        }
+      }
+    },
+    "IMPPAT3_PHYID017104": {
+      "name": "Withaferin A",
+      "targets": {
+        "PTGS2": {
+          "affinity": -8.055,
+          "ligand_efficiency": -0.237,
+          "seconds": 8.82,
+          "cached": false,
+          "key": "2633aff981f99c18"
+        },
+        "ALOX5": {
+          "affinity": -10.174,
+          "ligand_efficiency": -0.299,
+          "seconds": 5.77,
+          "cached": false,
+          "key": "f38404bb49b322f6"
+        },
+        "MAPK14": {
+          "affinity": -9.161,
+          "ligand_efficiency": -0.269,
+          "seconds": 7.59,
+          "cached": false,
+          "key": "70c4cefc9ddb89b0"
+        }
+      }
+    },
+    "IMPPAT3_PHYID017113": {
+      "name": "Withanolide G",
+      "targets": {
+        "PTGS2": {
+          "affinity": -8.829,
+          "ligand_efficiency": -0.268,
+          "seconds": 7.47,
+          "cached": false,
+          "key": "b743b6b7b53cc8b6"
+        },
+        "ALOX5": {
+          "affinity": -10.167,
+          "ligand_efficiency": -0.308,
+          "seconds": 5.83,
+          "cached": false,
+          "key": "9a9e294af6f065fb"
+        },
+        "MAPK14": {
+          "affinity": -8.411,
+          "ligand_efficiency": -0.255,
+          "seconds": 7.97,
+          "cached": false,
+          "key": "f3f6d15473ab10fc"
+        }
+      }
+    },
+    "IMPPAT3_PHYID017118": {
+      "name": "Withanolide E",
+      "targets": {
+        "PTGS2": {
+          "affinity": -8.269,
+          "ligand_efficiency": -0.236,
+          "seconds": 10.87,
+          "cached": false,
+          "key": "c1d1022c557ef20c"
+        },
+        "ALOX5": {
+          "affinity": -10.378,
+          "ligand_efficiency": -0.297,
+          "seconds": 7.41,
+          "cached": false,
+          "key": "3fd526b6a4f169fd"
+        },
+        "MAPK14": {
+          "affinity": -8.417,
+          "ligand_efficiency": -0.24,
+          "seconds": 8.83,
+          "cached": false,
+          "key": "a10b312770e2c28d"
+        }
+      }
+    },
+    "IMPPAT3_PHYID017119": {
+      "name": "(2R)-2-[(1S)-1-[(8R,9S,10R,13S,14R,17S)-14,17-dihydroxy-10,13-dimethyl-1-oxo-4,7,8,9,11,12,15,16-octahydrocyclopenta[a]phenanthren-17-yl]-1-hydroxyethyl]-4,5-dimethyl-2,3-dihydropyran-6-one",
+      "targets": {
+        "PTGS2": {
+          "affinity": -8.61,
+          "ligand_efficiency": -0.253,
+          "seconds": 10.34,
+          "cached": false,
+          "key": "a96bc875104f5442"
+        },
+        "ALOX5": {
+          "affinity": -9.761,
+          "ligand_efficiency": -0.287,
+          "seconds": 6.61,
+          "cached": false,
+          "key": "9af193a4593301d3"
+        },
+        "MAPK14": {
+          "affinity": -8.042,
+          "ligand_efficiency": -0.237,
+          "seconds": 10.11,
+          "cached": false,
+          "key": "37b1f17f2d2d1f91"
+        }
+      }
+    }
+  }
+}

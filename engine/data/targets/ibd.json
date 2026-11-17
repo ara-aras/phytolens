@@ -1,0 +1,778 @@
+{
+  "condition": {
+    "id": "MONDO_0005265",
+    "name": "inflammatory bowel disease",
+    "min_score": 0.5,
+    "source": "Open Targets Platform, GraphQL v4",
+    "endpoint": "https://api.platform.opentargets.org/api/v4/graphql",
+    "licence": "CC0 1.0",
+    "retrieved": "2026-11-17",
+    "total_associations": 8732,
+    "targets_kept": 82
+  },
+  "targets": [
+    {
+      "symbol": "NOD2",
+      "score": 0.8697,
+      "evidence": {
+        "uniprot_variants": 0.9854,
+        "gwas_credible_sets": 0.9477,
+        "eva": 0.8971,
+        "genomics_england": 0.8465,
+        "gene_burden": 0.8331,
+        "uniprot_literature": 0.6079,
+        "europepmc": 0.9599,
+        "impc": 0.528
+      }
+    },
+    {
+      "symbol": "IL10RA",
+      "score": 0.822,
+      "evidence": {
+        "eva": 0.9309,
+        "genomics_england": 0.9286,
+        "uniprot_variants": 0.9286,
+        "uniprot_literature": 0.6079,
+        "orphanet": 0.6079,
+        "clingen": 0.6079,
+        "europepmc": 0.9265,
+        "impc": 0.9136
+      }
+    },
+    {
+      "symbol": "IL10RB",
+      "score": 0.7983,
+      "evidence": {
+        "genomics_england": 0.9286,
+        "eva": 0.917,
+        "clingen": 0.7599,
+        "uniprot_literature": 0.6079,
+        "orphanet": 0.6079,
+        "gwas_credible_sets": 0.1503,
+        "europepmc": 0.6952,
+        "impc": 0.4901
+      }
+    },
+    {
+      "symbol": "ADAM17",
+      "score": 0.788,
+      "evidence": {
+        "genomics_england": 0.9191,
+        "eva": 0.9031,
+        "orphanet": 0.6079,
+        "uniprot_literature": 0.6079,
+        "clingen": 0.6079,
+        "gene2phenotype": 0.6079,
+        "europepmc": 0.6942,
+        "impc": 0.5621
+      }
+    },
+    {
+      "symbol": "IL10",
+      "score": 0.7745,
+      "evidence": {
+        "gwas_credible_sets": 0.9585,
+        "genomics_england": 0.8275,
+        "orphanet": 0.6079,
+        "eva": 0.3164,
+        "clingen": 0.304,
+        "europepmc": 0.992,
+        "impc": 0.8733
+      }
+    },
+    {
+      "symbol": "IL12B",
+      "score": 0.7621,
+      "evidence": {
+        "clinical_precedence": 0.9935,
+        "gwas_credible_sets": 0.9622,
+        "europepmc": 0.881
+      }
+    },
+    {
+      "symbol": "JAK2",
+      "score": 0.7521,
+      "evidence": {
+        "clinical_precedence": 0.967,
+        "gwas_credible_sets": 0.9021,
+        "cancer_gene_census": 0.304,
+        "europepmc": 0.8754
+      }
+    },
+    {
+      "symbol": "ITGA4",
+      "score": 0.7439,
+      "evidence": {
+        "clinical_precedence": 0.9917,
+        "gwas_credible_sets": 0.9056,
+        "europepmc": 0.2522
+      }
+    },
+    {
+      "symbol": "TYK2",
+      "score": 0.7393,
+      "evidence": {
+        "clinical_precedence": 0.9672,
+        "gwas_credible_sets": 0.9182,
+        "europepmc": 0.8678
+      }
+    },
+    {
+      "symbol": "IL23R",
+      "score": 0.72,
+      "evidence": {
+        "gwas_credible_sets": 0.9594,
+        "uniprot_literature": 0.6079,
+        "eva": 0.5515,
+        "europepmc": 0.9386
+      }
+    },
+    {
+      "symbol": "JAK3",
+      "score": 0.6675,
+      "evidence": {
+        "clinical_precedence": 0.9671,
+        "cancer_gene_census": 0.4559,
+        "impc": 0.6176,
+        "europepmc": 0.2352,
+        "expression_atlas": 0.0258
+      }
+    },
+    {
+      "symbol": "EGFR",
+      "score": 0.655,
+      "evidence": {
+        "eva": 0.8305,
+        "uniprot_variants": 0.6079,
+        "uniprot_literature": 0.6079,
+        "cancer_gene_census": 0.304,
+        "europepmc": 0.6677,
+        "impc": 0.5176,
+        "gene2phenotype": 0.0076
+      }
+    },
+    {
+      "symbol": "INAVA",
+      "score": 0.6542,
+      "evidence": {
+        "gwas_credible_sets": 0.8335,
+        "uniprot_variants": 0.6079,
+        "uniprot_literature": 0.6079,
+        "eva": 0.2769,
+        "impc": 0.5474,
+        "europepmc": 0.266
+      }
+    },
+    {
+      "symbol": "TNF",
+      "score": 0.6458,
+      "evidence": {
+        "clinical_precedence": 0.9967,
+        "europepmc": 0.996,
+        "impc": 0.7121
+      }
+    },
+    {
+      "symbol": "IL23A",
+      "score": 0.6449,
+      "evidence": {
+        "clinical_precedence": 0.9935,
+        "europepmc": 0.9399,
+        "impc": 0.9121
+      }
+    },
+    {
+      "symbol": "PTGS2",
+      "score": 0.6349,
+      "evidence": {
+        "clinical_precedence": 0.9945,
+        "europepmc": 0.6982,
+        "impc": 0.6579,
+        "expression_atlas": 0.035
+      }
+    },
+    {
+      "symbol": "PPARG",
+      "score": 0.6332,
+      "evidence": {
+        "clinical_precedence": 0.9944,
+        "europepmc": 0.9381,
+        "expression_atlas": 0.0111
+      }
+    },
+    {
+      "symbol": "ITGB7",
+      "score": 0.6331,
+      "evidence": {
+        "clinical_precedence": 0.9921,
+        "impc": 0.7764,
+        "europepmc": 0.473
+      }
+    },
+    {
+      "symbol": "NR3C1",
+      "score": 0.6317,
+      "evidence": {
+        "clinical_precedence": 0.9978,
+        "europepmc": 0.7232,
+        "gwas_credible_sets": 0.0469
+      }
+    },
+    {
+      "symbol": "BACH2",
+      "score": 0.6316,
+      "evidence": {
+        "gwas_credible_sets": 0.8798,
+        "genomics_england": 0.6079,
+        "europepmc": 0.3257
+      }
+    },
+    {
+      "symbol": "IRF5",
+      "score": 0.6255,
+      "evidence": {
+        "gwas_credible_sets": 0.8669,
+        "uniprot_literature": 0.6079,
+        "europepmc": 0.4517
+      }
+    },
+    {
+      "symbol": "ALOX5",
+      "score": 0.6154,
+      "evidence": {
+        "clinical_precedence": 0.9945,
+        "europepmc": 0.3552
+      }
+    },
+    {
+      "symbol": "PTGS1",
+      "score": 0.6153,
+      "evidence": {
+        "clinical_precedence": 0.9945,
+        "europepmc": 0.3523
+      }
+    },
+    {
+      "symbol": "IL21",
+      "score": 0.607,
+      "evidence": {
+        "genomics_england": 0.6839,
+        "gwas_credible_sets": 0.6468,
+        "uniprot_variants": 0.6079,
+        "uniprot_literature": 0.6079,
+        "orphanet": 0.6079,
+        "eva": 0.5971,
+        "europepmc": 0.9324,
+        "clinical_precedence": 0.1216,
+        "impc": 0.2674,
+        "clingen": 0.0061
+      }
+    },
+    {
+      "symbol": "IL12A",
+      "score": 0.6066,
+      "evidence": {
+        "clinical_precedence": 0.9874,
+        "europepmc": 0.2076
+      }
+    },
+    {
+      "symbol": "S1PR1",
+      "score": 0.5996,
+      "evidence": {
+        "clinical_precedence": 0.9595,
+        "europepmc": 0.5363
+      }
+    },
+    {
+      "symbol": "GPR35",
+      "score": 0.5988,
+      "evidence": {
+        "gwas_credible_sets": 0.9403,
+        "impc": 0.6593,
+        "europepmc": 0.5277
+      }
+    },
+    {
+      "symbol": "JAK1",
+      "score": 0.5963,
+      "evidence": {
+        "clinical_precedence": 0.9671,
+        "europepmc": 0.275
+      }
+    },
+    {
+      "symbol": "PPAT",
+      "score": 0.5914,
+      "evidence": {
+        "clinical_precedence": 0.9692,
+        "europepmc": 0.0718
+      }
+    },
+    {
+      "symbol": "TNFSF15",
+      "score": 0.5909,
+      "evidence": {
+        "gwas_credible_sets": 0.9259,
+        "europepmc": 0.9228
+      }
+    },
+    {
+      "symbol": "S1PR5",
+      "score": 0.5832,
+      "evidence": {
+        "clinical_precedence": 0.955,
+        "europepmc": 0.0856
+      }
+    },
+    {
+      "symbol": "CD40",
+      "score": 0.5782,
+      "evidence": {
+        "gwas_credible_sets": 0.9036,
+        "europepmc": 0.9488
+      }
+    },
+    {
+      "symbol": "IL37",
+      "score": 0.5767,
+      "evidence": {
+        "eva": 0.7174,
+        "uniprot_literature": 0.6079,
+        "uniprot_variants": 0.6079,
+        "europepmc": 0.9369
+      }
+    },
+    {
+      "symbol": "SMAD3",
+      "score": 0.5731,
+      "evidence": {
+        "gwas_credible_sets": 0.8918,
+        "europepmc": 0.7982,
+        "impc": 0.4944
+      }
+    },
+    {
+      "symbol": "CXCR2",
+      "score": 0.5697,
+      "evidence": {
+        "gwas_credible_sets": 0.8739,
+        "clinical_precedence": 0.178,
+        "europepmc": 0.8285,
+        "expression_atlas": 0.0268
+      }
+    },
+    {
+      "symbol": "FCGR2A",
+      "score": 0.5689,
+      "evidence": {
+        "gwas_credible_sets": 0.8908,
+        "europepmc": 0.7815,
+        "impc": 0.2696
+      }
+    },
+    {
+      "symbol": "ITGB1",
+      "score": 0.5672,
+      "evidence": {
+        "clinical_precedence": 0.9197,
+        "europepmc": 0.2659
+      }
+    },
+    {
+      "symbol": "MAP3K8",
+      "score": 0.563,
+      "evidence": {
+        "gwas_credible_sets": 0.8734,
+        "europepmc": 0.6569,
+        "clinical_precedence": 0.1216,
+        "impc": 0.5024,
+        "expression_atlas": 0.0201
+      }
+    },
+    {
+      "symbol": "NFKBIA",
+      "score": 0.5623,
+      "evidence": {
+        "gwas_credible_sets": 0.8775,
+        "europepmc": 0.8288,
+        "impc": 0.2729
+      }
+    },
+    {
+      "symbol": "ATG16L1",
+      "score": 0.5595,
+      "evidence": {
+        "gwas_credible_sets": 0.7303,
+        "uniprot_literature": 0.6079,
+        "eva": 0.2432,
+        "europepmc": 0.5926,
+        "impc": 0.4419
+      }
+    },
+    {
+      "symbol": "S1PR4",
+      "score": 0.5572,
+      "evidence": {
+        "clinical_precedence": 0.9077,
+        "europepmc": 0.1781
+      }
+    },
+    {
+      "symbol": "PTPN22",
+      "score": 0.5564,
+      "evidence": {
+        "gwas_credible_sets": 0.8799,
+        "europepmc": 0.7058
+      }
+    },
+    {
+      "symbol": "PTPN2",
+      "score": 0.5556,
+      "evidence": {
+        "gwas_credible_sets": 0.8598,
+        "europepmc": 0.9023,
+        "impc": 0.4021
+      }
+    },
+    {
+      "symbol": "IL2RA",
+      "score": 0.5504,
+      "evidence": {
+        "gwas_credible_sets": 0.8352,
+        "clinical_precedence": 0.1834,
+        "europepmc": 0.7445,
+        "impc": 0.6304
+      }
+    },
+    {
+      "symbol": "MST1",
+      "score": 0.5482,
+      "evidence": {
+        "gwas_credible_sets": 0.847,
+        "europepmc": 0.7982,
+        "impc": 0.6674
+      }
+    },
+    {
+      "symbol": "ADCY7",
+      "score": 0.5468,
+      "evidence": {
+        "gwas_credible_sets": 0.8915,
+        "europepmc": 0.1589
+      }
+    },
+    {
+      "symbol": "SH2B3",
+      "score": 0.5465,
+      "evidence": {
+        "gwas_credible_sets": 0.8939,
+        "europepmc": 0.1006
+      }
+    },
+    {
+      "symbol": "NKX2-3",
+      "score": 0.5462,
+      "evidence": {
+        "gwas_credible_sets": 0.8485,
+        "europepmc": 0.7681,
+        "impc": 0.5218
+      }
+    },
+    {
+      "symbol": "DLD",
+      "score": 0.5442,
+      "evidence": {
+        "gwas_credible_sets": 0.8761,
+        "europepmc": 0.3799
+      }
+    },
+    {
+      "symbol": "CD6",
+      "score": 0.5437,
+      "evidence": {
+        "gwas_credible_sets": 0.8622,
+        "europepmc": 0.642
+      }
+    },
+    {
+      "symbol": "LACC1",
+      "score": 0.5415,
+      "evidence": {
+        "gwas_credible_sets": 0.8518,
+        "europepmc": 0.7787
+      }
+    },
+    {
+      "symbol": "HSPA1L",
+      "score": 0.5405,
+      "evidence": {
+        "eva": 0.8008,
+        "genomics_england": 0.304,
+        "europepmc": 0.5557
+      }
+    },
+    {
+      "symbol": "PTGER4",
+      "score": 0.54,
+      "evidence": {
+        "gwas_credible_sets": 0.8478,
+        "clinical_precedence": 0.1216,
+        "europepmc": 0.4554
+      }
+    },
+    {
+      "symbol": "NR5A2",
+      "score": 0.5376,
+      "evidence": {
+        "gwas_credible_sets": 0.8354,
+        "europepmc": 0.6834,
+        "impc": 0.6675
+      }
+    },
+    {
+      "symbol": "FUT2",
+      "score": 0.5369,
+      "evidence": {
+        "gwas_credible_sets": 0.8401,
+        "europepmc": 0.8594
+      }
+    },
+    {
+      "symbol": "FOSL2",
+      "score": 0.5344,
+      "evidence": {
+        "gwas_credible_sets": 0.8764,
+        "europepmc": 0.0527
+      }
+    },
+    {
+      "symbol": "PRDM1",
+      "score": 0.533,
+      "evidence": {
+        "gwas_credible_sets": 0.7855,
+        "cancer_gene_census": 0.304,
+        "europepmc": 0.6736,
+        "expression_atlas": 0.024
+      }
+    },
+    {
+      "symbol": "NFKB1",
+      "score": 0.5324,
+      "evidence": {
+        "gwas_credible_sets": 0.8141,
+        "europepmc": 0.9647,
+        "impc": 0.6084
+      }
+    },
+    {
+      "symbol": "GPR65",
+      "score": 0.5264,
+      "evidence": {
+        "gwas_credible_sets": 0.8209,
+        "europepmc": 0.8902,
+        "expression_atlas": 0.021
+      }
+    },
+    {
+      "symbol": "IRF8",
+      "score": 0.5213,
+      "evidence": {
+        "gwas_credible_sets": 0.8427,
+        "europepmc": 0.2975
+      }
+    },
+    {
+      "symbol": "TRIM22",
+      "score": 0.5197,
+      "evidence": {
+        "genomics_england": 0.8275,
+        "europepmc": 0.5285,
+        "expression_atlas": 0.0405
+      }
+    },
+    {
+      "symbol": "CARD9",
+      "score": 0.5172,
+      "evidence": {
+        "gwas_credible_sets": 0.8113,
+        "europepmc": 0.7884
+      }
+    },
+    {
+      "symbol": "RIPK1",
+      "score": 0.517,
+      "evidence": {
+        "eva": 0.8008,
+        "europepmc": 0.6881,
+        "clinical_precedence": 0.1368
+      }
+    },
+    {
+      "symbol": "PRKCB",
+      "score": 0.5146,
+      "evidence": {
+        "gwas_credible_sets": 0.8134,
+        "clinical_precedence": 0.1216,
+        "europepmc": 0.1215
+      }
+    },
+    {
+      "symbol": "FOS",
+      "score": 0.5134,
+      "evidence": {
+        "gwas_credible_sets": 0.8173,
+        "europepmc": 0.544
+      }
+    },
+    {
+      "symbol": "CARD8",
+      "score": 0.5131,
+      "evidence": {
+        "eva": 0.7132,
+        "uniprot_variants": 0.38,
+        "uniprot_literature": 0.304,
+        "europepmc": 0.1725
+      }
+    },
+    {
+      "symbol": "SATB2",
+      "score": 0.5122,
+      "evidence": {
+        "gwas_credible_sets": 0.8127,
+        "europepmc": 0.5858,
+        "expression_atlas": 0.0227
+      }
+    },
+    {
+      "symbol": "CDKAL1",
+      "score": 0.5112,
+      "evidence": {
+        "gwas_credible_sets": 0.8346,
+        "europepmc": 0.1249
+      }
+    },
+    {
+      "symbol": "PDGFB",
+      "score": 0.511,
+      "evidence": {
+        "gwas_credible_sets": 0.8299,
+        "europepmc": 0.2109
+      }
+    },
+    {
+      "symbol": "IAH1",
+      "score": 0.5104,
+      "evidence": {
+        "eva": 0.8396
+      }
+    },
+    {
+      "symbol": "CSF2RB",
+      "score": 0.5088,
+      "evidence": {
+        "gwas_credible_sets": 0.6711,
+        "clinical_precedence": 0.5983,
+        "europepmc": 0.7152,
+        "expression_atlas": 0.0301
+      }
+    },
+    {
+      "symbol": "PLAU",
+      "score": 0.508,
+      "evidence": {
+        "gwas_credible_sets": 0.7825,
+        "europepmc": 0.8639,
+        "impc": 0.4293,
+        "expression_atlas": 0.038
+      }
+    },
+    {
+      "symbol": "GALC",
+      "score": 0.508,
+      "evidence": {
+        "gwas_credible_sets": 0.8277,
+        "europepmc": 0.1599
+      }
+    },
+    {
+      "symbol": "JAZF1",
+      "score": 0.508,
+      "evidence": {
+        "gwas_credible_sets": 0.8314,
+        "europepmc": 0.0838
+      }
+    },
+    {
+      "symbol": "IFNGR2",
+      "score": 0.5062,
+      "evidence": {
+        "gwas_credible_sets": 0.8268,
+        "europepmc": 0.1167
+      }
+    },
+    {
+      "symbol": "CIITA",
+      "score": 0.5057,
+      "evidence": {
+        "gwas_credible_sets": 0.8037,
+        "europepmc": 0.5623
+      }
+    },
+    {
+      "symbol": "CCL20",
+      "score": 0.5056,
+      "evidence": {
+        "gwas_credible_sets": 0.7849,
+        "europepmc": 0.9255,
+        "expression_atlas": 0.0255
+      }
+    },
+    {
+      "symbol": "MMP9",
+      "score": 0.5031,
+      "evidence": {
+        "gwas_credible_sets": 0.6748,
+        "clinical_precedence": 0.5251,
+        "europepmc": 0.9331,
+        "expression_atlas": 0.06
+      }
+    },
+    {
+      "symbol": "STAT3",
+      "score": 0.5028,
+      "evidence": {
+        "gwas_credible_sets": 0.6534,
+        "genomics_england": 0.6079,
+        "europepmc": 0.9733
+      }
+    },
+    {
+      "symbol": "ALPI",
+      "score": 0.5026,
+      "evidence": {
+        "genomics_england": 0.7599,
+        "eva": 0.2432,
+        "europepmc": 0.2728
+      }
+    },
+    {
+      "symbol": "TET2",
+      "score": 0.5023,
+      "evidence": {
+        "gwas_credible_sets": 0.6794,
+        "cancer_gene_census": 0.4559,
+        "gene_burden": 0.2204,
+        "europepmc": 0.6732
+      }
+    },
+    {
+      "symbol": "SYK",
+      "score": 0.502,
+      "evidence": {
+        "eva": 0.7829,
+        "europepmc": 0.8568
+      }
+    }
+  ]
+}

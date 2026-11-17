@@ -1,0 +1,31 @@
+{
+  "name": "3-Acetyl-11-keto-beta-boswellic acid",
+  "affinity": -6.524,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -6.524,
+    -4.187
+  ],
+  "cached": false,
+  "seconds": 7.39,
+  "key": "ff7994831f80ef24",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\ff7994831f80ef24.pdbqt",
+  "smiles": "CC(=O)O[C@@H]1CC[C@]2([C@H]([C@@]1(C)C(=O)O)CC[C@@]1([C@@H]2C(=O)C=C2[C@@]1(C)CC[C@@]1([C@H]2[C@@H](C)[C@H](C)CC1)C)C)C",
+  "receptor": "3D83",
+  "box": {
+    "center": [
+      42.169,
+      30.17,
+      34.589
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of GK6 (35 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

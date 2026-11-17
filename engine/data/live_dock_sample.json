@@ -1,0 +1,230 @@
+{
+  "generated": "2026-11-17T17:22:43+00:00",
+  "plant": "Zingiber officinale",
+  "part": "rhizome",
+  "solvent": "ethanol",
+  "condition": "colitis",
+  "targets": [
+    "PTGS2"
+  ],
+  "exhaustiveness": 4,
+  "engine": "AutoDock Vina",
+  "vina": "AutoDock Vina v1.2.7",
+  "seed": 42,
+  "fresh": 2,
+  "reused": 0,
+  "scores": {
+    "IMPPAT3_PHYID001330": {
+      "name": "Shogaol",
+      "targets": {
+        "PTGS2": {
+          "affinity": -6.338,
+          "ligand_efficiency": -0.317,
+          "seconds": 5.11,
+          "cached": false,
+          "key": "6b225daa0bc6e225"
+        }
+      }
+    },
+    "IMPPAT3_PHYID001327": {
+      "name": "Gingerol",
+      "targets": {
+        "PTGS2": {
+          "affinity": -6.45,
+          "ligand_efficiency": -0.307,
+          "seconds": 6.6,
+          "cached": false,
+          "key": "228b589030109b95"
+        }
+      }
+    }
+  },
+  "coverage_before": {
+    "docked": 12,
+    "candidates": 21
+  },
+  "coverage_after": {
+    "docked": 14,
+    "candidates": 21
+  },
+  "shortlist_after": [
+    {
+      "rank": 1,
+      "name": "Acetyleugenol",
+      "score": 0.4583,
+      "docking": {}
+    },
+    {
+      "rank": 2,
+      "name": "ar-Turmerone",
+      "score": 0.436,
+      "docking": {
+        "ALOX5": -6.913,
+        "MAPK14": -7.834,
+        "PTGS2": -6.584
+      }
+    },
+    {
+      "rank": 3,
+      "name": "Cinnamaldehyde",
+      "score": 0.4204,
+      "docking": {}
+    },
+    {
+      "rank": 4,
+      "name": "Levomenol",
+      "score": 0.3887,
+      "docking": {
+        "ALOX5": -6.569,
+        "MAPK14": -7.665,
+        "PTGS2": -6.748
+      }
+    },
+    {
+      "rank": 5,
+      "name": "Benzyl benzoate",
+      "score": 0.3595,
+      "docking": {}
+    },
+    {
+      "rank": 6,
+      "name": "Shogaol",
+      "score": 0.3144,
+      "docking": {
+        "PTGS2": -6.338
+      }
+    },
+    {
+      "rank": 7,
+      "name": "Eugenol",
+      "score": 0.3021,
+      "docking": {
+        "ALOX5": -5.489,
+        "MAPK14": -5.876,
+        "PTGS2": -5.515
+      }
+    },
+    {
+      "rank": 8,
+      "name": "Gingerol",
+      "score": 0.2983,
+      "docking": {
+        "PTGS2": -6.45
+      }
+    },
+    {
+      "rank": 9,
+      "name": "Geraniol",
+      "score": 0.2797,
+      "docking": {
+        "ALOX5": -5.496,
+        "MAPK14": -5.981,
+        "PTGS2": -5.552
+      }
+    },
+    {
+      "rank": 10,
+      "name": "Linalyl acetate",
+      "score": 0.2761,
+      "docking": {
+        "ALOX5": -5.828,
+        "MAPK14": -6.369,
+        "PTGS2": -5.987
+      }
+    },
+    {
+      "rank": 11,
+      "name": "Carvacrol",
+      "score": 0.2708,
+      "docking": {
+        "ALOX5": -5.479,
+        "MAPK14": -6.411,
+        "PTGS2": -5.752
+      }
+    },
+    {
+      "rank": 12,
+      "name": "Eucalyptol",
+      "score": 0.2657,
+      "docking": {
+        "ALOX5": -5.364,
+        "MAPK14": -6.12,
+        "PTGS2": -5.372
+      }
+    },
+    {
+      "rank": 13,
+      "name": "Methyleugenol",
+      "score": 0.2508,
+      "docking": {
+        "ALOX5": -5.757,
+        "MAPK14": -6.052,
+        "PTGS2": -5.414
+      }
+    },
+    {
+      "rank": 14,
+      "name": "Citronellol",
+      "score": 0.2062,
+      "docking": {
+        "ALOX5": -5.305,
+        "MAPK14": -5.76,
+        "PTGS2": -5.17
+      }
+    },
+    {
+      "rank": 15,
+      "name": "Benzaldehyde",
+      "score": 0.1537,
+      "docking": {}
+    },
+    {
+      "rank": 16,
+      "name": "alpha-Pinene",
+      "score": 0.1403,
+      "docking": {
+        "ALOX5": -5.666,
+        "MAPK14": -6.18,
+        "PTGS2": -5.312
+      }
+    },
+    {
+      "rank": 17,
+      "name": "Myrcene",
+      "score": 0.1133,
+      "docking": {
+        "ALOX5": -5.107,
+        "MAPK14": -5.335,
+        "PTGS2": -4.455
+      }
+    },
+    {
+      "rank": 18,
+      "name": "Limonene",
+      "score": 0.1003,
+      "docking": {
+        "ALOX5": -5.255,
+        "MAPK14": -5.971,
+        "PTGS2": -5.358
+      }
+    },
+    {
+      "rank": 19,
+      "name": "o-Xylene",
+      "score": 0.0917,
+      "docking": {}
+    },
+    {
+      "rank": 20,
+      "name": "1-Octanol",
+      "score": 0.0861,
+      "docking": {}
+    },
+    {
+      "rank": 21,
+      "name": "Cedrol",
+      "score": 0.0712,
+      "docking": {}
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "name": "Coumaperine",
+  "affinity": -6.521,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -6.521,
+    -6.45,
+    -6.185,
+    -6.142,
+    -6.112,
+    -6.052,
+    -5.861,
+    -5.719
+  ],
+  "cached": false,
+  "seconds": 3.48,
+  "key": "37142e0df399c688",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\37142e0df399c688.pdbqt",
+  "smiles": "Oc1ccc(cc1)/C=C/C=C/C(=O)N1CCCCC1",
+  "receptor": "3NT1",
+  "box": {
+    "center": [
+      -43.833,
+      -47.237,
+      -43.958
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of NPS (34 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

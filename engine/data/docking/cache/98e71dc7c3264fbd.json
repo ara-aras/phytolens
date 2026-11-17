@@ -1,0 +1,38 @@
+{
+  "name": "Levomenol",
+  "affinity": -6.748,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -6.748,
+    -6.724,
+    -6.602,
+    -6.507,
+    -6.443,
+    -6.365,
+    -6.237,
+    -6.207,
+    -5.988
+  ],
+  "cached": false,
+  "seconds": 3.5,
+  "key": "98e71dc7c3264fbd",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\98e71dc7c3264fbd.pdbqt",
+  "smiles": "CC(=CCC[C@@]([C@H]1CCC(=CC1)C)(O)C)C",
+  "receptor": "3NT1",
+  "box": {
+    "center": [
+      -43.833,
+      -47.237,
+      -43.958
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of NPS (34 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

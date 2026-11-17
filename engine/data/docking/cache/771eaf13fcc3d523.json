@@ -1,0 +1,38 @@
+{
+  "name": "Limonene",
+  "affinity": -5.358,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -5.358,
+    -5.351,
+    -5.123,
+    -5.12,
+    -5.052,
+    -5.014,
+    -4.928,
+    -4.927,
+    -4.906
+  ],
+  "cached": false,
+  "seconds": 1.11,
+  "key": "771eaf13fcc3d523",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\771eaf13fcc3d523.pdbqt",
+  "smiles": "CC1=CCC(CC1)C(=C)C",
+  "receptor": "3NT1",
+  "box": {
+    "center": [
+      -43.833,
+      -47.237,
+      -43.958
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of NPS (34 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

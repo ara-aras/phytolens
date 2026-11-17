@@ -1,0 +1,241 @@
+{
+  "case": "piper_nigrum",
+  "label": "Piper nigrum (black pepper) fruit, ethanol",
+  "rationale": "A formulation whose active is unambiguous and not a curcuminoid. Piperine is the reason black pepper is in every bioavailability-enhancing formulation, so ranking it highly is a check the pipeline cannot pass by accident on turmeric-shaped data.\n",
+  "protocol": "untuned defaults; report every case, misses included; weights must only be tuned on a held-out case",
+  "run": {
+    "plant": "Piper nigrum",
+    "part": "fruit",
+    "solvent": "ethanol",
+    "condition": "ibd",
+    "config_hashes": {
+      "extraction": "cff9691655a3",
+      "ranking": "e34ce582afd0"
+    },
+    "docking_pending": false,
+    "docking": {
+      "candidates": 19,
+      "docked": 19,
+      "partial": false
+    },
+    "funnel": {
+      "in_part": 188,
+      "pass_extraction": 188,
+      "flagged_druglikeness": 10,
+      "with_condition_target": 19,
+      "excluded_no_condition_target": 169
+    }
+  },
+  "metrics": {
+    "n_known_actives": 1,
+    "n_found": 1,
+    "ranks": {
+      "Piperine": 3
+    },
+    "unranked": [],
+    "mrr": 0.3333,
+    "mean_rank": 3.0,
+    "best_rank": 3,
+    "recall_at_10": 1.0,
+    "recall_at_25": 1.0
+  },
+  "ablation": {
+    "with_docking": {
+      "n_known_actives": 1,
+      "n_found": 1,
+      "ranks": {
+        "Piperine": 3
+      },
+      "unranked": [],
+      "mrr": 0.3333,
+      "mean_rank": 3.0,
+      "best_rank": 3,
+      "recall_at_10": 1.0,
+      "recall_at_25": 1.0
+    },
+    "annotation_only": {
+      "n_known_actives": 1,
+      "n_found": 1,
+      "ranks": {
+        "Piperine": 13
+      },
+      "unranked": [],
+      "mrr": 0.0769,
+      "mean_rank": 13.0,
+      "best_rank": 13,
+      "recall_at_10": 0.0,
+      "recall_at_25": 1.0
+    },
+    "delta_mrr": 0.2564,
+    "delta_best_rank": 10,
+    "annotation_only_top_10": [
+      {
+        "rank": 1,
+        "name": "Cinnamaldehyde"
+      },
+      {
+        "rank": 2,
+        "name": "Eugenol"
+      },
+      {
+        "rank": 3,
+        "name": "Geraniol"
+      },
+      {
+        "rank": 4,
+        "name": "Eucalyptol"
+      },
+      {
+        "rank": 5,
+        "name": "Benzyl Alcohol"
+      },
+      {
+        "rank": 6,
+        "name": "Coumaperine"
+      },
+      {
+        "rank": 7,
+        "name": "Guaiacol"
+      },
+      {
+        "rank": 8,
+        "name": "(2E,4E,6E)-7-(2H-1,3-benzodioxol-5-yl)-1-(piperidin-1-yl)hepta-2,4,6-trien-1-one"
+      },
+      {
+        "rank": 9,
+        "name": "Thymol"
+      },
+      {
+        "rank": 10,
+        "name": "Benzyl benzoate"
+      }
+    ]
+  },
+  "null_baseline": {
+    "permutations": 1000,
+    "seed": 7,
+    "n_candidates": 19,
+    "analytic_expected_mrr": 0.1867,
+    "random_mrr_mean": 0.1961,
+    "random_mrr_p95": 1.0,
+    "observed_mrr": 0.3333,
+    "mrr_percentile": 0.881,
+    "p_value_mrr": 0.173,
+    "p_value_recall_at_10": 0.54,
+    "p_value_recall_at_25": 1.0
+  },
+  "bias_residue": {
+    "k": 10,
+    "six_in_top": [
+      "cinnamaldehyde",
+      "eucalyptol",
+      "eugenol",
+      "geraniol"
+    ],
+    "count": 4,
+    "fraction": 0.4
+  },
+  "top_10": [
+    {
+      "rank": 1,
+      "name": "Coumaperine",
+      "score": 0.5015,
+      "docking": {
+        "ALOX5": -7.318,
+        "MAPK14": -7.957,
+        "PTGS2": -6.521
+      }
+    },
+    {
+      "rank": 2,
+      "name": "(2E,4E,6E)-7-(2H-1,3-benzodioxol-5-yl)-1-(piperidin-1-yl)hepta-2,4,6-trien-1-one",
+      "score": 0.471,
+      "docking": {
+        "ALOX5": -7.903,
+        "MAPK14": -8.663,
+        "PTGS2": -6.313
+      }
+    },
+    {
+      "rank": 3,
+      "name": "Piperine",
+      "score": 0.4599,
+      "docking": {
+        "ALOX5": -7.403,
+        "MAPK14": -8.872,
+        "PTGS2": -7.883
+      }
+    },
+    {
+      "rank": 4,
+      "name": "Benzyl benzoate",
+      "score": 0.3945,
+      "docking": {
+        "ALOX5": -7.087,
+        "MAPK14": -7.784,
+        "PTGS2": -6.594
+      }
+    },
+    {
+      "rank": 5,
+      "name": "Eugenol",
+      "score": 0.3738,
+      "docking": {
+        "ALOX5": -5.489,
+        "MAPK14": -5.876,
+        "PTGS2": -5.515
+      }
+    },
+    {
+      "rank": 6,
+      "name": "Cinnamaldehyde",
+      "score": 0.3602,
+      "docking": {
+        "ALOX5": -5.628,
+        "MAPK14": -5.739,
+        "PTGS2": -5.094
+      }
+    },
+    {
+      "rank": 7,
+      "name": "Geraniol",
+      "score": 0.3597,
+      "docking": {
+        "ALOX5": -5.496,
+        "MAPK14": -5.981,
+        "PTGS2": -5.552
+      }
+    },
+    {
+      "rank": 8,
+      "name": "Eucalyptol",
+      "score": 0.3376,
+      "docking": {
+        "ALOX5": -5.364,
+        "MAPK14": -6.12,
+        "PTGS2": -5.372
+      }
+    },
+    {
+      "rank": 9,
+      "name": "Pipercide",
+      "score": 0.2959,
+      "docking": {
+        "ALOX5": -6.605,
+        "MAPK14": -8.646,
+        "PTGS2": -7.075
+      }
+    },
+    {
+      "rank": 10,
+      "name": "Thymol",
+      "score": 0.2789,
+      "docking": {
+        "ALOX5": -5.587,
+        "MAPK14": -6.183,
+        "PTGS2": -5.884
+      }
+    }
+  ],
+  "generated": "2026-11-17"
+}

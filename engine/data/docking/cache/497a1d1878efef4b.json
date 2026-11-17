@@ -1,0 +1,38 @@
+{
+  "name": "Linalyl isobutyrate",
+  "affinity": -6.881,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -6.881,
+    -6.715,
+    -6.562,
+    -6.548,
+    -6.091,
+    -5.708,
+    -5.567,
+    -5.52,
+    -5.446
+  ],
+  "cached": false,
+  "seconds": 3.16,
+  "key": "497a1d1878efef4b",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\497a1d1878efef4b.pdbqt",
+  "smiles": "C=CC(OC(=O)C(C)C)(CCC=C(C)C)C",
+  "receptor": "3D83",
+  "box": {
+    "center": [
+      42.169,
+      30.17,
+      34.589
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of GK6 (35 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

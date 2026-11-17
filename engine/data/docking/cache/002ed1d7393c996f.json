@@ -1,0 +1,38 @@
+{
+  "name": "Decanoic acid",
+  "affinity": -5.046,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -5.046,
+    -4.972,
+    -4.759,
+    -4.67,
+    -4.6,
+    -4.576,
+    -4.539,
+    -4.536,
+    -4.484
+  ],
+  "cached": false,
+  "seconds": 3.15,
+  "key": "002ed1d7393c996f",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\002ed1d7393c996f.pdbqt",
+  "smiles": "CCCCCCCCCC(=O)O",
+  "receptor": "3V99",
+  "box": {
+    "center": [
+      18.394,
+      -78.715,
+      -33.903
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of ACD (53 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

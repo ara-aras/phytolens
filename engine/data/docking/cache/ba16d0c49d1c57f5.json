@@ -1,0 +1,38 @@
+{
+  "name": "Cholesterol",
+  "affinity": -9.173,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -9.173,
+    -8.623,
+    -8.589,
+    -8.503,
+    -8.342,
+    -8.324,
+    -8.294,
+    -8.174,
+    -8.018
+  ],
+  "cached": false,
+  "seconds": 4.64,
+  "key": "ba16d0c49d1c57f5",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\ba16d0c49d1c57f5.pdbqt",
+  "smiles": "CC(CCC[C@H]([C@H]1CC[C@@H]2[C@]1(C)CC[C@H]1[C@H]2CC=C2[C@]1(C)CC[C@@H](C2)O)C)C",
+  "receptor": "3V99",
+  "box": {
+    "center": [
+      18.394,
+      -78.715,
+      -33.903
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of ACD (53 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

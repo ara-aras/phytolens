@@ -1,0 +1,38 @@
+{
+  "name": "Eucalyptol",
+  "affinity": -5.372,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -5.372,
+    -5.345,
+    -5.301,
+    -5.264,
+    -5.262,
+    -5.229,
+    -5.166,
+    -5.148,
+    -5.147
+  ],
+  "cached": false,
+  "seconds": 0.99,
+  "key": "c714c06bb90a7f7c",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\c714c06bb90a7f7c.pdbqt",
+  "smiles": "CC12CCC(CC1)C(O2)(C)C",
+  "receptor": "3NT1",
+  "box": {
+    "center": [
+      -43.833,
+      -47.237,
+      -43.958
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of NPS (34 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

@@ -1,0 +1,38 @@
+{
+  "name": "Methyleugenol",
+  "affinity": -6.052,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -6.052,
+    -5.834,
+    -5.711,
+    -5.669,
+    -5.622,
+    -5.528,
+    -5.457,
+    -5.409,
+    -5.377
+  ],
+  "cached": false,
+  "seconds": 1.67,
+  "key": "bfb3ababee5c2bfc",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\bfb3ababee5c2bfc.pdbqt",
+  "smiles": "C=CCc1ccc(c(c1)OC)OC",
+  "receptor": "3D83",
+  "box": {
+    "center": [
+      42.169,
+      30.17,
+      34.589
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of GK6 (35 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

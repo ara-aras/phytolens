@@ -1,0 +1,38 @@
+{
+  "name": "Benzyl Alcohol",
+  "affinity": -4.705,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -4.705,
+    -4.702,
+    -4.638,
+    -4.267,
+    -4.258,
+    -4.177,
+    -4.17,
+    -4.163,
+    -4.137
+  ],
+  "cached": false,
+  "seconds": 1.15,
+  "key": "0014a90ea218ecfe",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\0014a90ea218ecfe.pdbqt",
+  "smiles": "OCc1ccccc1",
+  "receptor": "3V99",
+  "box": {
+    "center": [
+      18.394,
+      -78.715,
+      -33.903
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of ACD (53 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

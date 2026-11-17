@@ -1,0 +1,38 @@
+{
+  "name": "Thymol",
+  "affinity": -5.587,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -5.587,
+    -5.574,
+    -5.281,
+    -5.178,
+    -5.171,
+    -5.095,
+    -5.034,
+    -5.021,
+    -4.976
+  ],
+  "cached": false,
+  "seconds": 1.3,
+  "key": "babe614efc8d9e76",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\babe614efc8d9e76.pdbqt",
+  "smiles": "Cc1ccc(c(c1)O)C(C)C",
+  "receptor": "3V99",
+  "box": {
+    "center": [
+      18.394,
+      -78.715,
+      -33.903
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of ACD (53 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

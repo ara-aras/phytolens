@@ -1,0 +1,38 @@
+{
+  "name": "Anethole",
+  "affinity": -5.552,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -5.552,
+    -5.549,
+    -5.398,
+    -5.149,
+    -5.12,
+    -5.079,
+    -5.008,
+    -4.828,
+    -4.718
+  ],
+  "cached": false,
+  "seconds": 1.33,
+  "key": "e55371a5e8e2e1f9",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\e55371a5e8e2e1f9.pdbqt",
+  "smiles": "C/C=C/c1ccc(cc1)OC",
+  "receptor": "3V99",
+  "box": {
+    "center": [
+      18.394,
+      -78.715,
+      -33.903
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of ACD (53 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

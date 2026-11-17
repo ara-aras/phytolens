@@ -1,0 +1,38 @@
+{
+  "name": "Nicotine",
+  "affinity": -5.051,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -5.051,
+    -4.687,
+    -4.632,
+    -4.579,
+    -4.572,
+    -4.501,
+    -4.453,
+    -4.39,
+    -4.381
+  ],
+  "cached": false,
+  "seconds": 1.22,
+  "key": "9e19db00b3dcd327",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\9e19db00b3dcd327.pdbqt",
+  "smiles": "CN1CCC[C@H]1c1cccnc1",
+  "receptor": "3V99",
+  "box": {
+    "center": [
+      18.394,
+      -78.715,
+      -33.903
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of ACD (53 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

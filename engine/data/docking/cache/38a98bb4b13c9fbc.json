@@ -1,0 +1,38 @@
+{
+  "name": "Palmitic acid",
+  "affinity": -5.268,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -5.268,
+    -5.237,
+    -5.168,
+    -5.148,
+    -5.137,
+    -5.125,
+    -5.079,
+    -5.075,
+    -5.065
+  ],
+  "cached": false,
+  "seconds": 13.36,
+  "key": "38a98bb4b13c9fbc",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\38a98bb4b13c9fbc.pdbqt",
+  "smiles": "CCCCCCCCCCCCCCCC(=O)O",
+  "receptor": "3NT1",
+  "box": {
+    "center": [
+      -43.833,
+      -47.237,
+      -43.958
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of NPS (34 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

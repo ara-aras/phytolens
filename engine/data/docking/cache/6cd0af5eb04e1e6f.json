@@ -1,0 +1,38 @@
+{
+  "name": "(2E,4E,6E)-7-(2H-1,3-benzodioxol-5-yl)-1-(piperidin-1-yl)hepta-2,4,6-trien-1-one",
+  "affinity": -8.663,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -8.663,
+    -8.548,
+    -8.466,
+    -8.436,
+    -8.228,
+    -8.152,
+    -8.099,
+    -8.03,
+    -7.762
+  ],
+  "cached": false,
+  "seconds": 4.98,
+  "key": "6cd0af5eb04e1e6f",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\6cd0af5eb04e1e6f.pdbqt",
+  "smiles": "O=C(N1CCCCC1)/C=C/C=C/C=C/c1ccc2c(c1)OCO2",
+  "receptor": "3D83",
+  "box": {
+    "center": [
+      42.169,
+      30.17,
+      34.589
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of GK6 (35 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

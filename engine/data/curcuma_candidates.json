@@ -1,0 +1,1286 @@
+﻿{
+  "condition": {
+    "id": "MONDO_0005292",
+    "name": "colitis",
+    "targets": 66,
+    "source": "Open Targets Platform, GraphQL v4",
+    "retrieved": "2026-11-17",
+    "min_score": 0.4
+  },
+  "formulation": {
+    "plant": "Curcuma longa",
+    "plant_id": "IMPPAT3_PLTID000933",
+    "part": "rhizome",
+    "solvent": "ethanol",
+    "solvent_label": "ethanol (70%)"
+  },
+  "config_hashes": {
+    "extraction": "cff9691655a3",
+    "ranking": "e34ce582afd0"
+  },
+  "docking_pending": true,
+  "funnel": {
+    "in_part": 168,
+    "pass_extraction": 168,
+    "flagged_druglikeness": 14,
+    "with_condition_target": 24,
+    "excluded_no_condition_target": 144
+  },
+  "ranked": [
+    {
+      "rank": 1,
+      "id": "IMPPAT3_PHYID000421",
+      "name": "Eugenol",
+      "score": 0.399,
+      "mw": 164.2,
+      "logp": 2.129,
+      "flags": [],
+      "targets": {
+        "annotated": 114,
+        "measured": 107
+      },
+      "overlap": {
+        "count": 5,
+        "measured": 5,
+        "genes": [
+          {
+            "symbol": "PTGS2",
+            "condition_score": 0.6255,
+            "measured": true,
+            "evidence": {
+              "clinical_precedence": 0.9941,
+              "europepmc": 0.6955
+            }
+          },
+          {
+            "symbol": "NR3C1",
+            "condition_score": 0.6229,
+            "measured": true,
+            "evidence": {
+              "clinical_precedence": 0.9958,
+              "europepmc": 0.5742
+            }
+          },
+          {
+            "symbol": "PTGS1",
+            "condition_score": 0.6149,
+            "measured": true,
+            "evidence": {
+              "clinical_precedence": 0.9941,
+              "europepmc": 0.3463
+            }
+          },
+          {
+            "symbol": "ALOX5",
+            "condition_score": 0.6146,
+            "measured": true,
+            "evidence": {
+              "clinical_precedence": 0.9941,
+              "europepmc": 0.3356
+            }
+          },
+          {
+            "symbol": "CXCR2",
+            "condition_score": 0.5322,
+            "measured": true,
+            "evidence": {
+              "gwas_credible_sets": 0.8171,
+              "clinical_precedence": 0.1655,
+              "europepmc": 0.762
+            }
+          }
+        ]
+      },
+      "terms": {
+        "overlap": 0.625,
+        "evidence": 1.0,
+        "specificity": 0.0439,
+        "promiscuity": 1.0
+      },
+      "contributions": {
+        "overlap": 0.2917,
+        "evidence": 0.2333,
+        "specificity": 0.0073,
+        "promiscuity": -0.1333
+      }
+    },
+    {
+      "rank": 2,
+      "id": "IMPPAT3_PHYID007983",
+      "name": "Bisdemethoxycurcumin",
+      "score": 0.3803,
+      "mw": 308.33,
+      "logp": 3.353,
+      "flags": [],
+      "targets": {
+        "annotated": 11,
+        "measured": 11
+      },
+      "overlap": {
+        "count": 2,
+        "measured": 2,
+        "genes": [
+          {
+            "symbol": "PTGS2",
+            "condition_score": 0.6255,
+            "measured": true,
+            "evidence": {
+              "clinical_precedence": 0.9941,
+              "europepmc": 0.6955
+            }
+          },
+          {
+            "symbol": "SMAD3",
+            "condition_score": 0.5176,
+            "measured": true,
+            "evidence": {
+              "gwas_credible_sets": 0.8218,
+              "europepmc": 0.593
+            }
+          }
+        ]
+      },
+      "terms": {
+        "overlap": 0.25,
+        "evidence": 1.0,
+        "specificity": 0.1818,
+        "promiscuity": 0.0
+      },
+      "contributions": {
+        "overlap": 0.1167,
+        "evidence": 0.2333,
+        "specificity": 0.0303,
+        "promiscuity": -0.0
+      }
+    },
+    {
+      "rank": 3,
+      "id": "IMPPAT3_PHYID000217",
+      "name": "Thymol",
+      "score": 0.3794,
+      "mw": 150.22,
+      "logp": 2.824,
+      "flags": [],
+      "targets": {
+        "annotated": 45,
+        "measured": 41
+      },
+      "overlap": {
+        "count": 3,
+        "measured": 3,
+        "genes": [
+          {
+            "symbol": "PTGS2",
+            "condition_score": 0.6255,
+            "measured": true,
+            "evidence": {
+              "clinical_precedence": 0.9941,
+              "europepmc": 0.6955
+            }
+          },
+          {
+            "symbol": "PTGS1",
+            "condition_score": 0.6149,
+            "measured": true,
+            "evidence": {
+              "clinical_precedence": 0.9941,
+              "europepmc": 0.3463
+            }
+          },
+          {
+            "symbol": "PDE4A",
+            "condition_score": 0.4055,
+            "measured": true,
+            "evidence": {
+              "clinical_precedence": 0.5985,
+              "gwas_credible_sets": 0.2091,
+              "europepmc": 0.7303
+            }
+          }
+        ]
+      },
+      "terms": {
+        "overlap": 0.375,
+        "evidence": 1.0,
+        "specificity": 0.0667,
+        "promiscuity": 0.3
+      },
+      "contributions": {
+        "overlap": 0.175,
+        "evidence": 0.2333,
+        "specificity": 0.0111,
+        "promiscuity": -0.04
+      }
+    },
+    {
+      "rank": 4,
+      "id": "IMPPAT3_PHYID007956",
+      "name": "4,10-Epizedoarondiol",
+      "score": 0.375,
+      "mw": 252.35,
+      "logp": 2.214,
+      "flags": [],
+      "targets": {
+        "annotated": 2,
+        "measured": 2
+      },
+      "overlap": {
+        "count": 1,
+        "measured": 1,
+        "genes": [
+          {
+            "symbol": "PTPN2",
+            "condition_score": 0.4118,
+            "measured": true,
+            "evidence": {
+              "gwas_credible_sets": 0.6349,
+              "europepmc": 0.8499
+            }
+          }
+        ]
+      },
+      "terms": {
+        "overlap": 0.125,
+        "evidence": 1.0,
+        "specificity": 0.5,
+        "promiscuity": 0.0
+      },
+      "contributions": {
+        "overlap": 0.0583,
+        "evidence": 0.2333,
+        "specificity": 0.0833,
+        "promiscuity": -0.0
+      }
+    },
+    {
+      "rank": 5,
+      "id": "IMPPAT3_PHYID007966",
+      "name": "Procurcumenol",
+      "score": 0.375,
+      "mw": 234.34,
+      "logp": 3.019,
+      "flags": [],
+      "targets": {
+        "annotated": 2,
+        "measured": 2
+      },
+      "overlap": {
+        "count": 1,
+        "measured": 1,
+        "genes": [
+          {
+            "symbol": "PTPN2",
+            "condition_score": 0.4118,
+            "measured": true,
+            "evidence": {
+              "gwas_credible_sets": 0.6349,
+              "europepmc": 0.8499
+            }
+          }
+        ]
+      },
+      "terms": {
+        "overlap": 0.125,
+        "evidence": 1.0,
+        "specificity": 0.5,
+        "promiscuity": 0.0
+      },
+      "contributions": {
+        "overlap": 0.0583,
+        "evidence": 0.2333,
+        "specificity": 0.0833,
+        "promiscuity": -0.0
+      }
+    },
+    {
+      "rank": 6,
+      "id": "IMPPAT3_PHYID001516",
+      "name": "ar-Turmerone",
+      "score": 0.375,
+      "mw": 216.32,
+      "logp": 4.024,
+      "flags": [],
+      "targets": {
+        "annotated": 2,
+        "measured": 2
+      },
+      "overlap": {
+        "count": 1,
+        "measured": 1,
+        "genes": [
+          {
+            "symbol": "STAT3",
+            "condition_score": 0.4035,
+            "measured": true,
+            "evidence": {
+              "gwas_credible_sets": 0.6153,
+              "europepmc": 0.9704
+            }
+          }
+        ]
+      },
+      "terms": {
+        "overlap": 0.125,
+        "evidence": 1.0,
+        "specificity": 0.5,
+        "promiscuity": 0.0
+      },
+      "contributions": {
+        "overlap": 0.0583,
+        "evidence": 0.2333,
+        "specificity": 0.0833,
+        "promiscuity": -0.0
+      }
+    },
+    {
+      "rank": 7,
+      "id": "IMPPAT3_PHYID000256",
+      "name": "Geraniol",
+      "score": 0.3534,
+      "mw": 154.25,
+      "logp": 2.671,
+      "flags": [],
+      "targets": {
+        "annotated": 99,
+        "measured": 95
+      },
+      "overlap": {
+        "count": 5,
+        "measured": 4,
+        "genes": [
+          {
+            "symbol": "PTGS2",
+            "condition_score": 0.6255,
+            "measured": true,
+            "evidence": {
+              "clinical_precedence": 0.9941,
+              "europepmc": 0.6955
+            }
+          },
+          {
+            "symbol": "NR3C1",
+            "condition_score": 0.6229,
+            "measured": true,
+            "evidence": {
+              "clinical_precedence": 0.9958,
+              "europepmc": 0.5742
+            }
+          },
+          {
+            "symbol": "PTGS1",
+            "condition_score": 0.6149,
+            "measured": true,
+            "evidence": {
+              "clinical_precedence": 0.9941,
+              "europepmc": 0.3463
+            }
+          },
+          {
+            "symbol": "CXCR2",
+            "condition_score": 0.5322,
+            "measured": true,
+            "evidence": {
+              "gwas_credible_sets": 0.8171,
+              "clinical_precedence": 0.1655,
+              "europepmc": 0.762
+            }
+          },
+          {
+            "symbol": "NFKB1",
+            "condition_score": 0.4779,
+            "measured": false,
+            "evidence": {
+              "gwas_credible_sets": 0.738,
+              "europepmc": 0.9609
+            }
+          }
+        ]
+      },
+      "terms": {
+        "overlap": 0.625,
+        "evidence": 0.8,
+        "specificity": 0.0505,
+        "promiscuity": 1.0
+      },
+      "contributions": {
+        "overlap": 0.2917,
+        "evidence": 0.1867,
+        "specificity": 0.0084,
+        "promiscuity": -0.1333
+      }
+    },
+    {
+      "rank": 8,
+      "id": "IMPPAT3_PHYID005594",
+      "name": "Curcumin",
+      "score": 0.3477,
+      "mw": 368.39,
+      "logp": 3.37,
+      "flags": [],
+      "targets": {
+        "annotated": 194,
+        "measured": 143
+      },
+      "overlap": {
+        "count": 7,
+        "measured": 2,
+        "genes": [
+          {
+            "symbol": "PPARG",
+            "condition_score": 0.6326,
+            "measured": false,
+            "evidence": {
+              "clinical_precedence": 0.9941,
+              "europepmc": 0.929
+            }
+          },
+          {
+            "symbol": "PTGS2",
+            "condition_score": 0.6255,
+            "measured": true,
+            "evidence": {
+              "clinical_precedence": 0.9941,
+              "europepmc": 0.6955
+            }
+          },
+          {
+            "symbol": "NR3C1",
+            "condition_score": 0.6229,
+            "measured": false,
+            "evidence": {
+              "clinical_precedence": 0.9958,
+              "europepmc": 0.5742
+            }
+          },
+          {
+            "symbol": "ALOX5",
+            "condition_score": 0.6146,
+            "measured": true,
+            "evidence": {
+              "clinical_precedence": 0.9941,
+              "europepmc": 0.3356
+            }
+          },
+          {
+            "symbol": "SMAD3",
+            "condition_score": 0.5176,
+            "measured": false,
+            "evidence": {
+              "gwas_credible_sets": 0.8218,
+              "europepmc": 0.593
+            }
+          },
+          {
+            "symbol": "NFKB1",
+            "condition_score": 0.4779,
+            "measured": false,
+            "evidence": {
+              "gwas_credible_sets": 0.738,
+              "europepmc": 0.9609
+            }
+          },
+          {
+            "symbol": "RORC",
+            "condition_score": 0.4148,
+            "measured": false,
+            "evidence": {
+              "gwas_credible_sets": 0.6485,
+              "europepmc": 0.6751
+            }
+          }
+        ]
+      },
+      "terms": {
+        "overlap": 0.875,
+        "evidence": 0.2857,
+        "specificity": 0.0361,
+        "promiscuity": 1.0
+      },
+      "contributions": {
+        "overlap": 0.4083,
+        "evidence": 0.0667,
+        "specificity": 0.006,
+        "promiscuity": -0.1333
+      }
+    },
+    {
+      "rank": 9,
+      "id": "IMPPAT3_PHYID001694",
+      "name": "Safrole",
+      "score": 0.3405,
+      "mw": 162.19,
+      "logp": 2.144,
+      "flags": [],
+      "targets": {
+        "annotated": 93,
+        "measured": 91
+      },
+      "overlap": {
+        "count": 4,
+        "measured": 4,
+        "genes": [
+          {
+            "symbol": "PTGS2",
+            "condition_score": 0.6255,
+            "measured": true,
+            "evidence": {
+              "clinical_precedence": 0.9941,
+              "europepmc": 0.6955
+            }
+          },
+          {
+            "symbol": "NR3C1",
+            "condition_score": 0.6229,
+            "measured": true,
+            "evidence": {
+              "clinical_precedence": 0.9958,
+              "europepmc": 0.5742
+            }
+          },
+          {
+            "symbol": "PTGS1",
+            "condition_score": 0.6149,
+            "measured": true,
+            "evidence": {
+              "clinical_precedence": 0.9941,
+              "europepmc": 0.3463
+            }
+          },
+          {
+            "symbol": "CXCR2",
+            "condition_score": 0.5322,
+            "measured": true,
+            "evidence": {
+              "gwas_credible_sets": 0.8171,
+              "clinical_precedence": 0.1655,
+              "europepmc": 0.762
+            }
+          }
+        ]
+      },
+      "terms": {
+        "overlap": 0.5,
+        "evidence": 1.0,
+        "specificity": 0.043,
+        "promiscuity": 1.0
+      },
+      "contributions": {
+        "overlap": 0.2333,
+        "evidence": 0.2333,
+        "specificity": 0.0072,
+        "promiscuity": -0.1333
+      }
+    },
+    {
+      "rank": 10,
+      "id": "IMPPAT3_PHYID000225",
+      "name": "Eucalyptol",
+      "score": 0.3397,
+      "mw": 154.25,
+      "logp": 2.744,
+      "flags": [],
+      "targets": {
+        "annotated": 104,
+        "measured": 93
+      },
+      "overlap": {
+        "count": 4,
+        "measured": 4,
+        "genes": [
+          {
+            "symbol": "PTGS2",
+            "condition_score": 0.6255,
+            "measured": true,
+            "evidence": {
+              "clinical_precedence": 0.9941,
+              "europepmc": 0.6955
+            }
+          },
+          {
+            "symbol": "NR3C1",
+            "condition_score": 0.6229,
+            "measured": true,
+            "evidence": {
+              "clinical_precedence": 0.9958,
+              "europepmc": 0.5742
+            }
+          },
+          {
+            "symbol": "PTGS1",
+            "condition_score": 0.6149,
+            "measured": true,
+            "evidence": {
+              "clinical_precedence": 0.9941,
+              "europepmc": 0.3463
+            }
+          },
+          {
+            "symbol": "CXCR2",
+            "condition_score": 0.5322,
+            "measured": true,
+            "evidence": {
+              "gwas_credible_sets": 0.8171,
+              "clinical_precedence": 0.1655,
+              "europepmc": 0.762
+            }
+          }
+        ]
+      },
+      "terms": {
+        "overlap": 0.5,
+        "evidence": 1.0,
+        "specificity": 0.0385,
+        "promiscuity": 1.0
+      },
+      "contributions": {
+        "overlap": 0.2333,
+        "evidence": 0.2333,
+        "specificity": 0.0064,
+        "promiscuity": -0.1333
+      }
+    },
+    {
+      "rank": 11,
+      "id": "IMPPAT3_PHYID000502",
+      "name": "Levomenol",
+      "score": 0.3155,
+      "mw": 222.37,
+      "logp": 4.23,
+      "flags": [],
+      "targets": {
+        "annotated": 7,
+        "measured": 5
+      },
+      "overlap": {
+        "count": 1,
+        "measured": 1,
+        "genes": [
+          {
+            "symbol": "STAT3",
+            "condition_score": 0.4035,
+            "measured": true,
+            "evidence": {
+              "gwas_credible_sets": 0.6153,
+              "europepmc": 0.9704
+            }
+          }
+        ]
+      },
+      "terms": {
+        "overlap": 0.125,
+        "evidence": 1.0,
+        "specificity": 0.1429,
+        "promiscuity": 0.0
+      },
+      "contributions": {
+        "overlap": 0.0583,
+        "evidence": 0.2333,
+        "specificity": 0.0238,
+        "promiscuity": -0.0
+      }
+    },
+    {
+      "rank": 12,
+      "id": "IMPPAT3_PHYID007942",
+      "name": "Demethoxycurcumin",
+      "score": 0.3083,
+      "mw": 338.36,
+      "logp": 3.361,
+      "flags": [],
+      "targets": {
+        "annotated": 10,
+        "measured": 10
+      },
+      "overlap": {
+        "count": 1,
+        "measured": 1,
+        "genes": [
+          {
+            "symbol": "PTGS2",
+            "condition_score": 0.6255,
+            "measured": true,
+            "evidence": {
+              "clinical_precedence": 0.9941,
+              "europepmc": 0.6955
+            }
+          }
+        ]
+      },
+      "terms": {
+        "overlap": 0.125,
+        "evidence": 1.0,
+        "specificity": 0.1,
+        "promiscuity": 0.0
+      },
+      "contributions": {
+        "overlap": 0.0583,
+        "evidence": 0.2333,
+        "specificity": 0.0167,
+        "promiscuity": -0.0
+      }
+    },
+    {
+      "rank": 13,
+      "id": "IMPPAT3_PHYID000218",
+      "name": "Carvacrol",
+      "score": 0.3045,
+      "mw": 150.22,
+      "logp": 2.824,
+      "flags": [],
+      "targets": {
+        "annotated": 13,
+        "measured": 12
+      },
+      "overlap": {
+        "count": 1,
+        "measured": 1,
+        "genes": [
+          {
+            "symbol": "PTGS1",
+            "condition_score": 0.6149,
+            "measured": true,
+            "evidence": {
+              "clinical_precedence": 0.9941,
+              "europepmc": 0.3463
+            }
+          }
+        ]
+      },
+      "terms": {
+        "overlap": 0.125,
+        "evidence": 1.0,
+        "specificity": 0.0769,
+        "promiscuity": 0.0
+      },
+      "contributions": {
+        "overlap": 0.0583,
+        "evidence": 0.2333,
+        "specificity": 0.0128,
+        "promiscuity": -0.0
+      }
+    },
+    {
+      "rank": 14,
+      "id": "IMPPAT3_PHYID000422",
+      "name": "Methyleugenol",
+      "score": 0.2944,
+      "mw": 178.23,
+      "logp": 2.432,
+      "flags": [],
+      "targets": {
+        "annotated": 12,
+        "measured": 4
+      },
+      "overlap": {
+        "count": 3,
+        "measured": 1,
+        "genes": [
+          {
+            "symbol": "PPARG",
+            "condition_score": 0.6326,
+            "measured": true,
+            "evidence": {
+              "clinical_precedence": 0.9941,
+              "europepmc": 0.929
+            }
+          },
+          {
+            "symbol": "NR3C1",
+            "condition_score": 0.6229,
+            "measured": false,
+            "evidence": {
+              "clinical_precedence": 0.9958,
+              "europepmc": 0.5742
+            }
+          },
+          {
+            "symbol": "SMAD3",
+            "condition_score": 0.5176,
+            "measured": false,
+            "evidence": {
+              "gwas_credible_sets": 0.8218,
+              "europepmc": 0.593
+            }
+          }
+        ]
+      },
+      "terms": {
+        "overlap": 0.375,
+        "evidence": 0.3333,
+        "specificity": 0.25,
+        "promiscuity": 0.0
+      },
+      "contributions": {
+        "overlap": 0.175,
+        "evidence": 0.0778,
+        "specificity": 0.0417,
+        "promiscuity": -0.0
+      }
+    },
+    {
+      "rank": 15,
+      "id": "IMPPAT3_PHYID000261",
+      "name": "Decanoic acid",
+      "score": 0.2861,
+      "mw": 172.27,
+      "logp": 3.212,
+      "flags": [],
+      "targets": {
+        "annotated": 15,
+        "measured": 8
+      },
+      "overlap": {
+        "count": 3,
+        "measured": 1,
+        "genes": [
+          {
+            "symbol": "PPARG",
+            "condition_score": 0.6326,
+            "measured": true,
+            "evidence": {
+              "clinical_precedence": 0.9941,
+              "europepmc": 0.929
+            }
+          },
+          {
+            "symbol": "NR3C1",
+            "condition_score": 0.6229,
+            "measured": false,
+            "evidence": {
+              "clinical_precedence": 0.9958,
+              "europepmc": 0.5742
+            }
+          },
+          {
+            "symbol": "RORC",
+            "condition_score": 0.4148,
+            "measured": false,
+            "evidence": {
+              "gwas_credible_sets": 0.6485,
+              "europepmc": 0.6751
+            }
+          }
+        ]
+      },
+      "terms": {
+        "overlap": 0.375,
+        "evidence": 0.3333,
+        "specificity": 0.2,
+        "promiscuity": 0.0
+      },
+      "contributions": {
+        "overlap": 0.175,
+        "evidence": 0.0778,
+        "specificity": 0.0333,
+        "promiscuity": -0.0
+      }
+    },
+    {
+      "rank": 16,
+      "id": "IMPPAT3_PHYID000231",
+      "name": "Linalyl acetate",
+      "score": 0.2833,
+      "mw": 196.29,
+      "logp": 3.241,
+      "flags": [],
+      "targets": {
+        "annotated": 2,
+        "measured": 0
+      },
+      "overlap": {
+        "count": 2,
+        "measured": 0,
+        "genes": [
+          {
+            "symbol": "NR3C1",
+            "condition_score": 0.6229,
+            "measured": false,
+            "evidence": {
+              "clinical_precedence": 0.9958,
+              "europepmc": 0.5742
+            }
+          },
+          {
+            "symbol": "NFKB1",
+            "condition_score": 0.4779,
+            "measured": false,
+            "evidence": {
+              "gwas_credible_sets": 0.738,
+              "europepmc": 0.9609
+            }
+          }
+        ]
+      },
+      "terms": {
+        "overlap": 0.25,
+        "evidence": 0.0,
+        "specificity": 1.0,
+        "promiscuity": 0.0
+      },
+      "contributions": {
+        "overlap": 0.1167,
+        "evidence": 0.0,
+        "specificity": 0.1667,
+        "promiscuity": -0.0
+      }
+    },
+    {
+      "rank": 17,
+      "id": "IMPPAT3_PHYID001329",
+      "name": "Piperine",
+      "score": 0.2577,
+      "mw": 285.34,
+      "logp": 2.997,
+      "flags": [],
+      "targets": {
+        "annotated": 40,
+        "measured": 24
+      },
+      "overlap": {
+        "count": 3,
+        "measured": 1,
+        "genes": [
+          {
+            "symbol": "PPARG",
+            "condition_score": 0.6326,
+            "measured": false,
+            "evidence": {
+              "clinical_precedence": 0.9941,
+              "europepmc": 0.929
+            }
+          },
+          {
+            "symbol": "NR3C1",
+            "condition_score": 0.6229,
+            "measured": false,
+            "evidence": {
+              "clinical_precedence": 0.9958,
+              "europepmc": 0.5742
+            }
+          },
+          {
+            "symbol": "ALOX5",
+            "condition_score": 0.6146,
+            "measured": true,
+            "evidence": {
+              "clinical_precedence": 0.9941,
+              "europepmc": 0.3356
+            }
+          }
+        ]
+      },
+      "terms": {
+        "overlap": 0.375,
+        "evidence": 0.3333,
+        "specificity": 0.075,
+        "promiscuity": 0.0571
+      },
+      "contributions": {
+        "overlap": 0.175,
+        "evidence": 0.0778,
+        "specificity": 0.0125,
+        "promiscuity": -0.0076
+      }
+    },
+    {
+      "rank": 18,
+      "id": "IMPPAT3_PHYID000104",
+      "name": "Cholesterol",
+      "score": 0.2472,
+      "mw": 386.66,
+      "logp": 7.389,
+      "flags": [
+        "lipinski_logp>5"
+      ],
+      "targets": {
+        "annotated": 24,
+        "measured": 18
+      },
+      "overlap": {
+        "count": 2,
+        "measured": 1,
+        "genes": [
+          {
+            "symbol": "NR3C1",
+            "condition_score": 0.6229,
+            "measured": false,
+            "evidence": {
+              "clinical_precedence": 0.9958,
+              "europepmc": 0.5742
+            }
+          },
+          {
+            "symbol": "RORC",
+            "condition_score": 0.4148,
+            "measured": true,
+            "evidence": {
+              "gwas_credible_sets": 0.6485,
+              "europepmc": 0.6751
+            }
+          }
+        ]
+      },
+      "terms": {
+        "overlap": 0.25,
+        "evidence": 0.5,
+        "specificity": 0.0833,
+        "promiscuity": 0.0
+      },
+      "contributions": {
+        "overlap": 0.1167,
+        "evidence": 0.1167,
+        "specificity": 0.0139,
+        "promiscuity": -0.0
+      }
+    },
+    {
+      "rank": 19,
+      "id": "IMPPAT3_PHYID002433",
+      "name": "Linalyl isobutyrate",
+      "score": 0.225,
+      "mw": 224.34,
+      "logp": 3.877,
+      "flags": [],
+      "targets": {
+        "annotated": 1,
+        "measured": 0
+      },
+      "overlap": {
+        "count": 1,
+        "measured": 0,
+        "genes": [
+          {
+            "symbol": "NFKB1",
+            "condition_score": 0.4779,
+            "measured": false,
+            "evidence": {
+              "gwas_credible_sets": 0.738,
+              "europepmc": 0.9609
+            }
+          }
+        ]
+      },
+      "terms": {
+        "overlap": 0.125,
+        "evidence": 0.0,
+        "specificity": 1.0,
+        "promiscuity": 0.0
+      },
+      "contributions": {
+        "overlap": 0.0583,
+        "evidence": 0.0,
+        "specificity": 0.1667,
+        "promiscuity": -0.0
+      }
+    },
+    {
+      "rank": 20,
+      "id": "IMPPAT3_PHYID000213",
+      "name": "Myrcene",
+      "score": 0.1643,
+      "mw": 136.24,
+      "logp": 3.475,
+      "flags": [],
+      "targets": {
+        "annotated": 7,
+        "measured": 0
+      },
+      "overlap": {
+        "count": 2,
+        "measured": 0,
+        "genes": [
+          {
+            "symbol": "NR3C1",
+            "condition_score": 0.6229,
+            "measured": false,
+            "evidence": {
+              "clinical_precedence": 0.9958,
+              "europepmc": 0.5742
+            }
+          },
+          {
+            "symbol": "NFKB1",
+            "condition_score": 0.4779,
+            "measured": false,
+            "evidence": {
+              "gwas_credible_sets": 0.738,
+              "europepmc": 0.9609
+            }
+          }
+        ]
+      },
+      "terms": {
+        "overlap": 0.25,
+        "evidence": 0.0,
+        "specificity": 0.2857,
+        "promiscuity": 0.0
+      },
+      "contributions": {
+        "overlap": 0.1167,
+        "evidence": 0.0,
+        "specificity": 0.0476,
+        "promiscuity": -0.0
+      }
+    },
+    {
+      "rank": 21,
+      "id": "IMPPAT3_PHYID000674",
+      "name": "Pulegone",
+      "score": 0.1417,
+      "mw": 152.24,
+      "logp": 2.712,
+      "flags": [],
+      "targets": {
+        "annotated": 2,
+        "measured": 0
+      },
+      "overlap": {
+        "count": 1,
+        "measured": 0,
+        "genes": [
+          {
+            "symbol": "NFKB1",
+            "condition_score": 0.4779,
+            "measured": false,
+            "evidence": {
+              "gwas_credible_sets": 0.738,
+              "europepmc": 0.9609
+            }
+          }
+        ]
+      },
+      "terms": {
+        "overlap": 0.125,
+        "evidence": 0.0,
+        "specificity": 0.5,
+        "promiscuity": 0.0
+      },
+      "contributions": {
+        "overlap": 0.0583,
+        "evidence": 0.0,
+        "specificity": 0.0833,
+        "promiscuity": -0.0
+      }
+    },
+    {
+      "rank": 22,
+      "id": "IMPPAT3_PHYID000153",
+      "name": "alpha-Pinene",
+      "score": 0.1139,
+      "mw": 136.24,
+      "logp": 2.999,
+      "flags": [],
+      "targets": {
+        "annotated": 3,
+        "measured": 0
+      },
+      "overlap": {
+        "count": 1,
+        "measured": 0,
+        "genes": [
+          {
+            "symbol": "RORC",
+            "condition_score": 0.4148,
+            "measured": false,
+            "evidence": {
+              "gwas_credible_sets": 0.6485,
+              "europepmc": 0.6751
+            }
+          }
+        ]
+      },
+      "terms": {
+        "overlap": 0.125,
+        "evidence": 0.0,
+        "specificity": 0.3333,
+        "promiscuity": 0.0
+      },
+      "contributions": {
+        "overlap": 0.0583,
+        "evidence": 0.0,
+        "specificity": 0.0556,
+        "promiscuity": -0.0
+      }
+    },
+    {
+      "rank": 23,
+      "id": "IMPPAT3_PHYID001034",
+      "name": "1-Undecanol",
+      "score": 0.0861,
+      "mw": 172.31,
+      "logp": 3.51,
+      "flags": [],
+      "targets": {
+        "annotated": 6,
+        "measured": 1
+      },
+      "overlap": {
+        "count": 1,
+        "measured": 0,
+        "genes": [
+          {
+            "symbol": "NFKB1",
+            "condition_score": 0.4779,
+            "measured": false,
+            "evidence": {
+              "gwas_credible_sets": 0.738,
+              "europepmc": 0.9609
+            }
+          }
+        ]
+      },
+      "terms": {
+        "overlap": 0.125,
+        "evidence": 0.0,
+        "specificity": 0.1667,
+        "promiscuity": 0.0
+      },
+      "contributions": {
+        "overlap": 0.0583,
+        "evidence": 0.0,
+        "specificity": 0.0278,
+        "promiscuity": -0.0
+      }
+    },
+    {
+      "rank": 24,
+      "id": "IMPPAT3_PHYID000046",
+      "name": "Limonene",
+      "score": 0.0792,
+      "mw": 136.24,
+      "logp": 3.309,
+      "flags": [],
+      "targets": {
+        "annotated": 8,
+        "measured": 1
+      },
+      "overlap": {
+        "count": 1,
+        "measured": 0,
+        "genes": [
+          {
+            "symbol": "NFKB1",
+            "condition_score": 0.4779,
+            "measured": false,
+            "evidence": {
+              "gwas_credible_sets": 0.738,
+              "europepmc": 0.9609
+            }
+          }
+        ]
+      },
+      "terms": {
+        "overlap": 0.125,
+        "evidence": 0.0,
+        "specificity": 0.125,
+        "promiscuity": 0.0
+      },
+      "contributions": {
+        "overlap": 0.0583,
+        "evidence": 0.0,
+        "specificity": 0.0208,
+        "promiscuity": -0.0
+      }
+    }
+  ]
+}

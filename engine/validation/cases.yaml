@@ -1,0 +1,83 @@
+# Retrospective validation cases.
+#
+# Protocol: run each case with the shipped defaults, untuned, and report every
+# case including misses. Weights may only be tuned afterwards, on a case held
+# out from these headline numbers (docs/BACKEND_SPEC.md section 10).
+#
+# Known actives are named exactly as they appear in the IMPPAT-derived corpus.
+# References are omitted deliberately: the claim being tested is "does the
+# pipeline rank the literature's known actives highly", and no DOI is asserted
+# here that has not been checked. Cite the source papers in the pitch deck.
+
+cases:
+  - name: boswellia_serrata
+    label: Boswellia serrata (frankincense) gum-resin, ethanol
+    plant: Boswellia serrata
+    part: exudate
+    solvent: ethanol
+    condition: ibd
+    rationale: >
+      The honesty case. Annotation ranking puts geraniol first; docking is the
+      only term expected to lift the boswellic acids. Chosen because the active
+      fraction and its targets (ALOX5, PTGS2) are well established, and because
+      plant part and solvent both matter to the extraction.
+    known_actives:
+      - name: 3-Acetyl-11-keto-beta-boswellic acid
+        aliases: [AKBA]
+        targets: [ALOX5, PTGS2]
+      - name: 11-Keto-beta-boswellic acid
+        targets: [ALOX5]
+      - name: beta-Boswellic acid
+        targets: [ALOX5]
+      - name: alpha-Boswellic acid
+        targets: [ALOX5]
+
+  - name: curcuma_longa
+    label: Curcuma longa (turmeric) rhizome, ethanol
+    plant: Curcuma longa
+    part: rhizome
+    solvent: ethanol
+    condition: colitis
+    rationale: >
+      The demo case. The three curcuminoids are the clinically recognised
+      actives. Curcumin is also a documented assay-interference compound, so a
+      good rank here is a rank, not evidence of efficacy.
+    known_actives:
+      - name: Curcumin
+        targets: [PTGS2, RELA, AKT1]
+      - name: Demethoxycurcumin
+        targets: [PTGS2]
+      - name: Bisdemethoxycurcumin
+        targets: [PTGS2]
+
+  - name: piper_nigrum
+    label: Piper nigrum (black pepper) fruit, ethanol
+    plant: Piper nigrum
+    part: fruit
+    solvent: ethanol
+    condition: ibd
+    rationale: >
+      A formulation whose active is unambiguous and not a curcuminoid. Piperine
+      is the reason black pepper is in every bioavailability-enhancing
+      formulation, so ranking it highly is a check the pipeline cannot pass by
+      accident on turmeric-shaped data.
+    known_actives:
+      - name: Piperine
+        targets: [PTGS2, TRPV1]
+
+  - name: withania_somnifera
+    label: Withania somnifera (ashwagandha) root, ethanol
+    plant: Withania somnifera
+    part: root
+    solvent: ethanol
+    condition: ibd
+    rationale: >
+      The residual-bias case, included as a control rather than a success. The
+      root extract has few annotated candidates and the funnel keeps only six;
+      annotation ranking puts nicotine first. Reporting what happens here is the
+      point -- a case set that only contains wins is a brochure.
+    known_actives:
+      - name: Withaferin A
+        targets: [PTGS2, NFKB1]
+      - name: Withanolide D
+        targets: [NFKB1]

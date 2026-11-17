@@ -1,0 +1,38 @@
+{
+  "name": "ar-Turmerone",
+  "affinity": -6.584,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -6.584,
+    -6.497,
+    -6.424,
+    -6.384,
+    -6.344,
+    -6.307,
+    -6.192,
+    -6.17,
+    -6.078
+  ],
+  "cached": false,
+  "seconds": 2.68,
+  "key": "01e4a9893f07ac44",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\01e4a9893f07ac44.pdbqt",
+  "smiles": "CC(=CC(=O)C[C@@H](c1ccc(cc1)C)C)C",
+  "receptor": "3NT1",
+  "box": {
+    "center": [
+      -43.833,
+      -47.237,
+      -43.958
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of NPS (34 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

@@ -1,0 +1,75 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    name: engine + API tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      # Redis from the distribution, not a container: the queue is tested
+      # against a real server, and no Docker daemon is needed on the runner.
+      - name: Install and start Redis
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq redis-server
+          redis-server --daemonize yes --save "" --appendonly no
+          redis-cli ping
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Tests
+        env:
+          PYTHONUTF8: "1"
+          PHYTOLENS_REDIS_URL: redis://127.0.0.1:6379/0
+        run: python -m pytest -q
+
+      - name: Validation harness (untuned, no writes)
+        env:
+          PYTHONUTF8: "1"
+        run: python -m engine.validation --all --no-write
+
+      - name: Queue smoke test
+        env:
+          PHYTOLENS_REDIS_URL: redis://127.0.0.1:6379/0
+        run: |
+          python -c "from engine import jobs; print(jobs.status())"
+          python -m engine.worker --once
+
+  web:
+    name: next.js build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Install
+        working-directory: web
+        run: npm ci
+
+      - name: Build
+        working-directory: web
+        run: npm run build

@@ -1,0 +1,38 @@
+{
+  "name": "Myrcene",
+  "affinity": -5.335,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -5.335,
+    -5.302,
+    -5.134,
+    -5.087,
+    -5.051,
+    -5.018,
+    -4.99,
+    -4.826,
+    -4.794
+  ],
+  "cached": false,
+  "seconds": 1.39,
+  "key": "40e7d7b7c8c7f1bb",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\40e7d7b7c8c7f1bb.pdbqt",
+  "smiles": "C=CC(=C)CCC=C(C)C",
+  "receptor": "3D83",
+  "box": {
+    "center": [
+      42.169,
+      30.17,
+      34.589
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of GK6 (35 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

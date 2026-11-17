@@ -1,0 +1,38 @@
+{
+  "name": "D-Limonene",
+  "affinity": -5.863,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -5.863,
+    -5.68,
+    -5.617,
+    -5.578,
+    -5.573,
+    -5.554,
+    -5.469,
+    -5.294,
+    -5.205
+  ],
+  "cached": false,
+  "seconds": 1.0,
+  "key": "7aa3b196f5950a12",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\7aa3b196f5950a12.pdbqt",
+  "smiles": "CC1=CC[C@@H](CC1)C(=C)C",
+  "receptor": "3D83",
+  "box": {
+    "center": [
+      42.169,
+      30.17,
+      34.589
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of GK6 (35 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

@@ -1,0 +1,38 @@
+{
+  "name": "3-Acetyl-11-keto-beta-boswellic acid",
+  "affinity": -10.125,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -10.125,
+    -9.419,
+    -9.191,
+    -9.088,
+    -9.028,
+    -8.952,
+    -8.881,
+    -8.878,
+    -8.841
+  ],
+  "cached": false,
+  "seconds": 5.06,
+  "key": "5df99114c955a7a4",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\5df99114c955a7a4.pdbqt",
+  "smiles": "CC(=O)O[C@@H]1CC[C@]2([C@H]([C@@]1(C)C(=O)O)CC[C@@]1([C@@H]2C(=O)C=C2[C@@]1(C)CC[C@@]1([C@H]2[C@@H](C)[C@H](C)CC1)C)C)C",
+  "receptor": "3V99",
+  "box": {
+    "center": [
+      18.394,
+      -78.715,
+      -33.903
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of ACD (53 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

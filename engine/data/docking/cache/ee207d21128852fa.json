@@ -1,0 +1,38 @@
+{
+  "name": "Procurcumenol",
+  "affinity": -7.631,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -7.631,
+    -7.527,
+    -7.512,
+    -7.51,
+    -7.498,
+    -7.327,
+    -7.135,
+    -7.047,
+    -7.041
+  ],
+  "cached": false,
+  "seconds": 1.74,
+  "key": "ee207d21128852fa",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\ee207d21128852fa.pdbqt",
+  "smiles": "CC1=CC(=O)C(=C(C)C)C[C@H]2[C@H]1CC[C@]2(C)O",
+  "receptor": "3NT1",
+  "box": {
+    "center": [
+      -43.833,
+      -47.237,
+      -43.958
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of NPS (34 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

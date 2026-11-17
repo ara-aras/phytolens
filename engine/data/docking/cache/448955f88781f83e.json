@@ -1,0 +1,38 @@
+{
+  "name": "beta-Amyrin",
+  "affinity": -10.004,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -10.004,
+    -9.8,
+    -9.71,
+    -9.681,
+    -9.563,
+    -9.496,
+    -9.273,
+    -9.008,
+    -8.786
+  ],
+  "cached": false,
+  "seconds": 2.4,
+  "key": "448955f88781f83e",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\448955f88781f83e.pdbqt",
+  "smiles": "O[C@H]1CC[C@]2([C@H](C1(C)C)CC[C@@]1([C@@H]2CC=C2[C@@]1(C)CC[C@@]1([C@H]2CC(C)(C)CC1)C)C)C",
+  "receptor": "3V99",
+  "box": {
+    "center": [
+      18.394,
+      -78.715,
+      -33.903
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of ACD (53 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

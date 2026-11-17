@@ -1,0 +1,183 @@
+{
+  "case": "withania_somnifera",
+  "label": "Withania somnifera (ashwagandha) root, ethanol",
+  "rationale": "The residual-bias case, included as a control rather than a success. The root extract has few annotated candidates and the funnel keeps only six; annotation ranking puts nicotine first. Reporting what happens here is the point -- a case set that only contains wins is a brochure.\n",
+  "protocol": "untuned defaults; report every case, misses included; weights must only be tuned on a held-out case",
+  "run": {
+    "plant": "Withania somnifera",
+    "part": "root",
+    "solvent": "ethanol",
+    "condition": "ibd",
+    "config_hashes": {
+      "extraction": "cff9691655a3",
+      "ranking": "e34ce582afd0"
+    },
+    "docking_pending": false,
+    "docking": {
+      "candidates": 6,
+      "docked": 6,
+      "partial": false
+    },
+    "funnel": {
+      "in_part": 24,
+      "pass_extraction": 22,
+      "flagged_druglikeness": 6,
+      "with_condition_target": 6,
+      "excluded_no_condition_target": 16
+    }
+  },
+  "metrics": {
+    "n_known_actives": 2,
+    "n_found": 2,
+    "ranks": {
+      "Withaferin A": 5,
+      "Withanolide D": 3
+    },
+    "unranked": [],
+    "mrr": 0.2667,
+    "mean_rank": 4.0,
+    "best_rank": 3,
+    "recall_at_10": 1.0,
+    "recall_at_25": 1.0
+  },
+  "ablation": {
+    "with_docking": {
+      "n_known_actives": 2,
+      "n_found": 2,
+      "ranks": {
+        "Withaferin A": 5,
+        "Withanolide D": 3
+      },
+      "unranked": [],
+      "mrr": 0.2667,
+      "mean_rank": 4.0,
+      "best_rank": 3,
+      "recall_at_10": 1.0,
+      "recall_at_25": 1.0
+    },
+    "annotation_only": {
+      "n_known_actives": 2,
+      "n_found": 2,
+      "ranks": {
+        "Withaferin A": 6,
+        "Withanolide D": 4
+      },
+      "unranked": [],
+      "mrr": 0.2083,
+      "mean_rank": 5.0,
+      "best_rank": 4,
+      "recall_at_10": 1.0,
+      "recall_at_25": 1.0
+    },
+    "delta_mrr": 0.0584,
+    "delta_best_rank": 1,
+    "annotation_only_top_10": [
+      {
+        "rank": 1,
+        "name": "Nicotine"
+      },
+      {
+        "rank": 2,
+        "name": "(2R)-2-[(1S)-1-[(8R,9S,10R,13S,14R,17S)-14,17-dihydroxy-10,13-dimethyl-1-oxo-4,7,8,9,11,12,15,16-octahydrocyclopenta[a]phenanthren-17-yl]-1-hydroxyethyl]-4,5-dimethyl-2,3-dihydropyran-6-one"
+      },
+      {
+        "rank": 3,
+        "name": "Withanolide G"
+      },
+      {
+        "rank": 4,
+        "name": "Withanolide D"
+      },
+      {
+        "rank": 5,
+        "name": "Withanolide E"
+      },
+      {
+        "rank": 6,
+        "name": "Withaferin A"
+      }
+    ]
+  },
+  "null_baseline": {
+    "permutations": 1000,
+    "seed": 7,
+    "n_candidates": 6,
+    "analytic_expected_mrr": 0.4083,
+    "random_mrr_mean": 0.4016,
+    "random_mrr_p95": 0.75,
+    "observed_mrr": 0.2667,
+    "mrr_percentile": 0.335,
+    "p_value_mrr": 0.738,
+    "p_value_recall_at_10": 1.0,
+    "p_value_recall_at_25": 1.0
+  },
+  "bias_residue": {
+    "k": 10,
+    "six_in_top": [],
+    "count": 0,
+    "fraction": 0.0
+  },
+  "top_10": [
+    {
+      "rank": 1,
+      "name": "Withanolide G",
+      "score": 0.6497,
+      "docking": {
+        "ALOX5": -10.167,
+        "MAPK14": -8.411,
+        "PTGS2": -8.829
+      }
+    },
+    {
+      "rank": 2,
+      "name": "(2R)-2-[(1S)-1-[(8R,9S,10R,13S,14R,17S)-14,17-dihydroxy-10,13-dimethyl-1-oxo-4,7,8,9,11,12,15,16-octahydrocyclopenta[a]phenanthren-17-yl]-1-hydroxyethyl]-4,5-dimethyl-2,3-dihydropyran-6-one",
+      "score": 0.6301,
+      "docking": {
+        "ALOX5": -9.761,
+        "MAPK14": -8.042,
+        "PTGS2": -8.61
+      }
+    },
+    {
+      "rank": 3,
+      "name": "Withanolide D",
+      "score": 0.5919,
+      "docking": {
+        "ALOX5": -10.485,
+        "MAPK14": -8.682,
+        "PTGS2": -8.826
+      }
+    },
+    {
+      "rank": 4,
+      "name": "Withanolide E",
+      "score": 0.5645,
+      "docking": {
+        "ALOX5": -10.378,
+        "MAPK14": -8.417,
+        "PTGS2": -8.269
+      }
+    },
+    {
+      "rank": 5,
+      "name": "Withaferin A",
+      "score": 0.5506,
+      "docking": {
+        "ALOX5": -10.174,
+        "MAPK14": -9.161,
+        "PTGS2": -8.055
+      }
+    },
+    {
+      "rank": 6,
+      "name": "Nicotine",
+      "score": 0.3463,
+      "docking": {
+        "ALOX5": -5.051,
+        "MAPK14": -6.045,
+        "PTGS2": -5.604
+      }
+    }
+  ],
+  "generated": "2026-11-17"
+}

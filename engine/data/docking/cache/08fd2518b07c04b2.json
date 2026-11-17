@@ -1,0 +1,38 @@
+{
+  "name": "Geraniol",
+  "affinity": -5.496,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -5.496,
+    -5.455,
+    -5.453,
+    -5.452,
+    -5.237,
+    -5.22,
+    -4.946,
+    -4.946,
+    -4.94
+  ],
+  "cached": false,
+  "seconds": 1.85,
+  "key": "08fd2518b07c04b2",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\08fd2518b07c04b2.pdbqt",
+  "smiles": "OC/C=C(/CCC=C(C)C)\\C",
+  "receptor": "3V99",
+  "box": {
+    "center": [
+      18.394,
+      -78.715,
+      -33.903
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of ACD (53 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

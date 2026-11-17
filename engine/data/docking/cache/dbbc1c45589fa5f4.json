@@ -1,0 +1,38 @@
+{
+  "name": "4,10-Epizedoarondiol",
+  "affinity": -6.452,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -6.452,
+    -6.38,
+    -6.297,
+    -6.233,
+    -6.164,
+    -6.156,
+    -6.126,
+    -6.092,
+    -5.993
+  ],
+  "cached": false,
+  "seconds": 1.88,
+  "key": "dbbc1c45589fa5f4",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\dbbc1c45589fa5f4.pdbqt",
+  "smiles": "CC(=C1C[C@H]2[C@H]([C@@](CC1=O)(C)O)CC[C@@]2(C)O)C",
+  "receptor": "3V99",
+  "box": {
+    "center": [
+      18.394,
+      -78.715,
+      -33.903
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of ACD (53 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

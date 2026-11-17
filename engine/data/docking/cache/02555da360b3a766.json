@@ -1,0 +1,38 @@
+{
+  "name": "Cedrol",
+  "affinity": -7.299,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -7.299,
+    -6.329,
+    -6.255,
+    -5.812,
+    -5.633,
+    -5.502,
+    -5.435,
+    -5.357,
+    -5.309
+  ],
+  "cached": false,
+  "seconds": 1.44,
+  "key": "02555da360b3a766",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\02555da360b3a766.pdbqt",
+  "smiles": "C[C@@H]1CC[C@@H]2[C@@]31CC[C@@]([C@H](C3)C2(C)C)(C)O",
+  "receptor": "3D83",
+  "box": {
+    "center": [
+      42.169,
+      30.17,
+      34.589
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of GK6 (35 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

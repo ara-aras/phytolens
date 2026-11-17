@@ -1,0 +1,41 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# --- Local runtime state ---
+.run/
+*.log
+engine/data/runs.db
+engine/data/reports/run_*.pdf
+
+# --- Licensed source data (obtain from IMPPAT; rebuild with engine/build_corpus.py) ---
+engine/data/raw/
+
+# --- Node / Next.js ---
+node_modules/
+web/.next/
+web/out/
+web/next-env.d.ts
+web/*.tsbuildinfo
+
+# --- Media + pitch-reel pipeline (not part of the product) ---
+*.mp4
+*.mov
+vendor/
+projects/
+scripts/
+phytolens_60_second_idea_pitch_reel_script.md
+
+# --- Agent tooling and machine-specific config ---
+.claude/
+.agents/
+.freebuff/
+.mcp.json
+CLAUDE.md
+
+# --- OS noise ---
+.DS_Store
+Thumbs.db

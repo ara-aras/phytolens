@@ -1,0 +1,247 @@
+{
+  "case": "boswellia_serrata",
+  "label": "Boswellia serrata (frankincense) gum-resin, ethanol",
+  "rationale": "The honesty case. Annotation ranking puts geraniol first; docking is the only term expected to lift the boswellic acids. Chosen because the active fraction and its targets (ALOX5, PTGS2) are well established, and because plant part and solvent both matter to the extraction.\n",
+  "protocol": "untuned defaults; report every case, misses included; weights must only be tuned on a held-out case",
+  "run": {
+    "plant": "Boswellia serrata",
+    "part": "exudate",
+    "solvent": "ethanol",
+    "condition": "ibd",
+    "config_hashes": {
+      "extraction": "cff9691655a3",
+      "ranking": "e34ce582afd0"
+    },
+    "docking_pending": false,
+    "docking": {
+      "candidates": 15,
+      "docked": 15,
+      "partial": false
+    },
+    "funnel": {
+      "in_part": 47,
+      "pass_extraction": 44,
+      "flagged_druglikeness": 8,
+      "with_condition_target": 15,
+      "excluded_no_condition_target": 29
+    }
+  },
+  "metrics": {
+    "n_known_actives": 4,
+    "n_found": 4,
+    "ranks": {
+      "3-Acetyl-11-keto-beta-boswellic acid": 7,
+      "11-Keto-beta-boswellic acid": 4,
+      "beta-Boswellic acid": 1,
+      "alpha-Boswellic acid": 2
+    },
+    "unranked": [],
+    "mrr": 0.4732,
+    "mean_rank": 3.5,
+    "best_rank": 1,
+    "recall_at_10": 1.0,
+    "recall_at_25": 1.0
+  },
+  "ablation": {
+    "with_docking": {
+      "n_known_actives": 4,
+      "n_found": 4,
+      "ranks": {
+        "3-Acetyl-11-keto-beta-boswellic acid": 7,
+        "11-Keto-beta-boswellic acid": 4,
+        "beta-Boswellic acid": 1,
+        "alpha-Boswellic acid": 2
+      },
+      "unranked": [],
+      "mrr": 0.4732,
+      "mean_rank": 3.5,
+      "best_rank": 1,
+      "recall_at_10": 1.0,
+      "recall_at_25": 1.0
+    },
+    "annotation_only": {
+      "n_known_actives": 4,
+      "n_found": 4,
+      "ranks": {
+        "3-Acetyl-11-keto-beta-boswellic acid": 9,
+        "11-Keto-beta-boswellic acid": 2,
+        "beta-Boswellic acid": 4,
+        "alpha-Boswellic acid": 5
+      },
+      "unranked": [],
+      "mrr": 0.2653,
+      "mean_rank": 5.0,
+      "best_rank": 2,
+      "recall_at_10": 1.0,
+      "recall_at_25": 1.0
+    },
+    "delta_mrr": 0.2079,
+    "delta_best_rank": 1,
+    "annotation_only_top_10": [
+      {
+        "rank": 1,
+        "name": "Geraniol"
+      },
+      {
+        "rank": 2,
+        "name": "11-Keto-beta-boswellic acid"
+      },
+      {
+        "rank": 3,
+        "name": "D-Limonene"
+      },
+      {
+        "rank": 4,
+        "name": "beta-Boswellic acid"
+      },
+      {
+        "rank": 5,
+        "name": "alpha-Boswellic acid"
+      },
+      {
+        "rank": 6,
+        "name": "3-Acetyl-beta-boswellic acid"
+      },
+      {
+        "rank": 7,
+        "name": "beta-Amyrin"
+      },
+      {
+        "rank": 8,
+        "name": "alpha-Amyrin"
+      },
+      {
+        "rank": 9,
+        "name": "3-Acetyl-11-keto-beta-boswellic acid"
+      },
+      {
+        "rank": 10,
+        "name": "Anethole"
+      }
+    ]
+  },
+  "null_baseline": {
+    "permutations": 1000,
+    "seed": 7,
+    "n_candidates": 15,
+    "analytic_expected_mrr": 0.2212,
+    "random_mrr_mean": 0.2208,
+    "random_mrr_p95": 0.4167,
+    "observed_mrr": 0.4732,
+    "mrr_percentile": 0.993,
+    "p_value_mrr": 0.008,
+    "p_value_recall_at_10": 0.144,
+    "p_value_recall_at_25": 1.0
+  },
+  "bias_residue": {
+    "k": 10,
+    "six_in_top": [
+      "geraniol"
+    ],
+    "count": 1,
+    "fraction": 0.1
+  },
+  "top_10": [
+    {
+      "rank": 1,
+      "name": "beta-Boswellic acid",
+      "score": 0.5131,
+      "docking": {
+        "ALOX5": -10.186,
+        "MAPK14": -6.746,
+        "PTGS2": -6.479
+      }
+    },
+    {
+      "rank": 2,
+      "name": "alpha-Boswellic acid",
+      "score": 0.4823,
+      "docking": {
+        "ALOX5": -9.93,
+        "MAPK14": -7.67,
+        "PTGS2": -4.536
+      }
+    },
+    {
+      "rank": 3,
+      "name": "beta-Amyrin",
+      "score": 0.4816,
+      "docking": {
+        "ALOX5": -10.004,
+        "MAPK14": -8.147,
+        "PTGS2": -4.079
+      }
+    },
+    {
+      "rank": 4,
+      "name": "11-Keto-beta-boswellic acid",
+      "score": 0.4758,
+      "docking": {
+        "ALOX5": -9.493,
+        "MAPK14": -7.025,
+        "PTGS2": -3.913
+      }
+    },
+    {
+      "rank": 5,
+      "name": "alpha-Amyrin",
+      "score": 0.4643,
+      "docking": {
+        "ALOX5": -10.069,
+        "MAPK14": -7.064,
+        "PTGS2": -5.899
+      }
+    },
+    {
+      "rank": 6,
+      "name": "3-Acetyl-beta-boswellic acid",
+      "score": 0.4313,
+      "docking": {
+        "ALOX5": -9.716,
+        "MAPK14": -5.75,
+        "PTGS2": -5.688
+      }
+    },
+    {
+      "rank": 7,
+      "name": "3-Acetyl-11-keto-beta-boswellic acid",
+      "score": 0.4192,
+      "docking": {
+        "ALOX5": -10.125,
+        "MAPK14": -6.524,
+        "PTGS2": -5.152
+      }
+    },
+    {
+      "rank": 8,
+      "name": "Geraniol",
+      "score": 0.3597,
+      "docking": {
+        "ALOX5": -5.496,
+        "MAPK14": -5.981,
+        "PTGS2": -5.552
+      }
+    },
+    {
+      "rank": 9,
+      "name": "D-Limonene",
+      "score": 0.3272,
+      "docking": {
+        "ALOX5": -5.627,
+        "MAPK14": -5.863,
+        "PTGS2": -5.076
+      }
+    },
+    {
+      "rank": 10,
+      "name": "Linalyl acetate",
+      "score": 0.2761,
+      "docking": {
+        "ALOX5": -5.828,
+        "MAPK14": -6.369,
+        "PTGS2": -5.987
+      }
+    }
+  ],
+  "generated": "2026-11-17"
+}

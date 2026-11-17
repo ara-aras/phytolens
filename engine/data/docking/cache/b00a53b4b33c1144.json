@@ -1,0 +1,38 @@
+{
+  "name": "Citronellol",
+  "affinity": -5.17,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -5.17,
+    -5.162,
+    -5.139,
+    -5.051,
+    -4.934,
+    -4.904,
+    -4.859,
+    -4.815,
+    -4.723
+  ],
+  "cached": false,
+  "seconds": 2.49,
+  "key": "b00a53b4b33c1144",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\b00a53b4b33c1144.pdbqt",
+  "smiles": "OCCC(CCC=C(C)C)C",
+  "receptor": "3NT1",
+  "box": {
+    "center": [
+      -43.833,
+      -47.237,
+      -43.958
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of NPS (34 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

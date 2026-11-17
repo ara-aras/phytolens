@@ -1,0 +1,242 @@
+{
+  "case": "curcuma_longa",
+  "label": "Curcuma longa (turmeric) rhizome, ethanol",
+  "rationale": "The demo case. The three curcuminoids are the clinically recognised actives. Curcumin is also a documented assay-interference compound, so a good rank here is a rank, not evidence of efficacy.\n",
+  "protocol": "untuned defaults; report every case, misses included; weights must only be tuned on a held-out case",
+  "run": {
+    "plant": "Curcuma longa",
+    "part": "rhizome",
+    "solvent": "ethanol",
+    "condition": "colitis",
+    "config_hashes": {
+      "extraction": "cff9691655a3",
+      "ranking": "e34ce582afd0"
+    },
+    "docking_pending": false,
+    "docking": {
+      "candidates": 24,
+      "docked": 24,
+      "partial": false
+    },
+    "funnel": {
+      "in_part": 168,
+      "pass_extraction": 168,
+      "flagged_druglikeness": 14,
+      "with_condition_target": 24,
+      "excluded_no_condition_target": 144
+    }
+  },
+  "metrics": {
+    "n_known_actives": 3,
+    "n_found": 3,
+    "ranks": {
+      "Curcumin": 2,
+      "Demethoxycurcumin": 4,
+      "Bisdemethoxycurcumin": 1
+    },
+    "unranked": [],
+    "mrr": 0.5833,
+    "mean_rank": 2.33,
+    "best_rank": 1,
+    "recall_at_10": 1.0,
+    "recall_at_25": 1.0
+  },
+  "ablation": {
+    "with_docking": {
+      "n_known_actives": 3,
+      "n_found": 3,
+      "ranks": {
+        "Curcumin": 2,
+        "Demethoxycurcumin": 4,
+        "Bisdemethoxycurcumin": 1
+      },
+      "unranked": [],
+      "mrr": 0.5833,
+      "mean_rank": 2.33,
+      "best_rank": 1,
+      "recall_at_10": 1.0,
+      "recall_at_25": 1.0
+    },
+    "annotation_only": {
+      "n_known_actives": 3,
+      "n_found": 3,
+      "ranks": {
+        "Curcumin": 8,
+        "Demethoxycurcumin": 12,
+        "Bisdemethoxycurcumin": 2
+      },
+      "unranked": [],
+      "mrr": 0.2361,
+      "mean_rank": 7.33,
+      "best_rank": 2,
+      "recall_at_10": 0.6667,
+      "recall_at_25": 1.0
+    },
+    "delta_mrr": 0.3472,
+    "delta_best_rank": 1,
+    "annotation_only_top_10": [
+      {
+        "rank": 1,
+        "name": "Eugenol"
+      },
+      {
+        "rank": 2,
+        "name": "Bisdemethoxycurcumin"
+      },
+      {
+        "rank": 3,
+        "name": "Thymol"
+      },
+      {
+        "rank": 4,
+        "name": "4,10-Epizedoarondiol"
+      },
+      {
+        "rank": 5,
+        "name": "Procurcumenol"
+      },
+      {
+        "rank": 6,
+        "name": "ar-Turmerone"
+      },
+      {
+        "rank": 7,
+        "name": "Geraniol"
+      },
+      {
+        "rank": 8,
+        "name": "Curcumin"
+      },
+      {
+        "rank": 9,
+        "name": "Safrole"
+      },
+      {
+        "rank": 10,
+        "name": "Eucalyptol"
+      }
+    ]
+  },
+  "null_baseline": {
+    "permutations": 1000,
+    "seed": 7,
+    "n_candidates": 24,
+    "analytic_expected_mrr": 0.1573,
+    "random_mrr_mean": 0.1549,
+    "random_mrr_p95": 0.4007,
+    "observed_mrr": 0.5833,
+    "mrr_percentile": 1.0,
+    "p_value_mrr": 0.001,
+    "p_value_recall_at_10": 0.059,
+    "p_value_recall_at_25": 1.0
+  },
+  "bias_residue": {
+    "k": 10,
+    "six_in_top": [],
+    "count": 0,
+    "fraction": 0.0
+  },
+  "top_10": [
+    {
+      "rank": 1,
+      "name": "Bisdemethoxycurcumin",
+      "score": 0.5572,
+      "docking": {
+        "ALOX5": -7.881,
+        "MAPK14": -8.908,
+        "PTGS2": -8.081
+      }
+    },
+    {
+      "rank": 2,
+      "name": "Curcumin",
+      "score": 0.5233,
+      "docking": {
+        "ALOX5": -7.572,
+        "MAPK14": -8.91,
+        "PTGS2": -7.959
+      }
+    },
+    {
+      "rank": 3,
+      "name": "Cholesterol",
+      "score": 0.5148,
+      "docking": {
+        "ALOX5": -9.173,
+        "MAPK14": -10.195,
+        "PTGS2": -7.995
+      }
+    },
+    {
+      "rank": 4,
+      "name": "Demethoxycurcumin",
+      "score": 0.5143,
+      "docking": {
+        "ALOX5": -7.847,
+        "MAPK14": -8.953,
+        "PTGS2": -8.079
+      }
+    },
+    {
+      "rank": 5,
+      "name": "Piperine",
+      "score": 0.4599,
+      "docking": {
+        "ALOX5": -7.403,
+        "MAPK14": -8.872,
+        "PTGS2": -7.883
+      }
+    },
+    {
+      "rank": 6,
+      "name": "Procurcumenol",
+      "score": 0.4451,
+      "docking": {
+        "ALOX5": -6.926,
+        "MAPK14": -7.045,
+        "PTGS2": -7.631
+      }
+    },
+    {
+      "rank": 7,
+      "name": "ar-Turmerone",
+      "score": 0.436,
+      "docking": {
+        "ALOX5": -6.913,
+        "MAPK14": -7.834,
+        "PTGS2": -6.584
+      }
+    },
+    {
+      "rank": 8,
+      "name": "4,10-Epizedoarondiol",
+      "score": 0.4116,
+      "docking": {
+        "ALOX5": -6.452,
+        "MAPK14": -6.687,
+        "PTGS2": -7.459
+      }
+    },
+    {
+      "rank": 9,
+      "name": "Levomenol",
+      "score": 0.3887,
+      "docking": {
+        "ALOX5": -6.569,
+        "MAPK14": -7.665,
+        "PTGS2": -6.748
+      }
+    },
+    {
+      "rank": 10,
+      "name": "Thymol",
+      "score": 0.3161,
+      "docking": {
+        "ALOX5": -5.587,
+        "MAPK14": -6.183,
+        "PTGS2": -5.884
+      }
+    }
+  ],
+  "generated": "2026-11-17"
+}

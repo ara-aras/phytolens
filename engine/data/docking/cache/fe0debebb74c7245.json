@@ -1,0 +1,38 @@
+{
+  "name": "Benzyl benzoate",
+  "affinity": -7.087,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -7.087,
+    -7.017,
+    -6.956,
+    -6.639,
+    -6.363,
+    -6.303,
+    -6.224,
+    -6.21,
+    -6.126
+  ],
+  "cached": false,
+  "seconds": 2.48,
+  "key": "fe0debebb74c7245",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\fe0debebb74c7245.pdbqt",
+  "smiles": "O=C(c1ccccc1)OCc1ccccc1",
+  "receptor": "3V99",
+  "box": {
+    "center": [
+      18.394,
+      -78.715,
+      -33.903
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of ACD (53 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

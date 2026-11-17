@@ -1,0 +1,38 @@
+{
+  "name": "Cinnamaldehyde",
+  "affinity": -5.094,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -5.094,
+    -5.074,
+    -5.046,
+    -5.011,
+    -4.99,
+    -4.959,
+    -4.84,
+    -4.823,
+    -4.819
+  ],
+  "cached": false,
+  "seconds": 1.32,
+  "key": "f793ba64f061a6ba",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\f793ba64f061a6ba.pdbqt",
+  "smiles": "O=C/C=C/c1ccccc1",
+  "receptor": "3NT1",
+  "box": {
+    "center": [
+      -43.833,
+      -47.237,
+      -43.958
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of NPS (34 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

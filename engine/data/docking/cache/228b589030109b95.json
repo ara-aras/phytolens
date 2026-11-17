@@ -1,0 +1,38 @@
+{
+  "name": "Gingerol",
+  "affinity": -6.45,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -6.45,
+    -6.167,
+    -6.052,
+    -6.033,
+    -6.025,
+    -6.011,
+    -5.998,
+    -5.992,
+    -5.979
+  ],
+  "cached": false,
+  "seconds": 6.6,
+  "key": "228b589030109b95",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\228b589030109b95.pdbqt",
+  "smiles": "CCCCC[C@@H](CC(=O)CCc1ccc(c(c1)OC)O)O",
+  "receptor": "3NT1",
+  "box": {
+    "center": [
+      -43.833,
+      -47.237,
+      -43.958
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of NPS (34 atoms)"
+  },
+  "exhaustiveness": 4,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

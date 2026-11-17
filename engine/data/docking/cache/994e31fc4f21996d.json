@@ -1,0 +1,38 @@
+{
+  "name": "Pulegone",
+  "affinity": -6.536,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -6.536,
+    -6.497,
+    -6.348,
+    -6.252,
+    -6.039,
+    -6.009,
+    -5.898,
+    -5.636,
+    -5.457
+  ],
+  "cached": false,
+  "seconds": 0.93,
+  "key": "994e31fc4f21996d",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\994e31fc4f21996d.pdbqt",
+  "smiles": "C[C@@H]1CCC(=C(C)C)C(=O)C1",
+  "receptor": "3D83",
+  "box": {
+    "center": [
+      42.169,
+      30.17,
+      34.589
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of GK6 (35 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

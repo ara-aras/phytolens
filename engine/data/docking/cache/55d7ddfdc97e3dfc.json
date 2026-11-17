@@ -1,0 +1,38 @@
+{
+  "name": "alpha-Pinene",
+  "affinity": -5.666,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -5.666,
+    -5.463,
+    -5.306,
+    -5.189,
+    -5.158,
+    -5.012,
+    -5.007,
+    -4.884,
+    -4.867
+  ],
+  "cached": false,
+  "seconds": 0.82,
+  "key": "55d7ddfdc97e3dfc",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\55d7ddfdc97e3dfc.pdbqt",
+  "smiles": "CC1=CCC2CC1C2(C)C",
+  "receptor": "3V99",
+  "box": {
+    "center": [
+      18.394,
+      -78.715,
+      -33.903
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of ACD (53 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

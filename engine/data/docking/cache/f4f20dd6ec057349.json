@@ -1,0 +1,38 @@
+{
+  "name": "Linalyl acetate",
+  "affinity": -5.987,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -5.987,
+    -5.706,
+    -5.681,
+    -5.658,
+    -5.646,
+    -5.598,
+    -5.513,
+    -5.43,
+    -5.427
+  ],
+  "cached": false,
+  "seconds": 2.64,
+  "key": "f4f20dd6ec057349",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\f4f20dd6ec057349.pdbqt",
+  "smiles": "C=CC(OC(=O)C)(CCC=C(C)C)C",
+  "receptor": "3NT1",
+  "box": {
+    "center": [
+      -43.833,
+      -47.237,
+      -43.958
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of NPS (34 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

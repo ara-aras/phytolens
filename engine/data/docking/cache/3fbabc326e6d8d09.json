@@ -1,0 +1,38 @@
+{
+  "name": "1-Undecanol",
+  "affinity": -4.674,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -4.674,
+    -4.643,
+    -4.636,
+    -4.63,
+    -4.613,
+    -4.572,
+    -4.522,
+    -4.445,
+    -4.429
+  ],
+  "cached": false,
+  "seconds": 3.91,
+  "key": "3fbabc326e6d8d09",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\3fbabc326e6d8d09.pdbqt",
+  "smiles": "CCCCCCCCCCCO",
+  "receptor": "3NT1",
+  "box": {
+    "center": [
+      -43.833,
+      -47.237,
+      -43.958
+    ],
+    "size": [
+      26.0,
+      26.0,
+      26.0
+    ],
+    "defined_by": "centroid of NPS (34 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

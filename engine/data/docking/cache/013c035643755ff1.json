@@ -1,0 +1,38 @@
+{
+  "name": "Benzaldehyde",
+  "affinity": -4.687,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -4.687,
+    -4.686,
+    -4.598,
+    -4.431,
+    -4.354,
+    -4.31,
+    -4.213,
+    -4.182,
+    -4.039
+  ],
+  "cached": false,
+  "seconds": 1.04,
+  "key": "013c035643755ff1",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\013c035643755ff1.pdbqt",
+  "smiles": "O=Cc1ccccc1",
+  "receptor": "3V99",
+  "box": {
+    "center": [
+      18.394,
+      -78.715,
+      -33.903
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of ACD (53 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

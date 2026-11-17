@@ -1,0 +1,38 @@
+{
+  "name": "Safrole",
+  "affinity": -5.971,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -5.971,
+    -5.948,
+    -5.688,
+    -5.565,
+    -5.545,
+    -5.295,
+    -5.278,
+    -5.255,
+    -5.174
+  ],
+  "cached": false,
+  "seconds": 1.29,
+  "key": "f4c01905563ee31d",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\f4c01905563ee31d.pdbqt",
+  "smiles": "C=CCc1ccc2c(c1)OCO2",
+  "receptor": "3V99",
+  "box": {
+    "center": [
+      18.394,
+      -78.715,
+      -33.903
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of ACD (53 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

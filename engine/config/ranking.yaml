@@ -1,0 +1,47 @@
+# PhytoLens — ranking configuration
+#
+# Target count is a GATE, never a score. See docs/DEMO_PLAN.md, Finding 2:
+# ranking Boswellia serrata by number of annotated targets puts geraniol first
+# with 99 links and the boswellic acids at 3-5 with one measured link each.
+# Geraniol is a monoterpene alcohol, not the anti-inflammatory principle of
+# frankincense. Degree centrality rewards how much a compound has been studied.
+#
+# So the score is built from four terms that each measure something different,
+# plus docking, which is the only term independent of annotation depth.
+
+version: 1
+
+weights:
+  docking: 0.40      # absent until docking has run; remaining weights renormalise
+  overlap: 0.28      # how many of the condition's targets this compound reaches
+  evidence: 0.14     # of those, how many rest on measured (non-NPASS) links
+  specificity: 0.10  # overlap as a fraction of everything the compound hits
+  promiscuity: 0.08  # penalty; subtracted, not added
+
+overlap:
+  # Counting beyond this adds no discrimination -- it just finds the compound
+  # with the largest literature footprint, which is the bias we are correcting.
+  cap: 8
+
+evidence:
+  # IMPPAT tags each link with its source. NPASS-only links are predicted;
+  # ChEMBL / BindingDB links are measured. Corpus-wide 20% of links are
+  # NPASS-only and 53% involve NPASS, so this term is not cosmetic.
+  predicted_sources: ["NPASS"]
+
+promiscuity:
+  # Measured-target count at which the penalty starts, and where it saturates.
+  # Curcumin (84 measured) and geraniol (89 measured) both saturate; that is
+  # the honest signal that both are promiscuous, and it is reported as a flag.
+  starts_at: 20
+  saturates_at: 90
+
+docking:
+  # Vina affinities in kcal/mol. Below `strong` scores 1.0, above `weak` scores 0.
+  strong: -9.0
+  weak: -5.0
+
+# Gate: a compound with no target in the condition's set is not a candidate for
+# that condition, regardless of how many other proteins it hits.
+gate:
+  min_condition_targets: 1

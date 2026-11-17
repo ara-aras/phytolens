@@ -1,0 +1,38 @@
+{
+  "name": "(2E,4E,6E)-7-(2H-1,3-benzodioxol-5-yl)-1-(piperidin-1-yl)hepta-2,4,6-trien-1-one",
+  "affinity": -6.313,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -6.313,
+    -6.278,
+    -6.258,
+    -5.739,
+    -5.73,
+    -5.698,
+    -5.64,
+    -5.564,
+    -5.397
+  ],
+  "cached": false,
+  "seconds": 4.29,
+  "key": "838d330f9acf1b76",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\838d330f9acf1b76.pdbqt",
+  "smiles": "O=C(N1CCCCC1)/C=C/C=C/C=C/c1ccc2c(c1)OCO2",
+  "receptor": "3NT1",
+  "box": {
+    "center": [
+      -43.833,
+      -47.237,
+      -43.958
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of NPS (34 atoms)"
+  },
+  "exhaustiveness": 8,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}
