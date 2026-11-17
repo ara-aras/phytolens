@@ -353,9 +353,17 @@ python -m engine.worker
 cd web && npm install && npm run dev
 ```
 
-The web app reads `NEXT_PUBLIC_API_URL` (default `http://127.0.0.1:8000`). CORS is restricted
-to `http://127.0.0.1:3000` and `http://localhost:3000` unless `PHYTOLENS_CORS_ORIGINS` says
-otherwise.
+The browser calls `/v1` on its own origin; `web/next.config.ts` proxies it to
+`PHYTOLENS_API_ORIGIN` (default `http://127.0.0.1:8000`). That is deliberate: when the demo is
+opened through a tunnel (ngrok, Cloudflare), Chrome blocks a public HTTPS page from calling
+`http://127.0.0.1` under Private Network Access, and CORS would have to agree with a tunnel
+hostname that changes on every restart. The proxy keeps the browser same-origin and the engine
+on loopback.
+
+Direct API clients still get CORS: `PHYTOLENS_CORS_ORIGINS` (exact origins) and
+`PHYTOLENS_CORS_ORIGIN_REGEX` (defaults to loopback on any port plus ngrok/trycloudflare hosts).
+Next's dev server also needs `allowedDevOrigins` for a tunnel host, or it serves the HTML and
+blocks every `/_next/*` asset.
 
 ```bash
 # demo shortlist in one request
@@ -388,9 +396,10 @@ Endpoints: `GET /v1/health`, `GET /v1/version`, `GET /v1/plants?q=`,
 **Queue.** `POST /v1/runs` writes the run row, then pushes the job to Redis
 (`phytolens:runs`). The worker moves it to `phytolens:runs:processing` with `BRPOPLPUSH`, so a
 worker killed mid-job is recovered by `requeue_inflight()` on its next start. SQLite stays the
-source of truth. If Redis is down the API enqueues into a local thread pool and says so in the
-response (`queue: "inline"`) and in `/v1/health`. `PHYTOLENS_REDIS_URL` accepts `rediss://`,
-which is all Upstash needs.
+source of truth. The worker publishes a heartbeat; if Redis is down **or no worker is alive**,
+the API runs the job in a local thread pool and says so (`queue: "inline"`), because a job that
+sits queued forever while the UI polls is worse than a slower start. `PHYTOLENS_REDIS_URL`
+accepts `rediss://`, which is all Upstash needs.
 
 **Rate limits.** Fixed-window counters in Redis, per endpoint class: live docking 4/min, run
 creation 12/min, formulations 30/min, `/v1/demo` 60/min, other reads 240/min. Counters are

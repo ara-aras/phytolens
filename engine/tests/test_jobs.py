@@ -22,9 +22,12 @@ def redis_client(monkeypatch):
     client = jobs.get_redis(force=True)
     if client is None:
         pytest.skip("no Redis server available")
-    client.delete(jobs.queue_key(), jobs.processing_key())
+    client.delete(jobs.queue_key(), jobs.processing_key(), jobs.heartbeat_key())
+    # enqueue() deliberately runs inline when no worker is alive, so the test
+    # stands in for the worker by publishing a heartbeat first.
+    jobs.beat()
     yield client
-    client.delete(jobs.queue_key(), jobs.processing_key())
+    client.delete(jobs.queue_key(), jobs.processing_key(), jobs.heartbeat_key())
 
 
 def test_redis_unavailable_falls_back_to_the_executor(monkeypatch):

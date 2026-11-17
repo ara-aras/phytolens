@@ -319,11 +319,23 @@ app = FastAPI(title="PhytoLens API", version=VERSION,
               description="In-silico prioritisation. Hypotheses for lab validation only.",
               lifespan=lifespan)
 
+# Exact origins, plus a pattern for the hosts a demo is actually opened through:
+# loopback on any port, and the common tunnel providers (ngrok/Cloudflare). A
+# tunnel subdomain changes on every restart, so listing it by hand is a trap --
+# a rejected preflight surfaces as an opaque 400 in the browser.
+CORS_ORIGINS = [o.strip() for o in os.environ.get(
+    "PHYTOLENS_CORS_ORIGINS",
+    "http://127.0.0.1:3000,http://localhost:3000").split(",") if o.strip()]
+CORS_ORIGIN_REGEX = os.environ.get(
+    "PHYTOLENS_CORS_ORIGIN_REGEX",
+    r"https?://(localhost|127\.0\.0\.1)(:\d+)?"
+    r"|https://[a-z0-9-]+\.(ngrok-free\.(dev|app)|ngrok\.io|trycloudflare\.com)",
+)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[o.strip() for o in os.environ.get(
-        "PHYTOLENS_CORS_ORIGINS",
-        "http://127.0.0.1:3000,http://localhost:3000").split(",") if o.strip()],
+    allow_origins=CORS_ORIGINS,
+    allow_origin_regex=CORS_ORIGIN_REGEX,
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["Authorization", "Content-Type"],
     expose_headers=["X-RateLimit-Limit", "X-RateLimit-Remaining",

@@ -138,7 +138,18 @@ uvicorn engine.api:app --host 127.0.0.1 --port 8000
 cd web && npm install && npm run dev     # http://127.0.0.1:3000
 ```
 
-Without Redis the API runs jobs in a thread pool and says so (`queue: "inline"`).
+Without Redis — or with Redis up but no worker — the API runs jobs in a thread pool and says so
+(`queue: "inline"`), so a demo never hangs on a missing worker.
+
+**Sharing through a tunnel (ngrok/Cloudflare).** Open the tunnel URL, not the API URL: the
+browser calls `/v1` on its own origin and Next proxies it to `http://127.0.0.1:8000`. Calling the
+API directly from a tunneled page is blocked by Chrome's Private Network Access check. Also note
+tunnel hostnames change per restart; CORS and `allowedDevOrigins` already cover the common
+providers. A free ngrok tunnel shows a one-time "Visit Site" interstitial.
+
+**Port in use / stale frontend.** `netstat -ano | grep ":3000 .*LISTEN"` then
+`taskkill //PID <pid> //T //F`, and start `npm run dev` again — Next only picks up
+`next.config.ts` changes (proxy, allowed origins) on a restart.
 
 ```bash
 python -m pytest -q                                  # 100 tests

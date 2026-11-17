@@ -142,15 +142,19 @@ def enqueue(run_id: str, fallback: Callable[[], None]) -> dict:
         "enqueued": datetime.now(timezone.utc).isoformat(timespec="seconds"),
     })
     client = get_redis()
-    if client is not None:
+    if client is not None and worker_alive():
         try:
             client.lpush(queue_key(), payload)
             return {"backend": "redis", "queue": queue_key()}
         except Exception as exc:  # noqa: BLE001 - degrade, do not lose the run
             with _lock:
                 _last_error = f"enqueue failed: {type(exc).__name__}: {exc}"
+    # Redis without a worker means the job would sit queued forever while the
+    # client polls. Run it here instead: slower to start, but a run that
+    # actually finishes is worth more than a strict queue in a demo.
+    reason = "no worker heartbeat" if client is not None else "redis unavailable"
     EXECUTOR.submit(fallback)
-    return {"backend": "inline"}
+    return {"backend": "inline", "reason": reason}
 
 
 def next_job(timeout: int = 5) -> str | None:

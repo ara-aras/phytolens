@@ -71,6 +71,23 @@ def test_plant_search_returns_one_row_per_plant(client):
     assert len(ids) == len(set(ids)), "the same plant must not appear twice"
 
 
+def test_cors_preflight_allows_loopback_and_tunnels(client):
+    allowed = ["http://127.0.0.1:3000", "http://localhost:3001",
+               "https://reply-justness-paramedic.ngrok-free.dev",
+               "https://demo.trycloudflare.com"]
+    for origin in allowed:
+        response = client.options("/v1/runs", headers={
+            "Origin": origin, "Access-Control-Request-Method": "POST",
+            "Access-Control-Request-Headers": "content-type"})
+        assert response.status_code == 200, origin
+        assert response.headers["access-control-allow-origin"] == origin
+
+    denied = client.options("/v1/runs", headers={
+        "Origin": "https://evil.example", "Access-Control-Request-Method": "POST"})
+    assert denied.status_code == 400
+    assert "access-control-allow-origin" not in denied.headers
+
+
 def test_conditions_are_listed_and_filterable(client):
     assert len(client.get("/v1/conditions").json()["conditions"]) >= 2
     assert client.get("/v1/conditions", params={"q": "colit"}).json()["conditions"]

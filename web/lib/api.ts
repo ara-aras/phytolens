@@ -9,8 +9,10 @@ import type {
   ValidationReport,
 } from "./types";
 
-export const API_URL =
-  process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") ?? "http://127.0.0.1:8000";
+// Same-origin by default: next.config.ts proxies /v1 to the engine, so a page
+// opened through a tunnel can reach a loopback API without CORS or Chrome's
+// private-network checks. Set NEXT_PUBLIC_API_URL only to bypass the proxy.
+export const API_URL = (process.env.NEXT_PUBLIC_API_URL ?? "").replace(/\/$/, "");
 
 export class ApiError extends Error {
   status: number;
