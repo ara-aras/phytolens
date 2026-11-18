@@ -144,6 +144,7 @@ export type DockingPose = {
   complex_with: string;
   ligand_code: string;
   why: string;
+  docked?: boolean;
   key: string;
   seed: number;
   exhaustiveness: number;

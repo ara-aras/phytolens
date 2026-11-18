@@ -726,6 +726,44 @@ def pocket_contacts(
     ]
 
 
+def _conformer_pdb_in_box(
+    smiles: str,
+    center: list[float] | tuple[float, float, float],
+) -> tuple[str, list[tuple[float, float, float]], int] | None:
+    """Embed a 3D RDKit conformer and translate its centroid to `center`."""
+    mol = Chem.MolFromSmiles(smiles)
+    if mol is None:
+        return None
+    try:
+        mol = Chem.AddHs(mol)
+        params = AllChem.ETKDGv3()
+        params.randomSeed = SEED
+        if AllChem.EmbedMolecule(mol, params) != 0:
+            AllChem.EmbedMolecule(mol, useRandomCoords=True, randomSeed=SEED)
+        try:
+            AllChem.MMFFOptimizeMolecule(mol, maxIters=500)
+        except Exception:  # noqa: BLE001
+            pass
+        conf = mol.GetConformer()
+        n = mol.GetNumAtoms()
+        if n == 0:
+            return None
+        pts = [conf.GetAtomPosition(i) for i in range(n)]
+        mx = sum(p.x for p in pts) / n
+        my = sum(p.y for p in pts) / n
+        mz = sum(p.z for p in pts) / n
+        dx, dy, dz = center[0] - mx, center[1] - my, center[2] - mz
+        coords: list[tuple[float, float, float]] = []
+        for i, p in enumerate(pts):
+            nx, ny, nz = p.x + dx, p.y + dy, p.z + dz
+            conf.SetAtomPosition(i, (nx, ny, nz))
+            coords.append((nx, ny, nz))
+        pdb_block = Chem.MolToPDBBlock(mol)
+        return pdb_block, coords, n
+    except Exception:  # noqa: BLE001
+        return None
+
+
 def resolve_pose(
     compound_id: str,
     target: str,
@@ -733,7 +771,13 @@ def resolve_pose(
     panel_path: Path,
     db: Path = ex.DB_PATH,
 ) -> dict | None:
-    """Resolve the cached 3D Vina pose, 9 modes, pocket contacts, and 2D SVG."""
+    """Resolve the cached 3D Vina pose, 9 modes, pocket contacts, and 2D SVG.
+
+    If a compound is in the corpus but has not been docked against `target` yet,
+    returns its 2D RDKit depiction plus a 3D conformer positioned in the target
+    pocket (`docked: False`) so the 3D viewer is never blank and can offer
+    one-click live Vina docking.
+    """
     spec = TARGETS.get(target.upper())
     if spec is None:
         return None
@@ -779,27 +823,45 @@ def resolve_pose(
                 name = name or meta.get("name")
                 break
 
-    if not key:
-        return None
-
-    pdbqt_path = CACHE / f"{key}.pdbqt"
-    raw_modes = parse_pdbqt_modes(pdbqt_path)
-    if not raw_modes:
-        return None
-
-    clean_pdb = RECEPTORS / f"{spec.pdb_id}_clean.pdb"
-    if not clean_pdb.exists():
-        clean_pdb = RECEPTORS / f"{spec.pdb_id}.pdb"
-    mode1_coords = raw_modes[0].get("_coords", [])
-    contacts = pocket_contacts(clean_pdb, mode1_coords)
-    for m in raw_modes:
-        m.pop("_coords", None)
-
     box_file = RECEPTORS / f"{spec.pdb_id}_box.json"
     box = (
         (cached_meta or {}).get("box")
         or (json.loads(box_file.read_text()) if box_file.exists() else None)
     )
+    clean_pdb = RECEPTORS / f"{spec.pdb_id}_clean.pdb"
+    if not clean_pdb.exists():
+        clean_pdb = RECEPTORS / f"{spec.pdb_id}.pdb"
+
+    raw_modes = parse_pdbqt_modes(CACHE / f"{key}.pdbqt") if key else []
+    is_docked = bool(raw_modes)
+
+    if not raw_modes:
+        if not smiles:
+            return None
+        center = box["center"] if box and "center" in box else [0.0, 0.0, 0.0]
+        embedded = _conformer_pdb_in_box(smiles, center)
+        if embedded is None:
+            return None
+        pdb_block, coords, n_atoms = embedded
+        raw_modes = [
+            {
+                "mode": 1,
+                "affinity": None,
+                "rmsd_lb": 0.0,
+                "rmsd_ub": 0.0,
+                "inter_energy": None,
+                "intra_energy": None,
+                "atoms": n_atoms,
+                "pdb_block": pdb_block,
+                "_coords": coords,
+            }
+        ]
+
+    mode1_coords = raw_modes[0].get("_coords", [])
+    contacts = pocket_contacts(clean_pdb, mode1_coords)
+    for m in raw_modes:
+        m.pop("_coords", None)
+
     best_aff = raw_modes[0]["affinity"]
     return {
         "compound_id": compound_id,
@@ -810,13 +872,16 @@ def resolve_pose(
         "complex_with": spec.complex_with,
         "ligand_code": spec.ligand_code,
         "why": spec.why,
-        "key": key,
+        "docked": is_docked,
+        "key": key or "conformer_preview",
         "seed": (cached_meta or {}).get("seed", SEED),
         "exhaustiveness": (cached_meta or {}).get("exhaustiveness", EXHAUSTIVENESS),
         "vina": (cached_meta or {}).get("vina", "AutoDock Vina v1.2.7"),
         "box": box,
         "affinity": best_aff,
-        "ligand_efficiency": ligand_efficiency(best_aff, smiles) if smiles else None,
+        "ligand_efficiency": (
+            ligand_efficiency(best_aff, smiles) if (smiles and best_aff is not None) else None
+        ),
         "modes": raw_modes,
         "contacts": contacts,
         "svg_2d": render_2d_svg(smiles),

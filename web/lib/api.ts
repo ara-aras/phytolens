@@ -79,7 +79,10 @@ export const api = {
   shortlist: (runId: string) =>
     request<Shortlist>(`/v1/runs/${runId}/shortlist`),
   network: (runId: string) => request<Network>(`/v1/runs/${runId}/network`),
-  liveDock: (runId: string, body: { targets: string[]; candidates: number }) =>
+  liveDock: (
+    runId: string,
+    body: { targets: string[]; candidates?: number; compound_ids?: string[] },
+  ) =>
     request<LiveDockResult>(`/v1/runs/${runId}/dock`, {
       method: "POST",
       body: JSON.stringify(body),

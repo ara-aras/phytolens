@@ -206,7 +206,7 @@ export default function Workbench() {
     return () => clearInterval(timer);
   }, [docking]);
 
-  async function runLiveDock() {
+  async function runLiveDock(override?: { compoundId?: string; target?: string }) {
     if (!runId || !shortlist) return;
     setDocking(true);
     setDockElapsed(0);
@@ -214,8 +214,14 @@ export default function Workbench() {
     setError(null);
     try {
       const target =
-        shortlist.docking_targets?.[0] ?? Object.keys(shortlist.ranked[0]?.docking ?? {})[0] ?? "PTGS2";
-      const result = await api.liveDock(runId, { targets: [target], candidates: 2 });
+        override?.target ??
+        shortlist.docking_targets?.[0] ??
+        Object.keys(shortlist.ranked[0]?.docking ?? {})[0] ??
+        "PTGS2";
+      const body = override?.compoundId
+        ? { targets: [target], compound_ids: [override.compoundId] }
+        : { targets: [target], candidates: 2 };
+      const result = await api.liveDock(runId, body);
       setShortlist({
         ...shortlist,
         ranked: result.shortlist,
@@ -514,7 +520,7 @@ export default function Workbench() {
                     <button
                       type="button"
                       className="btn btn-outline"
-                      onClick={runLiveDock}
+                      onClick={() => void runLiveDock()}
                       disabled={docking}
                     >
                       {docking
@@ -574,6 +580,15 @@ export default function Workbench() {
                   targets={targets}
                   selectedCompoundId={selectedCompoundId || shortlist.ranked[0].id}
                   onSelectCompound={(cid) => setSelectedCompoundId(cid)}
+                  onDockCompoundTarget={
+                    runId
+                      ? async (cid, tgt) => {
+                          await runLiveDock({ compoundId: cid, target: tgt });
+                        }
+                      : undefined
+                  }
+                  dockingBusy={docking}
+                  dockElapsed={dockElapsed}
                 />
               )}
 
