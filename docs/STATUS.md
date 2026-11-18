@@ -87,8 +87,9 @@ box and seed as the panel, then merges and re-ranks. Recorded sample
 
 1. **Audited what an "opencode" agent had left behind** (its session ended on a usage-limit
    error): docs plus extraction/ranking/docking stages, no API, no UI, no PDF, no queue.
-2. **Finished the backend**: three-target docking panel, validation harness, PDF report, FastAPI
-   with asynchronous runs and SQLite state.
+2. **Finished the backend**: the 51-compound × 3-target docking panel, a fourth
+   on-demand TNF-α (`2AZ5`) target, validation harness, PDF report, FastAPI with
+   asynchronous runs and SQLite state.
 3. **Replaced Streamlit with Next.js** (`web/`): formulation builder, funnel, shortlist with
    per-target affinities, expandable evidence row, hub targets, caveats, PDF link, live-dock
    button, validation panel.
@@ -103,6 +104,11 @@ box and seed as the panel, then merges and re-ranks. Recorded sample
 9. **Submission pass:** project licence (Apache-2.0) split from the data terms, README rebuilt
    around the verified numbers with screenshots, demo runbook, live-dock proxy timeout fixed
    (a cold dock outlived the 30 s default), and the PDF funnel made monotonic.
+10. **Transparency pass:** RDKit QED/BOILED-Egg/PAINS/Brenk annotations, measured-vs-predicted
+    support tags on every compound–target link, TNF-α (`2AZ5`) as a fourth on-demand target,
+    the NGL/RDKit Docking Studio, the bipartite mechanism graph, and a wet-lab protocol.
+11. **History purge:** `engine/data/phytolens.db` removed from every commit, kept locally and
+    git-ignored, with corpus-dependent tests skipping cleanly on a fresh clone.
 
 ## Licensing
 
@@ -134,7 +140,8 @@ Python plus the corpus database.
 `GET /v1/conditions`, `POST /v1/formulations`, `GET /v1/formulations/{id}`, `POST /v1/runs`,
 `GET /v1/runs/{id}`, `GET /v1/runs/{id}/shortlist`, `GET /v1/runs/{id}/network`,
 `GET /v1/runs/{id}/report.pdf`, `POST /v1/runs/{id}/dock`, `GET /v1/validation`,
-`GET /v1/structures/{target}`, `GET /v1/demo`.
+`GET /v1/structures/{target}`, `GET /v1/structures/{target}/pdb`,
+`GET /v1/docking/pose/{compound_id}/{target}`, `GET /v1/demo`.
 
 ## How to run
 
@@ -163,7 +170,7 @@ providers. A free ngrok tunnel shows a one-time "Visit Site" interstitial.
 `next.config.ts` changes (proxy, allowed origins) on a restart.
 
 ```bash
-python -m pytest -q                                  # 101 tests
+python -m pytest -q                                  # 109 tests
 python -m engine.validation --all                    # untuned validation, writes results
 python -m engine.live_dock --plant "Zingiber officinale" --part rhizome \
   --condition colitis --targets PTGS2 --compound Gingerol --compound Shogaol
@@ -171,8 +178,9 @@ python -m engine.live_dock --plant "Zingiber officinale" --part rhizome \
 
 ## Checks and what they cover
 
-- `python -m pytest -q` → **101 passed**: extraction regressions, ranking, docking cache/targets,
-  validation metrics and controls, PDF, API lifecycle, Redis queue handoff/recovery/fallback,
+- `python -m pytest -q` → **109 passed**: extraction regressions, ADMET/PAINS/Brenk
+  annotations, ranking and support tags, docking cache/targets, validation metrics and controls,
+  PDF, API lifecycle (including pose/PDB endpoints), Redis queue handoff/recovery/fallback,
   rate-limit 429 path, API-key 401/403, live-dock merge.
 - `npm run build` in `web/` → compiled, types valid.
 - End-to-end over HTTP: run created → Redis → worker → `complete`; live dock returned 2 fresh
@@ -183,10 +191,12 @@ python -m engine.live_dock --plant "Zingiber officinale" --part rhizome \
 
 - **No prospective validation.** Agreement with known actives tests the ranking; it does not show
   a compound works.
-- **Three targets, not the proteome.** A compound binding none of them may act elsewhere.
-- **Heme is missing from the COX-2 receptor** (Open Babel drops HETATM when writing PDBQT). At the
-  shipped 20 Å box this no longer lets large lipophilic ligands win; larger ligands may still be
-  favoured, which is why ligand efficiency sits beside every affinity.
+- **Three targets in the served panel, not the proteome.** A compound binding none of them may
+  act elsewhere. TNF-α (`2AZ5`) is on-demand only.
+- **COX-2 heme is only partly retained.** The prepared PDB keeps the heme, but Open Babel
+  drops the porphyrin ring when writing PDBQT and leaves the heme iron atoms. The heme sits
+  ~32.5 Å from the docked cyclooxygenase box, so the scored site is unaffected; larger ligands
+  may still be favoured, which is why ligand efficiency sits beside every affinity.
 - **Cholesterol ranks #3 on the demo panel.** Real score, not a drug candidate, disclosed.
 - **Annotation bias is reduced, not eliminated.** Geraniol still appears in the Boswellia top 10.
 - **Small validation cases are underpowered.** p-values are reported, including the two that are
@@ -194,5 +204,6 @@ python -m engine.live_dock --plant "Zingiber officinale" --part rhizome \
 - **Licensing.** The corpus derives from IMPPAT 2.0 (CC BY-NC-ND 4.0, academic/non-commercial, no
   derivatives). Public sharing of this repo is for the hackathon/academic context; commercial use
   needs a licence or a rebuilt plant→compound layer.
-- **Not built**: user accounts, multi-tenancy, ADMET/toxicity prediction, GPU docking in the
-  served path (Uni-Dock is installed and validated for later).
+- **Not built**: user accounts, multi-tenancy, full toxicity prediction beyond the QED/BOILED-Egg/
+  PAINS/Brenk annotations, GPU docking in the served path (Uni-Dock is installed and validated
+  for later).

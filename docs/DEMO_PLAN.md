@@ -272,12 +272,14 @@ against our own intuition — which is what the earlier withdrawn claim failed t
 
 ### Limitations to state out loud
 
-- **Three targets, not the whole proteome.** COX-2, 5-LOX and p38-α, all experimental
-  structures with co-crystal box definitions. A compound that binds none of them may still
-  act elsewhere.
-- **Heme is missing.** Open Babel drops HETATM records when writing PDBQT, so the porphyrin
-  is not in the receptor. At a 26 Å box this inflated scores for large lipophilic ligands
-  (cholesterol ranked #1); at 20 Å it does not. Larger ligands may still be favoured.
+- **Four targets, not the whole proteome.** COX-2, 5-LOX and p38-α in the precomputed
+  panel, plus on-demand TNF-α (`2AZ5`). All are experimental structures with co-crystal box
+  definitions. A compound that binds none of them may still act elsewhere.
+- **COX-2 heme is only partly retained.** Open Babel drops the porphyrin ring when writing
+  PDBQT and leaves the heme iron atoms; the heme is ~32.5 Å from the docked cyclooxygenase
+  box, so the scored site is unaffected. At a 26 Å box this inflated scores for large
+  lipophilic ligands (cholesterol ranked #1); at 20 Å it does not. Larger ligands may still
+  be favoured.
 - **Vina's scoring function has a size bias.** Ligand efficiency is reported next to every
   affinity for that reason. Neither number alone is a rank.
 - **Cholesterol ranks 3rd composite on the three-target panel.** It is a membrane sterol

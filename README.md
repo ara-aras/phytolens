@@ -117,7 +117,7 @@ Condition target overlap → GATE (not a score)
 Ranking: docking (primary) + capped overlap + evidence + specificity − promiscuity
         │
         ▼
-Three experimental structures → AutoDock Vina → ranked shortlist
+Experimental co-crystal structures (3-target panel) → AutoDock Vina → ranked shortlist
         │
         ▼
 PDF report + network graph + evidence row
@@ -138,13 +138,16 @@ PDF report + network graph + evidence row
   ligand SMILES, receptor file, box, seed, exhaustiveness and Vina version, so a
   cached score is never silently reused for a different question.
 - **Structures.** Experimental co-crystal structures only. ALOX5 retains its
-  catalytic Fe²⁺. The AlphaFold path is planned, not implemented.
+  catalytic Fe²⁺; COX-2's peroxidase heme is ~32.5 Å from the docked
+  cyclooxygenase box, and its iron survives PDBQT preparation even though Open
+  Babel drops the porphyrin ring. The AlphaFold path is planned, not implemented.
 
 ## What is deliberately not built
 
 - A bespoke target-prediction model (uses curated links instead).
 - The AlphaFold / predicted-structure path.
-- ADMET or toxicity prediction.
+- Full ADMET or toxicity prediction beyond the RDKit QED/BOILED-Egg/PAINS/Brenk
+  annotations we expose as triage signals.
 - User accounts or multi-tenancy.
 - GPU docking in the served path. Uni-Dock is installed and validated in WSL2
   (see `docs/GPU_DOCKING.md`) but kept off the demo path so every number in one
@@ -196,7 +199,7 @@ both binaries are present.
 ### Useful commands
 
 ```bash
-python -m pytest -q                              # 108 tests
+python -m pytest -q                              # 109 tests
 python -m engine.validation --all                # untuned validation, writes results
 python -m engine.pipeline.admet                  # QED, BOILED-Egg GI/BBB, PAINS + Brenk alerts
 python -m engine.live_dock --plant "Zingiber officinale" --part rhizome \
@@ -213,7 +216,8 @@ python -m engine.report --plant "Curcuma longa" --part rhizome \
 `POST /v1/runs`, `GET /v1/runs/{id}`, `GET /v1/runs/{id}/shortlist`,
 `GET /v1/runs/{id}/network`, `GET /v1/runs/{id}/report.pdf`,
 `POST /v1/runs/{id}/dock`, `GET /v1/validation`,
-`GET /v1/structures/{target}`, `GET /v1/demo`.
+`GET /v1/structures/{target}`, `GET /v1/structures/{target}/pdb`,
+`GET /v1/docking/pose/{compound_id}/{target}`, `GET /v1/demo`.
 
 Runs are asynchronous: `POST /v1/runs` returns `202` and the client polls.
 Interactive docs at `http://127.0.0.1:8000/docs`.
@@ -241,7 +245,7 @@ engine/
 ├── config/             extraction.yaml, ranking.yaml
 ├── data/               corpus, target sets, docking panel, reports
 ├── pipeline/           extraction, ranking, docking
-└── tests/              101 tests
+└── tests/              109 tests
 web/                    Next.js 15 workbench
 docs/                   status, demo plan, backend spec, GPU notes
 ```
@@ -273,12 +277,13 @@ Other sources: Open Targets (CC0), RCSB PDB (public domain), AutoDock Vina
 
 - **No prospective validation.** Agreement with known actives tests the ranking;
   it does not show a compound works.
-- **Three targets, not the proteome.** A compound binding none of them may act
-  elsewhere.
-- **Heme is missing from the COX-2 receptor** (Open Babel drops HETATM when
-  writing PDBQT). At the shipped 20 Å box this no longer lets large lipophilic
-  ligands win; larger ligands may still be favoured, which is why ligand
-  efficiency sits beside every affinity.
+- **Three targets in the served panel, not the proteome.** A compound binding none of them may
+  act elsewhere. TNF-α (`2AZ5`) is available only as an on-demand live dock.
+- **COX-2 heme is only partly retained.** The prepared PDB keeps the heme, but
+  Open Babel drops the porphyrin ring when writing PDBQT and leaves the heme iron
+  atoms. The heme sits ~32.5 Å from the docked cyclooxygenase box, so this does
+  not affect the site we score; larger ligands may still be favoured, which is
+  why ligand efficiency sits beside every affinity.
 - **Cholesterol ranks #3 on the demo panel.** Real score, not a drug candidate,
   disclosed.
 - **Annotation bias is reduced, not eliminated.** Geraniol still appears in the
@@ -288,7 +293,8 @@ Other sources: Open Targets (CC0), RCSB PDB (public domain), AutoDock Vina
 - **Licensing.** See above. Public sharing of this repo is for the hackathon and
   academic review context; commercial use needs a licence or a rebuilt
   plant → compound layer.
-- **Not built:** accounts, multi-tenancy, ADMET/toxicity, GPU in the served path.
+- **Not built:** accounts, multi-tenancy, full toxicity prediction beyond
+  structural alerts, GPU in the served path.
 
 ## Who this is for
 

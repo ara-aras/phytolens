@@ -45,7 +45,7 @@ checklist and Features table have to stop reading as present tense until it is r
 - Auth, accounts, multi-tenancy, billing.
 - A frontend beyond a thin Streamlit shell that consumes the API.
 - Live docking of a novel formulation within a demo window (too slow; precompute).
-- Any ADMET/toxicity prediction.
+- Full ADMET/toxicity prediction (RDKit QED/BOILED-Egg and PAINS/Brenk alerts are read-only annotations, not predictions).
 - Any claim of efficacy, safety, dosing, or diagnosis.
 - Molecular dynamics, free-energy methods (MM/GBSA, FEP).
 - Chinese/other traditional-medicine corpora.
