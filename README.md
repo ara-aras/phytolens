@@ -1,252 +1,296 @@
-# PhytoLens (working name)
+# PhytoLens
 
 **An evidence engine for herbal and AYUSH formulations.**
-Enter a formulation and a condition. Get the likely targets, the key compounds, a docking-based ranking, and a shortlist of what to test in the lab first.
+Give it a plant, the plant part a preparation uses, the extraction solvent, and a
+condition. Get a ranked, explainable shortlist of compounds to test first — with
+docking scores and the evidence behind every link.
 
-> Status: hackathon prototype (The Founder's Arena, PACE Mangaluru). Domain: Healthcare & Medical Solutions (Diagnose, Heal, Treat). This is an **in-silico research tool**. Outputs are hypotheses for laboratory validation, not evidence that any product works. Not a medical device. Not for clinical decisions or health claims.
-
-**Intended use:** PhytoLens helps researchers and R&D teams prioritise which compounds and targets to test first. It does not diagnose, treat, or recommend therapy, and it does not substantiate health claims.
+> **Status:** hackathon build (The Founder's Arena, PACE Mangaluru), domain
+> Healthcare & Medical Solutions. This is an **in-silico research tool**.
+> Outputs are hypotheses for laboratory validation, not evidence that a product
+> works. Not a medical device. Not for clinical decisions or health claims.
 
 **One line:** it tells a lab where to look first, so fewer experiments are wasted.
 
 ---
 
-## The problem
+## What is actually in this repo
 
-Traditional and herbal formulations can contain dozens of plants and hundreds of compounds. Companies that want to understand *why* a formulation might work, or need mechanistic support for R&D, export dossiers or patent filings, face a slow and expensive path:
-
-- Wet-lab screening of every compound is costly and slow.
-- Commercial docking and network-analysis software is expensive and needs trained computational staff.
-- Most small and mid-size AYUSH manufacturers have neither, so promising formulations stay unexplored.
-
-## The solution
-
-PhytoLens turns a formulation into a ranked, explainable research shortlist:
-
-1. **Compounds:** maps each plant (and plant part) to its reported phytochemicals.
-2. **Extraction-aware filter:** adjusts the compound list by plant part and by extraction solvent type, using a simple polarity heuristic.
-3. **Drug-likeness filter:** screens compounds on basic properties so the list is workable.
-4. **Targets:** predicts likely protein targets for each compound.
-5. **Network pharmacology:** overlaps compound targets with disease-related targets, builds a compound-target-disease network, and finds hub targets.
-6. **Structures:** for each hub target, picks the best available protein structure (experimental if one exists, otherwise a predicted AlphaFold model) and records which was used.
-7. **Docking:** ranks the top compounds against the hub targets with AutoDock Vina; results on predicted structures are flagged as lower confidence.
-8. **Report:** a one-click PDF with the network, the docking ranking, the caveats, and a suggested first set of lab tests.
-
-## Domain fit: Diagnose, Heal, Treat
-
-- **Heal and Treat (research stage):** helps find which compounds and targets may explain a formulation's reported effect, as a route to better candidates and better-designed experiments.
-- **Diagnose:** not a diagnostic tool. We do not claim to diagnose.
-
-## Who it is for
-
-- **Primary buyer:** R&D or regulatory-affairs lead at an export-oriented AYUSH or nutraceutical brand, or at a contract manufacturer, who needs mechanistic support for a formulation (R&D direction, export dossiers, patent filings).
-- **Secondary:** research groups in pharmacy, biotech and ayurveda colleges. Useful as early users and for validation, but slow to buy.
-- **Not our customer (yet):** large pharma with in-house discovery platforms.
-
-*Context (sourced):* India's AYUSH and herbal exports were US$688.89 million in 2024-25, up 6.11% from the previous year (Ministry of Commerce, January 2026). This shows the size of the sector, not demand for our product, which is untested.
-
-## Features
-
-| Feature | What it does |
+| Area | State |
 |---|---|
-| Formulation input | List of plants (with plant part and extraction solvent type) and optionally a condition |
-| Compound lookup | Plant and plant-part to phytochemical mapping from public databases |
-| Extraction-aware filter | Heuristic filter using compound polarity (logP) against the chosen solvent type; labelled as a simplification |
-| Drug-likeness filter | Property-based filtering with RDKit |
-| Target prediction | Likely targets per compound |
-| Network view | Compound-target-disease network with hub-target highlighting |
-| Structure selection | Uses an experimental structure when one exists, otherwise an AlphaFold model with its confidence shown; the structure source appears on every result |
-| Docking ranking | AutoDock Vina scores for top compounds vs hub targets, shown as a ranked table |
-| Lab-test shortlist | Top candidates with the reasoning, and the checks that would confirm or reject them |
-| PDF report | Shareable summary with a "limitations and caveats" page on every report |
+| Corpus | 4,154 plants · 18,314 compounds · 195,862 plant-part links · 38,842 compound-target links (IMPPAT 2.0) |
+| Extraction + drug-likeness | Config-driven; the Boswellia failure is pinned by regression tests |
+| Condition target sets | Open Targets: colitis (66 targets), IBD (82) |
+| Ranking | Condition overlap as a **gate**, then docking as the primary term, with evidence quality, specificity and a promiscuity penalty |
+| Docking | AutoDock Vina 1.2.7 against three experimental co-crystal structures: COX-2 (3NT1), 5-LOX (3V99), p38-α (3D83) |
+| Docking panel | 51 compounds × 3 targets — every candidate of every validation case |
+| API | FastAPI, 16 `/v1` endpoints, async runs, PDF reports, network graph, live docking |
+| Queue | Redis (`BRPOPLPUSH`, crash recovery), in-process fallback, standalone worker |
+| Workbench | Next.js 15 app (`web/`) |
+| Rate limits | Per-endpoint, Redis-shared, `Retry-After` + `X-RateLimit-*` |
+| Auth | Optional bearer API keys (client identity for quotas/audit, not user accounts) |
+| Validation | 4 cases, untuned, with ablation, permutation null and a bias-residue control |
+| Tests | **101 passing** (`python -m pytest -q`) |
+| CI | GitHub Actions: tests, validation run, queue smoke test, Next.js build — no Docker |
 
-**Demo mode:** docking is **pre-computed** for the demo formulation and loaded from saved results. We do not dock live on stage.
+## The demo
+
+*Curcuma longa* rhizome, 70% ethanol, condition = colitis:
+
+```
+168 compounds in the part
+  → 168 pass the solvent window
+  → 24 reach a colitis target
+  → 24/24 docked against 3 targets
+```
+
+Ranking: **bisdemethoxycurcumin #1, curcumin #2, cholesterol #3,
+demethoxycurcumin #4**; eugenol #11.
+
+The three curcuminoids are exactly what the clinical literature identifies as
+turmeric's anti-inflammatory actives — an external check, not our own intuition.
+Cholesterol is a membrane sterol and is deliberately **left in and disclosed**
+rather than quietly filtered.
+
+![The workbench after ranking the demo formulation: four funnel counts, the ranked table with per-target Vina affinities, and the expanded evidence row for the top compound](docs/images/shortlist.png)
+
+## Retrospective validation
+
+Defaults are untuned; every case is reported, including the ones that do not
+flatter the pipeline.
+
+| Case | Actives found | MRR | MRR without docking | Δ | Random-order MRR | p |
+|---|---|---|---|---|---|---|
+| *Boswellia serrata* exudate → IBD | 4 / 4 | 0.473 | 0.265 | +0.208 | 0.221 | 0.008 |
+| *Curcuma longa* rhizome → colitis | 3 / 3 | 0.583 | 0.236 | +0.347 | 0.155 | 0.001 |
+| *Piper nigrum* fruit → IBD | 1 / 1 | 0.333 | 0.077 | +0.256 | 0.196 | 0.173 |
+| *Withania somnifera* root → IBD | 2 / 2 | 0.267 | 0.208 | +0.058 | 0.402 | 0.738 |
+| **Aggregate** | **10 / 10** | **0.414** | **0.197** | **+0.217** | — | — |
+
+Docking improves the ordering in three of four cases and hurts in none, but only
+the two well-covered cases separate from chance. Piper has one active among 19
+candidates and Withania two among six, where random orderings score well by
+construction. Withania is included as a control and does not flatter the
+pipeline — nicotine still outranks the withanolides before docking.
+
+**What this does and does not show:** agreement with published actives supports
+the usefulness of the ranking. It is not a prospective validation and does not
+prove that any compound works.
+
+![The validation panel in the workbench: 10/10 actives found, mean MRR 0.414 against 0.197 without docking, and every case including the two that are not significant](docs/images/validation.png)
+
+The same caveats travel with every PDF the tool produces — the report carries its
+own limitations page and provenance appendix, so a shortlist cannot circulate
+without them:
+
+![Page 1 of the generated PDF: the funnel, then the ranked table with affinities and flags](docs/images/report.png)
+
+## The corpus-bias result that motivates the product
+
+Annotation-based ranking — counting how many targets a compound is linked to —
+mostly measures how much that compound has been studied. Measured across the
+corpus: **2,034 of 8,510 plant-part groups with ≥3 candidates (23.9%) are topped
+by one of six ubiquitous compounds** — eugenol, geraniol, cinnamaldehyde,
+quercetin, eucalyptol, safrole.
+
+That is why target count is a gate, never a score, and why docking carries the
+ranking. An earlier draft claimed 44% (1,647 / 3,710); that figure could not be
+reproduced and has been withdrawn.
 
 ## How it works
 
 ```
-Formulation (plants + part + solvent) + condition
-        |
-        v
-  Plant / plant-part -> compound lookup
-        |
-        v
-  Extraction-aware filter (polarity heuristic)
-        |
-        v
-  Drug-likeness filter (RDKit)
-        |
-        v
-  Target prediction  ----+
-                         |
-  Disease-related targets +--> Overlap --> Network + hub targets
-                                                |
-                                                v
-                                  Structure selection
-                                  (experimental, else AlphaFold)
-                                                |
-                                                v
-                                  Docking (AutoDock Vina)
-                                  top compounds vs hub targets
-                                                |
-                                                v
-                              Ranked shortlist + PDF report
+Formulation (plant + part + solvent) + condition
+        │
+        ▼
+Plant / plant-part → compound lookup (IMPPAT)
+        │
+        ▼
+Extraction-aware filter (logP window, MW ceiling)
+Drug-likeness (Lipinski/Veber) → FLAGS ONLY, never removes a compound
+        │
+        ▼
+Condition target overlap → GATE (not a score)
+        │
+        ▼
+Ranking: docking (primary) + capped overlap + evidence + specificity − promiscuity
+        │
+        ▼
+Three experimental structures → AutoDock Vina → ranked shortlist
+        │
+        ▼
+PDF report + network graph + evidence row
 ```
 
-### Methods
+### Methods notes
 
-- **Extraction-aware filter:** whether a compound ends up in an extract depends on the plant part and the solvent. We approximate this with compound polarity (logP) against a polar / mid-polar / non-polar solvent choice. This is a heuristic, not an extraction model.
-- **Drug-likeness:** property-based screen (molecular weight, logP, H-bond donors and acceptors) as a first filter. It narrows the list and does not predict activity.
-- **Network pharmacology:** targets shared by a compound set and a condition are treated as candidates; hub targets are identified by network centrality (for example, degree).
-- **Structure selection:** where an experimental structure exists (RCSB PDB), we prefer it, ideally one with a bound ligand that defines the binding site. Where none exists, we use the AlphaFold database model for the target's UniProt entry, check the per-residue confidence (pLDDT) in the binding region, and define the pocket from known annotations or a pocket-detection tool. Targets whose pocket confidence is low are not docked. In the demo, models are downloaded in advance; we do not run AlphaFold ourselves.
-- **Docking:** AutoDock Vina binding scores are used to **rank** candidates. A good score is a reason to test a compound, not evidence that it works. Results depend on the protein structure and the preparation steps used.
-- **Prioritisation:** candidates are ordered by combined evidence (drug-likeness, network position, docking rank). Weights are defaults and are tuned only against the validation case below.
+- **Extraction filter.** Whether a compound ends up in an extract depends on the
+  plant part and the solvent. We approximate it with compound polarity (logP)
+  against a solvent class, plus a molecular-weight ceiling. It is a heuristic,
+  not an extraction model. The window is deliberately wide enough to keep the
+  boswellic acids; a naive Lipinski cut would delete the most-studied active.
+- **Targets.** This build does **not** run a target-prediction model. It uses
+  IMPPAT's curated ChEMBL / BindingDB / NPASS compound-target links, and marks a
+  link as measured if **any** listed source is non-NPASS.
+- **Docking.** Vina 1.2.7, 20 Å box centred on the co-crystallised ligand,
+  exhaustiveness 8, seed 42, content-addressed cache. The cache key covers
+  ligand SMILES, receptor file, box, seed, exhaustiveness and Vina version, so a
+  cached score is never silently reused for a different question.
+- **Structures.** Experimental co-crystal structures only. ALOX5 retains its
+  catalytic Fe²⁺. The AlphaFold path is planned, not implemented.
 
-## Retrospective validation (complete before the pitch)
+## What is deliberately not built
 
-The question every scientist will ask is "how do you know the ranking is any good?" We answer it with a retrospective test, and we report the result whatever it is.
+- A bespoke target-prediction model (uses curated links instead).
+- The AlphaFold / predicted-structure path.
+- ADMET or toxicity prediction.
+- User accounts or multi-tenancy.
+- GPU docking in the served path. Uni-Dock is installed and validated in WSL2
+  (see `docs/GPU_DOCKING.md`) but kept off the demo path so every number in one
+  table comes from one backend.
+- Prospective laboratory validation.
 
-- **Formulation or plant:** `[TODO: choose one or two well-studied cases whose active compounds and targets are already published]`
-- **Known actives (from the literature):** `[TODO: list, with references]`
-- **Protocol:** choose the case(s) and write them down before running; do not tune weights on them; report every case we run, including misses.
-- **Method:** run the pipeline blind to the known answer; record where the known actives land in our ranking.
-- **Result:** `[TODO: e.g. "X of Y known actives ranked in the top N" , reported honestly, including misses]`
-- **What this does and does not show:** agreement with published findings supports the usefulness of the ranking. It is not a prospective validation and does not prove a compound works.
+## Architecture
 
-## Data sources and licensing
+```
+Next.js workbench (:3000)
+        │  REST, same-origin /v1 proxy
+        ▼
+FastAPI (:8000) ── rate limits (Redis) ── optional bearer auth
+        │
+        ├── SQLite: runs, formulations, run owner
+        └── Redis queue ──► engine.worker ──► ranking pipeline ──► shortlist / PDF
+                                  │
+                                  └── Vina (panel or live) + content-addressed cache
+```
 
-`[TODO: confirm each source's current terms before the demo]`
-
-| Source (examples) | Used for | Licence note |
-|---|---|---|
-| IMPPAT (Indian medicinal plants, phytochemistry, therapeutics) | Plant, plant-part and compound mapping | Distributed under non-commercial terms as far as we can tell; **confirm on the source site** |
-| PubChem | Compound structures | `[TODO: check]` |
-| SwissTargetPrediction | Target prediction | Academic-oriented terms; `[TODO: check commercial use]` |
-| STRING | Protein-protein interactions | `[TODO: check]` |
-| RCSB PDB | Experimental protein structures | `[TODO: check]` |
-| AlphaFold Protein Structure Database | Predicted structures where no experimental one exists | CC BY 4.0, which permits commercial use with attribution. We use the database only; AlphaFold 3 outputs are non-commercial |
-| A public gene-disease database | Disease-related targets | `[TODO: check licence]` |
-
-**Hackathon demo:** runs on data used under academic terms. **Before any commercial use:** we will license the restricted datasets or replace them with commercially permitted sources (for example, ChEMBL, BindingDB, Open Targets), and this is part of our funding plan.
+The browser calls `/v1` on its own origin; `web/next.config.ts` proxies it to
+`PHYTOLENS_API_ORIGIN` (default `http://127.0.0.1:8000`). This keeps tunnelled
+demos same-origin and avoids Chrome's Private Network Access block.
 
 ## Quick start
 
 ```bash
-git clone <repo-url> phytolens && cd phytolens
-python -m venv .venv && source .venv/bin/activate    # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 
-# engine (docs at http://127.0.0.1:8000/docs)
+# Optional but recommended: real queue + shared rate limits
+redis-server --port 6379 --save "" --appendonly no
+python -m engine.worker                # second shell
+
 uvicorn engine.api:app --host 127.0.0.1 --port 8000
 
-# workbench (http://127.0.0.1:3000), in a second shell
-cd web && npm install && npm run dev
+cd web && npm install && npm run dev   # http://127.0.0.1:3000
 ```
 
-Redis is optional: with it running, runs are queued and `python -m engine.worker` consumes them;
-without it the API falls back to an in-process thread pool. Full docking (live, or rebuilding the
-panel) needs the system binaries `vina` and `obabel`.
+Without Redis — or with Redis up but no worker — the API runs jobs in a thread
+pool and reports `queue: "inline"`, so a demo never hangs on a missing worker.
 
-## Project structure (planned)
+Full docking needs the system binaries `vina` and `obabel`. The precomputed panel
+loads from `engine/data/dock_scores_panel.json`; live docking also works when
+both binaries are present.
 
-```
-phytolens/
-|-- engine/api.py                FastAPI service (/v1)
-|-- engine/jobs.py               Redis run queue, in-process fallback
-|-- engine/worker.py             out-of-process run worker
-|-- engine/ratelimit.py          per-endpoint limits
-|-- engine/auth.py               optional bearer API keys
-|-- engine/pipeline/             extraction, ranking, docking
-|-- engine/validation/           cases, controls, stored results
-|-- engine/report.py             PDF shortlist
-|-- engine/data/                 corpus, target sets, docking panel, reports
-|-- web/                         Next.js workbench
-|-- scripts/                     pitch-reel pipeline (separate from the product)
-|-- requirements.txt
-`-- README.md
+### Useful commands
+
+```bash
+python -m pytest -q                              # 101 tests
+python -m engine.validation --all                # untuned validation, writes results
+python -m engine.live_dock --plant "Zingiber officinale" --part rhizome \
+  --condition colitis --targets PTGS2 --compound Gingerol --compound Shogaol
+python -m engine.report --plant "Curcuma longa" --part rhizome \
+  --condition colitis --dock engine/data/dock_scores_panel.json --out out.pdf
 ```
 
-## Business model
+## API
 
-- **Annual licence (reports included)** for brands and contract manufacturers; per-report pricing for occasional users. Price: `[TODO: CFO to set; treat as an assumption to test in pilots]`. We use one pricing model in all materials so the price, the scenario below and the ask agree.
-- **Services add-on:** custom analyses for a specific formulation, reviewed by a scientist, delivered as a dossier-ready white paper.
-- **Later:** partnerships with testing labs, so a shortlist can lead directly to a lab-validation package.
+`GET /v1/health`, `GET /v1/version`, `GET /v1/plants?q=`,
+`GET /v1/plants/{id}/parts`, `GET /v1/conditions`,
+`POST /v1/formulations`, `GET /v1/formulations/{id}`,
+`POST /v1/runs`, `GET /v1/runs/{id}`, `GET /v1/runs/{id}/shortlist`,
+`GET /v1/runs/{id}/network`, `GET /v1/runs/{id}/report.pdf`,
+`POST /v1/runs/{id}/dock`, `GET /v1/validation`,
+`GET /v1/structures/{target}`, `GET /v1/demo`.
 
-**Illustrative scenario (assumptions, not forecasts):** India has roughly 8,500 to 9,000 licensed AYUSH drug manufacturing units (sources differ; `[TODO: cite the one you use]`). If 2% became customers (about 170) at an assumed Rs 50,000 a year, revenue would be about Rs 85 lakh a year. Both the adoption share and the price are untested.
+Runs are asynchronous: `POST /v1/runs` returns `202` and the client polls.
+Interactive docs at `http://127.0.0.1:8000/docs`.
 
-## Where defensibility could come from
+Live docking (`POST /v1/runs/{id}/dock`) is synchronous because it is meant to be
+watched: the browser shows a running timer, and the response says how many runs
+were fresh and how many were cache hits. A cold pair takes roughly 20–50 s
+depending on ligand size, so the Next.js proxy timeout is raised to 180 s — at
+the default 30 s the proxy abandoned the request while the engine kept docking.
 
-The pipeline uses public data and open-source tools, so the workflow alone is easy to copy. Our plan for a durable edge:
+## Project layout
 
-1. **A validated ranking:** benchmark results on published cases that competitors cannot get without doing the same work.
-2. **Extraction- and plant-part-aware modelling,** which most generic tools skip.
-3. **Licensed, curated Indian phytochemical data** and an accumulating library of formulation-level reports.
-4. **Workflow and report quality:** dossier-ready outputs that a regulatory or R&D team can use directly.
+```
+engine/
+├── api.py              FastAPI service (/v1)
+├── auth.py             optional bearer API keys
+├── jobs.py             Redis run queue + in-process fallback
+├── worker.py           out-of-process run worker
+├── ratelimit.py        per-endpoint limits
+├── report.py           PDF shortlist
+├── live_dock.py        on-demand Vina docking + re-rank
+├── validation.py       cases, controls, permutation null
+├── build_corpus.py     IMPPAT ingest → phytolens.db
+├── fetch_targets.py    Open Targets → engine/data/targets/
+├── config/             extraction.yaml, ranking.yaml
+├── data/               corpus, target sets, docking panel, reports
+├── pipeline/           extraction, ranking, docking
+└── tests/              101 tests
+web/                    Next.js 15 workbench
+docs/                   status, demo plan, backend spec, GPU notes
+```
 
-These are plans, not yet achievements.
+## Documentation
 
-## How we differ
+- [`docs/STATUS.md`](docs/STATUS.md) — verified state, headline results, checks.
+- [`docs/DEMO_RUNBOOK.md`](docs/DEMO_RUNBOOK.md) — start order, ports, tunnel steps, live-dock warm-up and fallbacks.
+- [`docs/DEMO_PLAN.md`](docs/DEMO_PLAN.md) — the hackathon plan, findings and build order.
+- [`docs/BACKEND_SPEC.md`](docs/BACKEND_SPEC.md) — product-grade architecture and licensing.
+- [`docs/GPU_DOCKING.md`](docs/GPU_DOCKING.md) — WSL2 + Uni-Dock install and validation.
 
-Enterprise docking and discovery suites are built for large pharma teams with trained computational chemists. PhytoLens is built for formulators and regulatory teams: formulation in, explainable and caveated shortlist out, at a price a mid-size manufacturer can justify.
+## Data and licensing
 
-## Why us
+The **code** is Apache-2.0 (see `LICENSE` and `NOTICE`).
 
-The team has hands-on experience in network pharmacology, molecular docking with AutoDock Vina, and medical-image analysis.
+The **bundled corpus is not**. `engine/data/phytolens.db` is derived from IMPPAT
+2.0, which is **CC BY-NC-ND 4.0** — academic/non-commercial, no derivatives. It
+is included only so the hackathon demo is reproducible. We do not grant rights to
+redistribute it or use it commercially. See [`DATA_LICENSE.md`](DATA_LICENSE.md)
+for the full source table and the rebuild path.
 
-**Reuse note:** the PhytoLens application layer was built during the event. Parts of our earlier network pharmacology and docking work were adapted with the organizers' permission. `[TODO: list exactly what was reused]`
+Other sources: Open Targets (CC0), RCSB PDB (public domain), AutoDock Vina
+(Apache-2.0), RDKit (BSD-3), Open Babel (GPL-2.0, separate executable), Uni-Dock
+(Apache-2.0, optional). Details in `DATA_LICENSE.md`.
 
-## Roadmap
+## Limitations we state out loud
 
-1. Complete and publish the retrospective validation; refine weights only on the validation case, not on the demo.
-2. Pilot with one export-oriented manufacturer and one college lab.
-3. Resolve data licensing for commercial use.
-4. Add ADMET and toxicity predictions to the shortlist.
-5. Add literature-support tagging for each compound-target link.
-6. Offer a lab-validation partnership for shortlisted candidates.
-7. Benchmark docking on AlphaFold models against experimental structures for targets that have both.
+- **No prospective validation.** Agreement with known actives tests the ranking;
+  it does not show a compound works.
+- **Three targets, not the proteome.** A compound binding none of them may act
+  elsewhere.
+- **Heme is missing from the COX-2 receptor** (Open Babel drops HETATM when
+  writing PDBQT). At the shipped 20 Å box this no longer lets large lipophilic
+  ligands win; larger ligands may still be favoured, which is why ligand
+  efficiency sits beside every affinity.
+- **Cholesterol ranks #3 on the demo panel.** Real score, not a drug candidate,
+  disclosed.
+- **Annotation bias is reduced, not eliminated.** Geraniol still appears in the
+  Boswellia top 10.
+- **Small validation cases are underpowered.** p-values are reported, including
+  the two that are not significant.
+- **Licensing.** See above. Public sharing of this repo is for the hackathon and
+  academic review context; commercial use needs a licence or a rebuilt
+  plant → compound layer.
+- **Not built:** accounts, multi-tenancy, ADMET/toxicity, GPU in the served path.
 
-## Pilot ask
+## Who this is for
 
-`[TODO: amount, equity offered; be ready to justify the valuation it implies]`. Sized as validation-and-pilot capital for the first six months: finish validation, license or replace restricted datasets, run two pilots, add ADMET and literature tagging.
+R&D and regulatory-affairs teams at export-oriented AYUSH or nutraceutical
+brands, contract manufacturers, and pharmacy/biotech research groups. The buyer
+needs mechanistic support for a formulation — R&D direction, export dossiers,
+patent filings — and does not have a computational discovery team.
 
-## Build status (tick off before the demo, delete anything not finished)
+## Licence
 
-- [ ] Formulation input with plant part and solvent type
-- [ ] Plant-to-compound lookup
-- [ ] Extraction-aware (polarity) filter
-- [ ] Drug-likeness filter
-- [ ] Target prediction and disease overlap
-- [ ] Network view with hub targets
-- [ ] Structure selection (experimental vs AlphaFold) with source and confidence shown
-- [ ] Pre-computed docking results loaded in demo mode
-- [ ] Ranked shortlist table
-- [ ] Retrospective validation run and result recorded
-- [ ] PDF report with caveats page
-- [ ] Unit tests for filter and network metrics
-
-## Limitations (read these)
-
-- Prototype only. No prospective laboratory validation has been done.
-- Docking scores rank candidates; they do not show that a compound binds in practice, is absorbed, is safe, or has any effect in people.
-- Predicted (AlphaFold) structures are static models without a bound ligand. Docking against them is less reliable than against experimental structures, especially where model confidence is low, and the binding site may be misplaced. Those results are flagged and treated with lower trust.
-- Target predictions and database entries can be incomplete or wrong, and the output is only as good as the data behind it.
-- The extraction filter is a polarity heuristic and does not model real extraction.
-- Network and docking results depend on the chosen databases, structures and parameters.
-- Whole formulations act through many compounds at once; this tool simplifies that picture.
-- The demo uses data under academic terms; commercial use needs licensing changes.
-- Nothing here is a health claim or medical advice.
-
-## Team
-
-| Role | Name |
-|---|---|
-| CEO | `[TODO]` |
-| CTO | `[TODO]` |
-| CPO | `[TODO]` |
-| CFO | `[TODO]` |
-| CMO | `[TODO]` |
-| Scientific advisor (pharmacology / phytochemistry) | `[TODO]` |
-
-## License
-
-`[TODO: choose a licence]`
+Code: [Apache License 2.0](LICENSE). Data: see [DATA_LICENSE.md](DATA_LICENSE.md).

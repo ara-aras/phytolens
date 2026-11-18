@@ -157,12 +157,16 @@ def build_report(result: rk.RankingResult, out_path: str | Path, *,
     story.append(Paragraph("How the formulation narrowed", s["h2"]))
     funnel_rows = [[Paragraph("Stage", s["cell_bold"]),
                     Paragraph("Compounds", s["cell_bold"])]]
+    # Keep the funnel monotonic: every row except the last narrows the set.
+    # The drug-likeness flag is an annotation, not a filter, so it comes last
+    # and says so -- "14 flagged" under "24 kept" otherwise reads as a bug.
     for label, key in (
         ("In the chosen plant part", "in_part"),
         ("Pass extraction window and MW ceiling", "pass_extraction"),
-        ("Carry a drug-likeness flag (kept, not dropped)", "flagged_druglikeness"),
         ("Reach at least one condition target", "with_condition_target"),
         ("Excluded for no condition target", "excluded_no_condition_target"),
+        ("of which carry a drug-likeness flag (kept, not dropped)",
+         "flagged_druglikeness"),
     ):
         funnel_rows.append([Paragraph(label, s["cell"]),
                             Paragraph(str(f[key]), s["cell"])])

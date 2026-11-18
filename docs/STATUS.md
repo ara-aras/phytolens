@@ -1,6 +1,6 @@
 # PhytoLens — project status
 
-*Last updated: 2026-11-17. Every number below was produced by the code in this repo; commands to
+*Last updated: 2026-11-18. Every number below was produced by the code in this repo; commands to
 reproduce are in the last section.*
 
 ## What this is
@@ -23,13 +23,13 @@ evidence that a product works, not a diagnosis, not a health claim.
 | Ranking | Gate on condition overlap, capped overlap term, evidence quality, specificity, promiscuity penalty, docking as the primary term |
 | Docking | AutoDock Vina 1.2.7, three experimental co-crystal targets: COX-2 (3NT1), 5-LOX (3V99), p38-α (3D83), content-addressed cache |
 | Docking panel | 51 compounds × 3 targets — every candidate of every validation case |
-| API | FastAPI, 15 `/v1` endpoints, async runs, PDF reports, network graph, live docking |
+| API | FastAPI, 16 `/v1` endpoints, async runs, PDF reports, network graph, live docking |
 | Queue | Redis (`BRPOPLPUSH`, crash recovery), in-process fallback, standalone worker |
 | Frontend | Next.js 15 workbench (replaced the planned Streamlit shell) |
 | Rate limits | Per-endpoint, Redis-shared, `Retry-After` + `X-RateLimit-*` |
 | Auth | Optional bearer API keys (client identity for quotas/audit, not user accounts) |
 | Validation | 4 cases, untuned, with ablation, permutation null and bias-residue controls |
-| Tests | 100 passing (`python -m pytest -q`) |
+| Tests | 101 passing (`python -m pytest -q`) |
 | CI | GitHub Actions: tests, validation run, queue smoke test, Next.js build — no Docker |
 
 ## Headline results
@@ -89,7 +89,7 @@ box and seed as the panel, then merges and re-ranks. Recorded sample
 2. **Finished the backend**: three-target docking panel, validation harness, PDF report, FastAPI
    with asynchronous runs and SQLite state.
 3. **Replaced Streamlit with Next.js** (`web/`): formulation builder, funnel, shortlist with
-   per-target affinities, expandable evidence drawer, hub targets, caveats, PDF link, live-dock
+   per-target affinities, expandable evidence row, hub targets, caveats, PDF link, live-dock
    button, validation panel.
 4. **Redis job queue** with a durable handoff, crash recovery, a standalone worker and a
    no-Redis fallback. Local Redis today; `PHYTOLENS_REDIS_URL=rediss://…` for Upstash later.
@@ -99,6 +99,15 @@ box and seed as the panel, then merges and re-ranks. Recorded sample
    p-values, bias-residue control, and a panel rebuilt so no case is scored on uncovered
    candidates.
 8. **CI** without Docker: real Redis from apt, tests, validation run, queue smoke test, web build.
+9. **Submission pass:** project licence (Apache-2.0) split from the data terms, README rebuilt
+   around the verified numbers with screenshots, demo runbook, live-dock proxy timeout fixed
+   (a cold dock outlived the 30 s default), and the PDF funnel made monotonic.
+
+## Licensing
+
+Code is Apache-2.0 (`LICENSE`, `NOTICE`). The bundled corpus is **not** covered by that licence:
+it derives from IMPPAT 2.0 (CC BY-NC-ND 4.0) and is included only for demo reproducibility. See
+`DATA_LICENSE.md` and `engine/data/README.md`.
 
 ## Architecture
 
@@ -152,7 +161,7 @@ providers. A free ngrok tunnel shows a one-time "Visit Site" interstitial.
 `next.config.ts` changes (proxy, allowed origins) on a restart.
 
 ```bash
-python -m pytest -q                                  # 100 tests
+python -m pytest -q                                  # 101 tests
 python -m engine.validation --all                    # untuned validation, writes results
 python -m engine.live_dock --plant "Zingiber officinale" --part rhizome \
   --condition colitis --targets PTGS2 --compound Gingerol --compound Shogaol
@@ -160,7 +169,7 @@ python -m engine.live_dock --plant "Zingiber officinale" --part rhizome \
 
 ## Checks and what they cover
 
-- `python -m pytest -q` → **100 passed**: extraction regressions, ranking, docking cache/targets,
+- `python -m pytest -q` → **101 passed**: extraction regressions, ranking, docking cache/targets,
   validation metrics and controls, PDF, API lifecycle, Redis queue handoff/recovery/fallback,
   rate-limit 429 path, API-key 401/403, live-dock merge.
 - `npm run build` in `web/` → compiled, types valid.

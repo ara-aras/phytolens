@@ -54,6 +54,7 @@ export default function Workbench() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [docking, setDocking] = useState(false);
+  const [dockElapsed, setDockElapsed] = useState(0);
   const [dockNote, setDockNote] = useState<string | null>(null);
   const [queueBackend, setQueueBackend] = useState<string | null>(null);
   const [open, setOpen] = useState<Set<string>>(new Set());
@@ -192,9 +193,19 @@ export default function Workbench() {
     };
   }, [runId, shortlist]);
 
+  // A cold Vina run takes tens of seconds, so the button has to say that it is
+  // still working rather than sitting disabled with no sign of life.
+  useEffect(() => {
+    if (!docking) return;
+    const started = Date.now();
+    const timer = setInterval(() => setDockElapsed((Date.now() - started) / 1000), 500);
+    return () => clearInterval(timer);
+  }, [docking]);
+
   async function runLiveDock() {
     if (!runId || !shortlist) return;
     setDocking(true);
+    setDockElapsed(0);
     setDockNote(null);
     setError(null);
     try {
@@ -493,7 +504,9 @@ export default function Workbench() {
                       onClick={runLiveDock}
                       disabled={docking}
                     >
-                      {docking ? "Docking…" : "Live-dock top 2"}
+                      {docking
+                        ? `Docking… ${dockElapsed.toFixed(0)}s`
+                        : `Live-dock top 2 · ${targets[0] ?? "panel"}`}
                     </button>
                   )}
                 </div>
@@ -513,6 +526,13 @@ export default function Workbench() {
                 />
               </div>
 
+              {docking && (
+                <div className="notice notice-live" role="status">
+                  AutoDock Vina is docking the top two compounds. A first run
+                  takes about 20–50 s; a repeat on the same target is a cache hit
+                  and returns at once.
+                </div>
+              )}
               {dockNote && <div className="notice notice-live">{dockNote}</div>}
 
               {shortlist.docking_pending ? (
