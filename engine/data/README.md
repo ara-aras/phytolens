@@ -3,9 +3,10 @@
 Everything here is either generated or derived. Nothing in this directory is
 covered by the Apache-2.0 code licence.
 
-- `phytolens.db` — built from IMPPAT 2.0 by `engine/build_corpus.py`.
+- `phytolens.db` — local SQLite corpus built from IMPPAT 2.0 by
+  `engine/build_corpus.py` (git-ignored, not distributed in the repo).
   **IMPPAT is CC BY-NC-ND 4.0**: academic/non-commercial, no derivatives.
-  Included only to make the hackathon demo reproducible. See `../../DATA_LICENSE.md`.
+  See `../../DATA_LICENSE.md`.
 - `curcuma_candidates.json`, `dock_scores.json`, `dock_scores_panel.json`,
   `live_dock_sample.json` — derived results. Same data terms as the corpus.
 - `targets/` — Open Targets extracts (CC0).

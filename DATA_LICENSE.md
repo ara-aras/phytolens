@@ -3,11 +3,12 @@
 The **Apache License 2.0** in `LICENSE` covers the source code in this
 repository. It does **not** grant rights to the bundled data.
 
-## Bundled corpus: IMPPAT 2.0 — non-commercial, no derivatives
+## Corpus: IMPPAT 2.0 — non-commercial, no derivatives
 
-`engine/data/phytolens.db` and the JSON artefacts generated from it
-(`curcuma_candidates.json`, `dock_scores*.json`, validation outputs) are derived
-from **IMPPAT 2.0** (Indian Medicinal Plants, Phytochemistry And Therapeutics),
+`engine/data/phytolens.db` (git-ignored and purged from git history) and the
+small JSON evaluation artefacts generated from it (`curcuma_candidates.json`,
+`dock_scores*.json`, validation outputs) are derived from **IMPPAT 2.0** (Indian
+Medicinal Plants, Phytochemistry And Therapeutics),
 https://cb.imsc.res.in/imppat/.
 
 IMPPAT 2.0 is distributed under **CC BY-NC-ND 4.0**:
@@ -15,19 +16,19 @@ IMPPAT 2.0 is distributed under **CC BY-NC-ND 4.0**:
 - **NC** — non-commercial use only.
 - **ND** — no derivatives. A rebuilt or reshaped database is a derivative.
 
-We include the built corpus **only so the hackathon demo is reproducible**. We
-do not grant permission to redistribute it, publish it, or use it commercially.
-If you want to use PhytoLens for anything other than reviewing this hackathon
-build, delete the bundled database and rebuild the corpus from a source you are
-licensed to use:
+Because of those terms, **`engine/data/phytolens.db` is not distributed in this
+repository or its git history**. To run the pipeline locally on a fresh clone,
+obtain the four IMPPAT 2.0 TSV dumps under terms you accept, place them in
+`engine/data/raw/imppat/`, and build the local SQLite database:
 
 ```bash
-rm engine/data/phytolens.db
-# obtain IMPPAT under terms you accept, then:
 python engine/build_corpus.py
 ```
 
-Commercial use requires either a commercial IMPPAT licence or replacing the
+The precomputed docking panel (`engine/data/dock_scores_panel.json`) and
+validation summaries remain in the repository so reviewers can inspect the
+published evaluation numbers without re-running AutoDock Vina. Commercial use
+requires either a commercial IMPPAT licence or replacing the
 plant -> plant-part -> compound layer with a permissively licensed source.
 
 ## Other sources used by the pipeline

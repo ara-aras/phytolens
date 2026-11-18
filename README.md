@@ -173,6 +173,9 @@ demos same-origin and avoids Chrome's Private Network Access block.
 ```bash
 python -m pip install -r requirements.txt
 
+# On a fresh clone, build the local corpus from IMPPAT 2.0 TSVs in engine/data/raw/imppat/
+python engine/build_corpus.py
+
 # Optional but recommended: real queue + shared rate limits
 redis-server --port 6379 --save "" --appendonly no
 python -m engine.worker                # second shell
@@ -243,6 +246,7 @@ docs/                   status, demo plan, backend spec, GPU notes
 
 ## Documentation
 
+- [`docs/PROJECT_GUIDE.md`](docs/PROJECT_GUIDE.md) — complete A-to-Z guide: what was built, how it works, results, how to run it, and Healthcare & Medical Solutions (*Diagnose, Heal, Treat*) domain fit.
 - [`docs/STATUS.md`](docs/STATUS.md) — verified state, headline results, checks.
 - [`docs/DEMO_RUNBOOK.md`](docs/DEMO_RUNBOOK.md) — start order, ports, tunnel steps, live-dock warm-up and fallbacks.
 - [`docs/DEMO_PLAN.md`](docs/DEMO_PLAN.md) — the hackathon plan, findings and build order.
@@ -253,11 +257,11 @@ docs/                   status, demo plan, backend spec, GPU notes
 
 The **code** is Apache-2.0 (see `LICENSE` and `NOTICE`).
 
-The **bundled corpus is not**. `engine/data/phytolens.db` is derived from IMPPAT
-2.0, which is **CC BY-NC-ND 4.0** — academic/non-commercial, no derivatives. It
-is included only so the hackathon demo is reproducible. We do not grant rights to
-redistribute it or use it commercially. See [`DATA_LICENSE.md`](DATA_LICENSE.md)
-for the full source table and the rebuild path.
+The **corpus is not**. `engine/data/phytolens.db` is built locally from IMPPAT
+2.0, which is **CC BY-NC-ND 4.0** — academic/non-commercial, no derivatives.
+Because of those terms, `phytolens.db` is git-ignored and excluded from git
+history; build it locally with `python engine/build_corpus.py`. See
+[`DATA_LICENSE.md`](DATA_LICENSE.md) for the full source table and rebuild path.
 
 Other sources: Open Targets (CC0), RCSB PDB (public domain), AutoDock Vina
 (Apache-2.0), RDKit (BSD-3), Open Babel (GPL-2.0, separate executable), Uni-Dock

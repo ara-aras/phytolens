@@ -105,9 +105,10 @@ box and seed as the panel, then merges and re-ranks. Recorded sample
 
 ## Licensing
 
-Code is Apache-2.0 (`LICENSE`, `NOTICE`). The bundled corpus is **not** covered by that licence:
-it derives from IMPPAT 2.0 (CC BY-NC-ND 4.0) and is included only for demo reproducibility. See
-`DATA_LICENSE.md` and `engine/data/README.md`.
+Code is Apache-2.0 (`LICENSE`, `NOTICE`). The corpus (`engine/data/phytolens.db`) is **not**
+covered by that licence: it derives from IMPPAT 2.0 (CC BY-NC-ND 4.0), is git-ignored and purged
+from git history, and is built locally via `python engine/build_corpus.py`. See `DATA_LICENSE.md`
+and `engine/data/README.md`.
 
 ## Architecture
 

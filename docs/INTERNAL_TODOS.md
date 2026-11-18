@@ -7,9 +7,10 @@ placeholders. Nothing here blocks the hackathon demo.
 
 - [ ] Decide the commercial path for the plant → compound layer: commercial
       IMPPAT licence, or rebuild on a permissive source (ChEMBL, CMAUP, FooDB).
-- [ ] Before any commercial distribution, remove `engine/data/phytolens.db` and
-      the derived JSON from **git history**, not just the working tree
-      (`git filter-repo` or a fresh repository).
+- [x] Remove `engine/data/phytolens.db` from **git history** (`git filter-repo`)
+      and `.gitignore` it while keeping the local database on disk for the demo.
+- [ ] Before any commercial distribution, replace or commercially license the
+      small IMPPAT-derived evaluation JSONs as well.
 - [ ] Decide how to ship the 57 MB corpus for reviewers: current in-repo file,
       Git LFS, or a release asset with a checksum.
 - [ ] Add a `DATA_LICENSE` link to every report PDF footer (currently the PDF

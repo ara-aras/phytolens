@@ -13,6 +13,7 @@ engine/data/reports/run_*.pdf
 
 # --- Licensed source data (obtain from IMPPAT; rebuild with engine/build_corpus.py) ---
 engine/data/raw/
+engine/data/phytolens.db
 
 # --- Node / Next.js ---
 node_modules/

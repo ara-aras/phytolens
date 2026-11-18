@@ -45,7 +45,12 @@ jobs:
       - name: Validation harness (untuned, no writes)
         env:
           PYTHONUTF8: "1"
-        run: python -m engine.validation --all --no-write
+        run: |
+          if [ -s engine/data/phytolens.db ]; then
+            python -m engine.validation --all --no-write
+          else
+            echo "phytolens.db not present in checkout (CC BY-NC-ND 4.0); skipping corpus validation"
+          fi
 
       - name: Queue smoke test
         env:
