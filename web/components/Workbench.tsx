@@ -223,7 +223,16 @@ export default function Workbench() {
           ` · ${result.reused} cache hit${result.reused === 1 ? "" : "s"} · ${result.vina}`,
       );
     } catch (err) {
-      setError(message(err));
+      const detail = message(err);
+      // The proxy used to abandon a cold run and answer with an empty 500, so
+      // "HTTP 500" alone left the presenter with nothing to say. Point at the
+      // health check and the fallback instead.
+      setError(
+        /^HTTP 5\d\d$/.test(detail)
+          ? `${detail}: the engine closed the connection without an answer. ` +
+            `Check /v1/health, then retry or fall back to the precomputed panel.`
+          : detail,
+      );
     } finally {
       setDocking(false);
     }
