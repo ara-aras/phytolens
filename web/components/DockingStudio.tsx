@@ -60,7 +60,8 @@ export default function DockingStudio({
     if (d[selectedTarget] != null) return;
     const best = Object.entries(d).sort((a, b) => a[1] - b[1])[0]?.[0];
     if (best) setSelectedTarget(best);
-  }, [selectedCompound, selectedTarget]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedCompound?.id]);
 
   // Fetch 3D pose + modes + contacts + 2D SVG when (compound, target) changes
   useEffect(() => {
