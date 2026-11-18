@@ -1,0 +1,38 @@
+{
+  "name": "beta-Sitosterol",
+  "affinity": -7.999,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -7.999,
+    -7.793,
+    -7.761,
+    -7.597,
+    -7.208,
+    -7.156,
+    -6.895,
+    -6.49,
+    -6.197
+  ],
+  "cached": false,
+  "seconds": 7.25,
+  "key": "2cab9f7a9dbfff66",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\2cab9f7a9dbfff66.pdbqt",
+  "smiles": "CC[C@@H](C(C)C)CC[C@H]([C@H]1CC[C@@H]2[C@]1(C)CC[C@H]1[C@H]2CC=C2[C@]1(C)CC[C@@H](C2)O)C",
+  "receptor": "4EY7",
+  "box": {
+    "center": [
+      -1.582,
+      -50.192,
+      2.101
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of E20 (56 atoms)"
+  },
+  "exhaustiveness": 4,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

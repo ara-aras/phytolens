@@ -69,6 +69,7 @@ export const api = {
     part: string;
     solvent: string;
     condition: string;
+    target?: string;
     top: number;
   }) =>
     request<{ run_id: string; queue: string }>("/v1/runs", {

@@ -20,6 +20,24 @@ const SOLVENTS = [
   { value: "hexane", label: "Hexane" },
 ];
 
+const RECEPTOR_OPTIONS = [
+  { value: "auto", label: "Auto (Condition default panel)" },
+  { value: "ACHE", label: "ACHE · Acetylcholinesterase (4EY7 · Alzheimer's)" },
+  { value: "PTGS2", label: "PTGS2 · COX-2 (3NT1 · Colitis / Inflammation)" },
+  { value: "ALOX5", label: "ALOX5 · 5-LOX (3V99 · IBD / Fe²⁺)" },
+  { value: "MAPK14", label: "MAPK14 · p38-α MAPK (3D83 · Cytokine Kinase)" },
+  { value: "TNF", label: "TNF · TNF-α (2AZ5 · Rheumatoid Arthritis / IBD)" },
+  { value: "PPARG", label: "PPARG · PPAR-γ (2PRG · Type 2 Diabetes)" },
+];
+
+const CONDITION_DEFAULT_RECEPTOR: Record<string, string> = {
+  alzheimers: "ACHE",
+  type_2_diabetes: "PPARG",
+  rheumatoid_arthritis: "TNF",
+  ibd: "ALOX5",
+  colitis: "PTGS2",
+};
+
 const DEMO = { plant: "Curcuma longa", part: "rhizome", condition: "colitis" };
 
 function message(error: unknown): string {
@@ -47,6 +65,7 @@ export default function Workbench() {
   const [part, setPart] = useState(DEMO.part);
   const [solvent, setSolvent] = useState("ethanol");
   const [condition, setCondition] = useState(DEMO.condition);
+  const [targetProtein, setTargetProtein] = useState<string>("PTGS2");
   const [top, setTop] = useState(12);
 
   const [runId, setRunId] = useState<string | null>(null);
@@ -146,6 +165,7 @@ export default function Workbench() {
           part: chosenPart,
           solvent,
           condition: chosenCondition,
+          target: override ? "auto" : targetProtein,
           top,
         });
         setQueueBackend(receipt.queue);
@@ -155,7 +175,7 @@ export default function Workbench() {
         setBusy(false);
       }
     },
-    [plantQuery, part, solvent, condition, top],
+    [plantQuery, part, solvent, condition, targetProtein, top],
   );
 
   useEffect(() => {
@@ -215,6 +235,8 @@ export default function Workbench() {
     try {
       const target =
         override?.target ??
+        (targetProtein !== "auto" ? targetProtein : undefined) ??
+        CONDITION_DEFAULT_RECEPTOR[condition] ??
         shortlist.docking_targets?.[0] ??
         Object.keys(shortlist.ranked[0]?.docking ?? {})[0] ??
         "PTGS2";
@@ -365,7 +387,13 @@ export default function Workbench() {
               <select
                 id="condition"
                 value={condition}
-                onChange={(event) => setCondition(event.target.value)}
+                onChange={(event) => {
+                  const nextCond = event.target.value;
+                  setCondition(nextCond);
+                  if (CONDITION_DEFAULT_RECEPTOR[nextCond]) {
+                    setTargetProtein(CONDITION_DEFAULT_RECEPTOR[nextCond]);
+                  }
+                }}
               >
                 {(conditions.length > 0
                   ? conditions
@@ -377,6 +405,21 @@ export default function Workbench() {
                 ))}
               </select>
             </div>
+          </div>
+
+          <div className="field">
+            <label htmlFor="target-protein">Target protein (3D receptor)</label>
+            <select
+              id="target-protein"
+              value={targetProtein}
+              onChange={(event) => setTargetProtein(event.target.value)}
+            >
+              {RECEPTOR_OPTIONS.map((item) => (
+                <option key={item.value} value={item.value}>
+                  {item.label}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="field">
@@ -525,7 +568,11 @@ export default function Workbench() {
                     >
                       {docking
                         ? `Docking… ${dockElapsed.toFixed(0)}s`
-                        : `Live-dock top 2 · ${targets[0] ?? "panel"}`}
+                        : `Live-dock top 2 · ${
+                            targetProtein !== "auto"
+                              ? targetProtein
+                              : (CONDITION_DEFAULT_RECEPTOR[condition] ?? targets[0] ?? "panel")
+                          }`}
                     </button>
                   )}
                 </div>
@@ -580,6 +627,13 @@ export default function Workbench() {
                   targets={targets}
                   selectedCompoundId={selectedCompoundId || shortlist.ranked[0].id}
                   onSelectCompound={(cid) => setSelectedCompoundId(cid)}
+                  preferredTarget={
+                    targetProtein !== "auto"
+                      ? targetProtein
+                      : CONDITION_DEFAULT_RECEPTOR[shortlist.condition.name.toLowerCase()] ??
+                        CONDITION_DEFAULT_RECEPTOR[condition]
+                  }
+                  onSelectTarget={(tgt) => setTargetProtein(tgt)}
                   onDockCompoundTarget={
                     runId
                       ? async (cid, tgt) => {

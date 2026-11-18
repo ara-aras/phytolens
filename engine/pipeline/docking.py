@@ -179,6 +179,18 @@ TARGETS: dict[str, TargetSpec] = {
         "TNF-alpha, 2.10 A. Co-crystallised small-molecule inhibitor at the "
         "homodimer interface; available for on-demand live docking.",
     ),
+    "ACHE": TargetSpec(
+        "ACHE", "4EY7", "E20", (),
+        "donepezil (E20)",
+        "Human acetylcholinesterase, 2.35 A, in complex with Donepezil (Aricept). "
+        "Primary symptomatic target in Alzheimer's disease.",
+    ),
+    "PPARG": TargetSpec(
+        "PPARG", "2PRG", "BRL", (),
+        "rosiglitazone (BRL)",
+        "Human PPAR-gamma ligand-binding domain, 2.30 A, in complex with "
+        "Rosiglitazone. Master regulator in Type 2 diabetes and mucosal inflammation.",
+    ),
 }
 
 DEFAULT_PANEL: tuple[str, ...] = ("PTGS2", "ALOX5", "MAPK14")

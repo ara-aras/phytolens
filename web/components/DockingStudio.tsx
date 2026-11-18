@@ -5,10 +5,20 @@ import { api } from "@/lib/api";
 import type { DockingPose, Ranked } from "@/lib/types";
 
 const TARGET_LABELS: Record<string, { title: string; pdb: string; role: string }> = {
-  PTGS2: { title: "COX-2", pdb: "3NT1", role: "Prostaglandin G/H synthase 2" },
-  ALOX5: { title: "5-LOX", pdb: "3V99", role: "Arachidonate 5-lipoxygenase (Fe²⁺)" },
+  PTGS2: { title: "COX-2", pdb: "3NT1", role: "Prostaglandin G/H synthase 2 (Colitis)" },
+  ALOX5: { title: "5-LOX", pdb: "3V99", role: "Arachidonate 5-lipoxygenase · Fe²⁺ (IBD)" },
   MAPK14: { title: "p38-α", pdb: "3D83", role: "Mitogen-activated protein kinase 14" },
-  TNF: { title: "TNF-α", pdb: "2AZ5", role: "Tumor necrosis factor homodimer" },
+  TNF: { title: "TNF-α", pdb: "2AZ5", role: "Tumor necrosis factor homodimer (Arthritis/IBD)" },
+  ACHE: {
+    title: "AChE",
+    pdb: "4EY7",
+    role: "Acetylcholinesterase · Donepezil pocket (Alzheimer's)",
+  },
+  PPARG: {
+    title: "PPAR-γ",
+    pdb: "2PRG",
+    role: "Peroxisome proliferator-activated receptor gamma (Diabetes)",
+  },
 };
 
 const pdbTextCache = new Map<string, string>();
@@ -18,6 +28,8 @@ interface Props {
   targets: string[];
   selectedCompoundId: string;
   onSelectCompound: (compoundId: string) => void;
+  preferredTarget?: string;
+  onSelectTarget?: (target: string) => void;
   onDockCompoundTarget?: (compoundId: string, target: string) => Promise<void>;
   dockingBusy?: boolean;
   dockElapsed?: number;
@@ -28,13 +40,18 @@ export default function DockingStudio({
   targets,
   selectedCompoundId,
   onSelectCompound,
+  preferredTarget,
+  onSelectTarget,
   onDockCompoundTarget,
   dockingBusy = false,
   dockElapsed = 0,
 }: Props) {
   const availableTargets = useMemo(() => {
-    const base = targets.length > 0 ? targets : ["PTGS2", "ALOX5", "MAPK14"];
-    return base.includes("TNF") ? base : [...base, "TNF"];
+    const base = targets.length > 0 ? [...targets] : ["PTGS2", "ALOX5", "MAPK14"];
+    for (const extra of ["ACHE", "TNF", "PPARG"]) {
+      if (!base.includes(extra)) base.push(extra);
+    }
+    return base;
   }, [targets]);
 
   const selectedCompound = useMemo(
@@ -60,9 +77,20 @@ export default function DockingStudio({
   const ligandCompRef = useRef<any>(null);
   const proteinCompRef = useRef<any>(null);
 
-  // Pick the strongest docked target when switching to a new compound
+  // Sync with preferredTarget chosen in the left sidebar
+  useEffect(() => {
+    if (preferredTarget && preferredTarget !== "auto") {
+      setSelectedTarget(preferredTarget);
+    }
+  }, [preferredTarget]);
+
+  // Pick the strongest docked target when switching to a new compound (if sidebar is on auto)
   useEffect(() => {
     if (!selectedCompound) return;
+    if (preferredTarget && preferredTarget !== "auto") {
+      setSelectedTarget(preferredTarget);
+      return;
+    }
     const d = selectedCompound.docking ?? {};
     if (d[selectedTarget] != null) return;
     const best = Object.entries(d).sort((a, b) => a[1] - b[1])[0]?.[0];
@@ -410,7 +438,10 @@ export default function DockingStudio({
                     role="tab"
                     aria-selected={active}
                     className={`studio-tab ${active ? "active" : ""}`}
-                    onClick={() => setSelectedTarget(t)}
+                    onClick={() => {
+                      setSelectedTarget(t);
+                      onSelectTarget?.(t);
+                    }}
                   >
                     <strong>{info ? `${t} · ${info.pdb}` : t}</strong>
                     <span className="num">

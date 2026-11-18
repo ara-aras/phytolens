@@ -1,0 +1,38 @@
+{
+  "name": "Ascorbic acid",
+  "affinity": -4.614,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -4.614,
+    -4.607,
+    -4.353,
+    -4.34,
+    -4.34,
+    -4.285,
+    -4.136,
+    -4.031,
+    -3.994
+  ],
+  "cached": false,
+  "seconds": 1.79,
+  "key": "4b1a1304e345cdf3",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\4b1a1304e345cdf3.pdbqt",
+  "smiles": "OC[C@@H]([C@H]1OC(=O)C(=C1O)O)O",
+  "receptor": "3V99",
+  "box": {
+    "center": [
+      18.394,
+      -78.715,
+      -33.903
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of ACD (53 atoms)"
+  },
+  "exhaustiveness": 4,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

@@ -1,0 +1,38 @@
+{
+  "name": "Syringin",
+  "affinity": -7.009,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -7.009,
+    -6.976,
+    -6.918,
+    -6.904,
+    -6.827,
+    -6.705,
+    -6.478,
+    -6.455,
+    -6.416
+  ],
+  "cached": false,
+  "seconds": 12.83,
+  "key": "eded79ab77d6d6c3",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\eded79ab77d6d6c3.pdbqt",
+  "smiles": "OC/C=C/c1cc(OC)c(c(c1)OC)O[C@@H]1O[C@H](CO)[C@H]([C@@H]([C@H]1O)O)O",
+  "receptor": "4EY7",
+  "box": {
+    "center": [
+      -1.582,
+      -50.192,
+      2.101
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of E20 (56 atoms)"
+  },
+  "exhaustiveness": 4,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

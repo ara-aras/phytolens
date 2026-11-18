@@ -253,9 +253,48 @@ def resolve_formulation(plant: str, part: str, solvent: str) -> dict:
     }
 
 
+def _cached_target_affinities(target_genes: set[str]) -> dict[str, dict[str, float]]:
+    """Lookup cached Vina affinities for extra targets (ACHE, PPARG, TNF)."""
+    pdb_to_gene = {
+        spec.pdb_id: gene
+        for gene, spec in dk.TARGETS.items()
+        if gene in target_genes
+    }
+    if not pdb_to_gene or not dk.CACHE.exists():
+        return {}
+    by_name: dict[str, str] = {}
+    if ex.DB_PATH.exists() and ex.DB_PATH.stat().st_size > 0:
+        con = sqlite3.connect(ex.DB_PATH)
+        try:
+            for cid, cname in con.execute("SELECT id, name FROM compounds WHERE name IS NOT NULL"):
+                by_name[cname.strip().lower()] = cid
+        finally:
+            con.close()
+    out: dict[str, dict[str, float]] = {}
+    for jf in sorted(dk.CACHE.glob("*.json")):
+        try:
+            meta = json.loads(jf.read_text(encoding="utf-8-sig"))
+        except Exception:  # noqa: BLE001
+            continue
+        gene = pdb_to_gene.get(meta.get("receptor"))
+        aff = meta.get("affinity")
+        name = (meta.get("name") or "").strip().lower()
+        if gene and aff is not None and name in by_name:
+            cid = by_name[name]
+            out.setdefault(cid, {})[gene] = float(aff)
+    return out
+
+
 # --------------------------------------------------------------------------
 # pipeline execution
 # --------------------------------------------------------------------------
+_CONDITION_EXTRA_TARGETS = {
+    "alzheimers": {"ACHE"},
+    "type_2_diabetes": {"PPARG"},
+    "rheumatoid_arthritis": {"TNF"},
+}
+
+
 def _execute(run_id: str, request: dict) -> None:
     try:
         _save(run_id, status="running", stage="resolving")
@@ -263,6 +302,15 @@ def _execute(run_id: str, request: dict) -> None:
 
         _save(run_id, status="running", stage="filtering")
         scores = docking_index()
+        extra_targets = set(_CONDITION_EXTRA_TARGETS.get(request["condition"], set()))
+        req_target = (request.get("target") or "").strip().upper()
+        if req_target and req_target != "AUTO" and req_target in dk.TARGETS:
+            if req_target not in dk.DEFAULT_PANEL:
+                extra_targets.add(req_target)
+        if extra_targets:
+            for cid, per in _cached_target_affinities(extra_targets).items():
+                scores[cid] = {**scores.get(cid, {}), **per}
+
         result = rk.run(
             request["plant"], request["part"], request["solvent"],
             request["condition"], top=request.get("top"),
@@ -271,7 +319,7 @@ def _execute(run_id: str, request: dict) -> None:
         _save(run_id, status="running", stage="scoring")
         summary = result.summary()
         summary["run_id"] = run_id
-        summary["docking_targets"] = sorted(panel_meta())
+        summary["docking_targets"] = sorted(set(panel_meta()) | extra_targets)
         _save(run_id, status="complete", stage="complete", result=summary)
     except Exception as exc:  # noqa: BLE001 - persisted for diagnosis
         _save(run_id, status="failed", stage="failed", error=f"{type(exc).__name__}: {exc}")
@@ -292,6 +340,7 @@ class RunRequest(BaseModel):
     part: str = Field(min_length=1)
     solvent: str = "ethanol"
     condition: str = Field(default="colitis", min_length=1)
+    target: str | None = None
     top: int | None = Field(default=12, ge=1, le=200)
 
 

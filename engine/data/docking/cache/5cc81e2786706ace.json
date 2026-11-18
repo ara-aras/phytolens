@@ -1,0 +1,38 @@
+{
+  "name": "Curcumin",
+  "affinity": -7.756,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -7.756,
+    -7.577,
+    -7.528,
+    -7.311,
+    -7.24,
+    -7.232,
+    -7.229,
+    -7.152,
+    -7.037
+  ],
+  "cached": false,
+  "seconds": 14.89,
+  "key": "5cc81e2786706ace",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\5cc81e2786706ace.pdbqt",
+  "smiles": "COc1cc(/C=C/C(=O)CC(=O)/C=C/c2ccc(c(c2)OC)O)ccc1O",
+  "receptor": "4EY7",
+  "box": {
+    "center": [
+      -1.582,
+      -50.192,
+      2.101
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of E20 (56 atoms)"
+  },
+  "exhaustiveness": 4,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

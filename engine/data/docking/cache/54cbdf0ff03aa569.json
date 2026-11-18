@@ -1,0 +1,35 @@
+{
+  "name": "Withanolide D",
+  "affinity": -10.353,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -10.353,
+    -10.267,
+    -9.612,
+    -9.544,
+    -7.967,
+    -7.705
+  ],
+  "cached": false,
+  "seconds": 7.28,
+  "key": "54cbdf0ff03aa569",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\54cbdf0ff03aa569.pdbqt",
+  "smiles": "CC1=C(C)C(=O)O[C@H](C1)[C@@]([C@H]1CC[C@@H]2[C@]1(C)CC[C@H]1[C@H]2C[C@@H]2[C@]3([C@]1(C)C(=O)C=C[C@@H]3O)O2)(O)C",
+  "receptor": "4EY7",
+  "box": {
+    "center": [
+      -1.582,
+      -50.192,
+      2.101
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of E20 (56 atoms)"
+  },
+  "exhaustiveness": 4,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}

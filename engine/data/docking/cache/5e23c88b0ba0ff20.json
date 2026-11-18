@@ -1,0 +1,38 @@
+{
+  "name": "Piperine",
+  "affinity": -7.846,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -7.846,
+    -7.13,
+    -7.126,
+    -7.075,
+    -6.949,
+    -6.836,
+    -6.752,
+    -6.645,
+    -6.566
+  ],
+  "cached": false,
+  "seconds": 2.76,
+  "key": "5e23c88b0ba0ff20",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\5e23c88b0ba0ff20.pdbqt",
+  "smiles": "O=C(N1CCCCC1)/C=C/C=C/c1ccc2c(c1)OCO2",
+  "receptor": "4EY7",
+  "box": {
+    "center": [
+      -1.582,
+      -50.192,
+      2.101
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of E20 (56 atoms)"
+  },
+  "exhaustiveness": 4,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}
