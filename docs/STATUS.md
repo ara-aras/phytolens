@@ -24,13 +24,13 @@ evidence that a product works, not a diagnosis, not a health claim.
 | Docking | AutoDock Vina 1.2.7, four experimental co-crystal targets: COX-2 (3NT1), 5-LOX (3V99), p38-α (3D83), plus on-demand TNF-α (2AZ5), content-addressed cache |
 | Docking panel | 51 compounds × 3 targets — every candidate of every validation case |
 | ADMET + alerts | RDKit QED, BOILED-Egg GI/BBB, PAINS (A/B/C) and Brenk structural alerts (`engine/pipeline/admet.py`) |
-| API | FastAPI, 16 `/v1` endpoints, async runs, PDF reports, network graph, live docking |
+| API | FastAPI, 18 `/v1` endpoints, async runs, PDF reports, network graph, 3D pose & receptor PDB endpoints, live docking |
 | Queue | Redis (`BRPOPLPUSH`, crash recovery), in-process fallback, standalone worker |
-| Frontend | Next.js 15 workbench (replaced the planned Streamlit shell) |
+| Frontend | Next.js 15 workbench with interactive NGL 3D receptor/pose studio, 2D RDKit depiction, and bipartite mechanism graph |
 | Rate limits | Per-endpoint, Redis-shared, `Retry-After` + `X-RateLimit-*` |
 | Auth | Optional bearer API keys (client identity for quotas/audit, not user accounts) |
 | Validation | 4 cases, untuned, with ablation, permutation null and bias-residue controls + wet-lab protocol (`engine/validation/wetlab_protocol.md`) |
-| Tests | 108 passing (`python -m pytest -q`) |
+| Tests | 109 passing (`python -m pytest -q`) |
 | CI | GitHub Actions: tests, validation run, queue smoke test, Next.js build — no Docker |
 
 ## Headline results

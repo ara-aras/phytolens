@@ -25,13 +25,13 @@ docking scores and the evidence behind every link.
 | Docking | AutoDock Vina 1.2.7 against four experimental co-crystal structures: COX-2 (3NT1), 5-LOX (3V99), p38-α (3D83), plus on-demand TNF-α (2AZ5) |
 | Docking panel | 51 compounds × 3 targets — every candidate of every validation case |
 | ADMET + alerts | RDKit QED, BOILED-Egg GI/BBB, PAINS (A/B/C) and Brenk structural alerts (`engine/pipeline/admet.py`) |
-| API | FastAPI, 16 `/v1` endpoints, async runs, PDF reports, network graph, live docking |
+| API | FastAPI, 18 `/v1` endpoints, async runs, PDF reports, network graph, 3D pose & receptor PDB endpoints, live docking |
 | Queue | Redis (`BRPOPLPUSH`, crash recovery), in-process fallback, standalone worker |
-| Workbench | Next.js 15 app (`web/`) |
+| Workbench | Next.js 15 app (`web/`): interactive NGL 3D receptor pocket & docked Vina pose studio, 2D RDKit structure, bipartite mechanism graph |
 | Rate limits | Per-endpoint, Redis-shared, `Retry-After` + `X-RateLimit-*` |
 | Auth | Optional bearer API keys (client identity for quotas/audit, not user accounts) |
 | Validation | 4 cases, untuned, with ablation, permutation null and a bias-residue control |
-| Tests | **108 passing** (`python -m pytest -q`) |
+| Tests | **109 passing** (`python -m pytest -q`) |
 | CI | GitHub Actions: tests, validation run, queue smoke test, Next.js build — no Docker |
 
 ## The demo

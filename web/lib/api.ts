@@ -1,4 +1,5 @@
 import type {
+  DockingPose,
   Health,
   LiveDockResult,
   Network,
@@ -84,5 +85,11 @@ export const api = {
       body: JSON.stringify(body),
     }),
   validation: () => request<ValidationReport>("/v1/validation"),
+  dockingPose: (compoundId: string, target: string) =>
+    request<DockingPose>(
+      `/v1/docking/pose/${encodeURIComponent(compoundId)}/${encodeURIComponent(target)}`,
+    ),
+  structurePdbUrl: (target: string) =>
+    `${API_URL}/v1/structures/${encodeURIComponent(target)}/pdb`,
   reportUrl: (runId: string) => `${API_URL}/v1/runs/${runId}/report.pdf`,
 };

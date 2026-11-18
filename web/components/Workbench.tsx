@@ -1,6 +1,8 @@
 "use client";
 
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
+import DockingStudio from "@/components/DockingStudio";
+import NetworkGraph from "@/components/NetworkGraph";
 import { api } from "@/lib/api";
 import type {
   Health,
@@ -58,6 +60,7 @@ export default function Workbench() {
   const [dockNote, setDockNote] = useState<string | null>(null);
   const [queueBackend, setQueueBackend] = useState<string | null>(null);
   const [open, setOpen] = useState<Set<string>>(new Set());
+  const [selectedCompoundId, setSelectedCompoundId] = useState<string>("");
   const suggestionTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -171,6 +174,7 @@ export default function Workbench() {
           ]);
           if (cancelled) return;
           setShortlist(result);
+          setSelectedCompoundId(result.ranked[0]?.id ?? "");
           setNetwork(graph);
           setBusy(false);
         } else if (payload.status === "failed") {
@@ -564,6 +568,15 @@ export default function Workbench() {
                 </div>
               )}
 
+              {shortlist.ranked.length > 0 && (
+                <DockingStudio
+                  ranked={shortlist.ranked}
+                  targets={targets}
+                  selectedCompoundId={selectedCompoundId || shortlist.ranked[0].id}
+                  onSelectCompound={(cid) => setSelectedCompoundId(cid)}
+                />
+              )}
+
               <div className="table-wrap">
                 <table className="shortlist">
                   <thead>
@@ -584,26 +597,41 @@ export default function Workbench() {
                   <tbody>
                     {shortlist.ranked.map((row) => {
                       const expanded = open.has(row.id);
+                      const is3DSelected =
+                        (selectedCompoundId || shortlist.ranked[0]?.id) === row.id;
                       return (
                         <Fragment key={row.id}>
-                          <tr className={expanded ? "row open" : "row"}>
+                          <tr
+                            className={`${expanded ? "row open" : "row"}${is3DSelected ? " row-3d" : ""}`}
+                          >
                             <td className="num">{row.rank}</td>
                             <td>
-                              <button
-                                type="button"
-                                className="compound"
-                                onClick={() =>
-                                  setOpen((current) => {
-                                    const next = new Set(current);
-                                    if (next.has(row.id)) next.delete(row.id);
-                                    else next.add(row.id);
-                                    return next;
-                                  })
-                                }
-                                aria-expanded={expanded}
-                              >
-                                {shortName(row.name)}
-                              </button>
+                              <div className="compound-cell">
+                                <button
+                                  type="button"
+                                  className="compound"
+                                  onClick={() => {
+                                    setSelectedCompoundId(row.id);
+                                    setOpen((current) => {
+                                      const next = new Set(current);
+                                      if (next.has(row.id)) next.delete(row.id);
+                                      else next.add(row.id);
+                                      return next;
+                                    });
+                                  }}
+                                  aria-expanded={expanded}
+                                >
+                                  {shortName(row.name)}
+                                </button>
+                                <button
+                                  type="button"
+                                  className={`pose-pill ${is3DSelected ? "active" : ""}`}
+                                  onClick={() => setSelectedCompoundId(row.id)}
+                                  title="Load this compound into the 3D Molecular Docking Studio above"
+                                >
+                                  3D
+                                </button>
+                              </div>
                             </td>
                             <td className="right num">{row.score.toFixed(3)}</td>
                             <td className="right num">{row.overlap.count}</td>
@@ -704,6 +732,12 @@ export default function Workbench() {
                   </tbody>
                 </table>
               </div>
+
+              <NetworkGraph
+                network={network}
+                selectedCompoundId={selectedCompoundId || shortlist.ranked[0]?.id}
+                onSelectCompound={(cid) => setSelectedCompoundId(cid)}
+              />
 
               <div className="foot-grid">
                 <div className="card caveats">

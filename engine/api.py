@@ -730,6 +730,44 @@ def get_structure(target: str) -> dict:
     }
 
 
+@app.get("/v1/structures/{target}/pdb")
+def get_structure_pdb(target: str) -> Response:
+    """Serve the prepared clean receptor PDB for the 3D pocket viewer."""
+    spec = dk.TARGETS.get(target.upper())
+    if spec is None:
+        raise HTTPException(
+            status_code=404,
+            detail=f"unknown target {target!r}; panel: {sorted(dk.TARGETS)}",
+        )
+    clean_path = dk.RECEPTORS / f"{spec.pdb_id}_clean.pdb"
+    raw_path = dk.RECEPTORS / f"{spec.pdb_id}.pdb"
+    chosen = clean_path if clean_path.exists() else raw_path
+    if not chosen.exists():
+        raise HTTPException(status_code=404, detail=f"PDB file for {spec.pdb_id} not found")
+    return Response(
+        content=chosen.read_bytes(),
+        media_type="chemical/x-pdb",
+        headers={"Cache-Control": "public, max-age=3600"},
+    )
+
+
+@app.get("/v1/docking/pose/{compound_id}/{target}")
+def get_docking_pose(compound_id: str, target: str) -> dict:
+    """Return 3D Vina binding modes (1-9), pocket contacts, and 2D RDKit SVG."""
+    if target.upper() not in dk.TARGETS:
+        raise HTTPException(
+            status_code=400,
+            detail=f"unknown target {target!r}; panel: {sorted(dk.TARGETS)}",
+        )
+    payload = dk.resolve_pose(compound_id, target.upper(), panel_path=PANEL_PATH)
+    if payload is None:
+        raise HTTPException(
+            status_code=404,
+            detail=f"no cached 3D docking pose for {compound_id!r} on {target.upper()}",
+        )
+    return payload
+
+
 @app.get("/v1/demo")
 def demo() -> dict:
     """Precomputed demo formulation, synchronously, in one request."""

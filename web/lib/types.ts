@@ -105,8 +105,59 @@ export type Health = {
 
 export type Network = {
   nodes: { id: string; label: string; type: string; rank?: number }[];
-  edges: { source: string; target: string; measured: boolean }[];
+  edges: {
+    source: string;
+    target: string;
+    measured: boolean;
+    support?: "measured" | "predicted";
+    sources?: string[];
+  }[];
   hubs: { id: string; label: string; degree: number }[];
+};
+
+export type DockingMode = {
+  mode: number;
+  affinity: number | null;
+  rmsd_lb: number | null;
+  rmsd_ub: number | null;
+  inter_energy: number | null;
+  intra_energy: number | null;
+  atoms: number;
+  pdb_block: string;
+};
+
+export type PocketContact = {
+  chain: string;
+  resname: string;
+  resid: number;
+  label: string;
+  distance: number;
+  is_cofactor: boolean;
+};
+
+export type DockingPose = {
+  compound_id: string;
+  compound_name: string;
+  smiles: string | null;
+  target: string;
+  pdb_id: string;
+  complex_with: string;
+  ligand_code: string;
+  why: string;
+  key: string;
+  seed: number;
+  exhaustiveness: number;
+  vina: string;
+  box: {
+    center: [number, number, number];
+    size: [number, number, number];
+    defined_by?: string;
+  } | null;
+  affinity: number | null;
+  ligand_efficiency: number | null;
+  modes: DockingMode[];
+  contacts: PocketContact[];
+  svg_2d: string | null;
 };
 
 export type ValidationMetrics = {

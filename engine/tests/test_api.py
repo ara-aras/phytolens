@@ -138,6 +138,24 @@ def test_structures_include_provenance(client):
     assert body["box"]["size"] == [20.0, 20.0, 20.0]
     assert client.get("/v1/structures/NOPE").status_code == 404
 
+    pdb = client.get("/v1/structures/ALOX5/pdb")
+    assert pdb.status_code == 200
+    assert "ATOM" in pdb.text
+
+
+def test_docking_pose_returns_modes_contacts_and_2d_svg(client):
+    demo = client.get("/v1/demo").json()
+    top = demo["ranked"][0]
+    resp = client.get(f"/v1/docking/pose/{top['id']}/ALOX5")
+    assert resp.status_code == 200
+    pose = resp.json()
+    assert pose["pdb_id"] == "3V99"
+    assert len(pose["modes"]) >= 1
+    assert "HETATM" in pose["modes"][0]["pdb_block"]
+    assert pose["contacts"]
+    assert pose["svg_2d"] and "<svg" in pose["svg_2d"]
+    assert client.get("/v1/docking/pose/cmp_missing/ALOX5").status_code == 404
+
 
 # --------------------------------------------------------------------------
 # runs

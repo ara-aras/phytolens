@@ -567,6 +567,262 @@ def ligand_smiles(name: str, db: Path = ex.DB_PATH) -> tuple[str, str]:
     return row[0], row[2]
 
 
+# --------------------------------------------------------------------------
+# 2D structure + 3D pose inspection for the workbench
+# --------------------------------------------------------------------------
+_AD_TO_ELEM = {
+    "A": "C", "C": "C", "NA": "N", "N": "N", "OA": "O", "O": "O",
+    "SA": "S", "S": "S", "HD": "H", "H": "H", "HS": "H",
+    "P": "P", "F": "F", "Cl": "Cl", "CL": "Cl", "Br": "Br", "BR": "Br",
+    "I": "I", "Fe": "Fe", "FE": "Fe", "Zn": "Zn", "Mg": "Mg",
+}
+
+
+def render_2d_svg(smiles: str | None, width: int = 340, height: int = 210) -> str | None:
+    """Render a transparent 2D chemical depiction SVG via RDKit."""
+    if not smiles or not smiles.strip():
+        return None
+    mol = Chem.MolFromSmiles(smiles)
+    if mol is None:
+        return None
+    try:
+        from rdkit.Chem import rdDepictor
+        from rdkit.Chem.Draw import rdMolDraw2D
+
+        rdDepictor.Compute2DCoords(mol)
+        drawer = rdMolDraw2D.MolDraw2DSVG(width, height)
+        opts = drawer.drawOptions()
+        opts.clearBackground = True
+        opts.bondLineWidth = 1.8
+        opts.padding = 0.08
+        drawer.DrawMolecule(mol)
+        drawer.FinishDrawing()
+        return drawer.GetDrawingText()
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def _pdbqt_line_to_pdb(line: str, serial: int) -> str:
+    """Convert one PDBQT ATOM/HETATM line to a standard 80-col PDB HETATM record."""
+    ad_type = line[76:].strip() or line.split()[-1]
+    raw_name = line[12:16].strip()
+    elem = _AD_TO_ELEM.get(ad_type)
+    if not elem:
+        letters = "".join(c for c in raw_name if c.isalpha())
+        elem = (letters[:2].capitalize() if letters[:2].upper() in {"CL", "BR", "FE", "ZN", "MG"}
+                else (letters[:1].upper() or "C"))
+    atom_name = f" {raw_name:<3}" if len(raw_name) < 4 else raw_name[:4]
+    coords = line[30:54]
+    return f"HETATM{serial:>5} {atom_name} LIG L   1    {coords}  1.00  0.00          {elem:>2}"
+
+
+def parse_pdbqt_modes(pdbqt_path: Path) -> list[dict]:
+    """Extract all Vina binding modes (affinity, RMSD, energies, clean PDB block)."""
+    if not pdbqt_path.exists():
+        return []
+    modes: list[dict] = []
+    cur_mode = 0
+    affinity: float | None = None
+    rmsd_lb: float | None = None
+    rmsd_ub: float | None = None
+    inter_e: float | None = None
+    intra_e: float | None = None
+    pdb_lines: list[str] = []
+    coords: list[tuple[float, float, float]] = []
+    serial = 0
+
+    for line in pdbqt_path.read_text(encoding="utf-8", errors="replace").splitlines():
+        if line.startswith("MODEL"):
+            parts = line.split()
+            cur_mode = int(parts[1]) if len(parts) > 1 and parts[1].isdigit() else len(modes) + 1
+            affinity = rmsd_lb = rmsd_ub = inter_e = intra_e = None
+            pdb_lines = []
+            coords = []
+            serial = 0
+        elif line.startswith("REMARK VINA RESULT:"):
+            nums = line.replace("REMARK VINA RESULT:", "").split()
+            if len(nums) >= 3:
+                affinity = float(nums[0])
+                rmsd_lb = float(nums[1])
+                rmsd_ub = float(nums[2])
+        elif line.startswith("REMARK INTER:"):
+            try:
+                inter_e = float(line.split(":")[1].strip())
+            except (IndexError, ValueError):
+                pass
+        elif line.startswith("REMARK INTRA:"):
+            try:
+                intra_e = float(line.split(":")[1].strip())
+            except (IndexError, ValueError):
+                pass
+        elif line.startswith(("ATOM", "HETATM")):
+            serial += 1
+            pdb_lines.append(_pdbqt_line_to_pdb(line, serial))
+            try:
+                coords.append(_coord(line))
+            except ValueError:
+                pass
+        elif line.startswith("ENDMDL"):
+            if pdb_lines:
+                pdb_lines.append("END")
+                modes.append({
+                    "mode": cur_mode or (len(modes) + 1),
+                    "affinity": affinity,
+                    "rmsd_lb": rmsd_lb,
+                    "rmsd_ub": rmsd_ub,
+                    "inter_energy": inter_e,
+                    "intra_energy": intra_e,
+                    "atoms": serial,
+                    "pdb_block": "\n".join(pdb_lines),
+                    "_coords": coords,
+                })
+    return modes
+
+
+def pocket_contacts(
+    receptor_pdb: Path,
+    ligand_coords: list[tuple[float, float, float]],
+    *,
+    cutoff: float = 4.5,
+    limit: int = 12,
+) -> list[dict]:
+    """Closest receptor residues and cofactors within `cutoff` A of the ligand pose."""
+    import math
+
+    if not receptor_pdb.exists() or not ligand_coords:
+        return []
+    best_by_res: dict[tuple[str, str, int], tuple[float, bool]] = {}
+    for line in _pdb_atoms(receptor_pdb):
+        rec_type = line[:6].strip()
+        atom_name = line[12:16].strip()
+        if atom_name.startswith("H"):
+            continue
+        resname = line[17:20].strip()
+        chain = line[21:22].strip() or "A"
+        try:
+            resid = int(line[22:26].strip())
+            rc = _coord(line)
+        except ValueError:
+            continue
+        d = min(math.dist(rc, lc) for lc in ligand_coords)
+        if d <= cutoff:
+            key = (chain, resname, resid)
+            is_cof = rec_type == "HETATM" or resname in {"FE2", "FE", "HEM", "ZN", "MG"}
+            prev = best_by_res.get(key)
+            if prev is None or d < prev[0]:
+                best_by_res[key] = (d, is_cof)
+
+    ranked = sorted(best_by_res.items(), key=lambda item: item[1][0])[:limit]
+    return [
+        {
+            "chain": chain,
+            "resname": resname,
+            "resid": resid,
+            "label": f"{resname} {resid}" + (f" ({chain})" if chain != "A" else ""),
+            "distance": round(dist, 2),
+            "is_cofactor": is_cof,
+        }
+        for (chain, resname, resid), (dist, is_cof) in ranked
+    ]
+
+
+def resolve_pose(
+    compound_id: str,
+    target: str,
+    *,
+    panel_path: Path,
+    db: Path = ex.DB_PATH,
+) -> dict | None:
+    """Resolve the cached 3D Vina pose, 9 modes, pocket contacts, and 2D SVG."""
+    spec = TARGETS.get(target.upper())
+    if spec is None:
+        return None
+
+    # 1. Look up compound name + SMILES (corpus first, then panel/cache fallback)
+    name: str | None = None
+    smiles: str | None = None
+    if db.exists() and db.stat().st_size > 0:
+        found = compound_smiles([compound_id], db=db)
+        if compound_id in found:
+            name, smiles = found[compound_id]
+
+    key: str | None = None
+    cached_meta: dict | None = None
+    if panel_path.exists():
+        panel = load_panel(panel_path)
+        row = panel.get("scores", {}).get(compound_id)
+        if row:
+            name = name or row.get("name")
+            t_info = row.get("targets", {}).get(spec.gene)
+            if t_info and t_info.get("key"):
+                key = t_info["key"]
+
+    if key and (CACHE / f"{key}.json").exists():
+        cached_meta = json.loads((CACHE / f"{key}.json").read_text(encoding="utf-8-sig"))
+        smiles = smiles or cached_meta.get("smiles")
+        name = name or cached_meta.get("name")
+    else:
+        # Scan cache for a matching (receptor == spec.pdb_id) and (smiles or name)
+        for jf in sorted(CACHE.glob("*.json")):
+            try:
+                meta = json.loads(jf.read_text(encoding="utf-8-sig"))
+            except Exception:  # noqa: BLE001
+                continue
+            if meta.get("receptor") != spec.pdb_id:
+                continue
+            if (smiles and meta.get("smiles") == smiles) or (
+                name and (meta.get("name") or "").lower() == name.lower()
+            ):
+                key = meta.get("key") or jf.stem
+                cached_meta = meta
+                smiles = smiles or meta.get("smiles")
+                name = name or meta.get("name")
+                break
+
+    if not key:
+        return None
+
+    pdbqt_path = CACHE / f"{key}.pdbqt"
+    raw_modes = parse_pdbqt_modes(pdbqt_path)
+    if not raw_modes:
+        return None
+
+    clean_pdb = RECEPTORS / f"{spec.pdb_id}_clean.pdb"
+    if not clean_pdb.exists():
+        clean_pdb = RECEPTORS / f"{spec.pdb_id}.pdb"
+    mode1_coords = raw_modes[0].get("_coords", [])
+    contacts = pocket_contacts(clean_pdb, mode1_coords)
+    for m in raw_modes:
+        m.pop("_coords", None)
+
+    box_file = RECEPTORS / f"{spec.pdb_id}_box.json"
+    box = (
+        (cached_meta or {}).get("box")
+        or (json.loads(box_file.read_text()) if box_file.exists() else None)
+    )
+    best_aff = raw_modes[0]["affinity"]
+    return {
+        "compound_id": compound_id,
+        "compound_name": name or compound_id,
+        "smiles": smiles,
+        "target": spec.gene,
+        "pdb_id": spec.pdb_id,
+        "complex_with": spec.complex_with,
+        "ligand_code": spec.ligand_code,
+        "why": spec.why,
+        "key": key,
+        "seed": (cached_meta or {}).get("seed", SEED),
+        "exhaustiveness": (cached_meta or {}).get("exhaustiveness", EXHAUSTIVENESS),
+        "vina": (cached_meta or {}).get("vina", "AutoDock Vina v1.2.7"),
+        "box": box,
+        "affinity": best_aff,
+        "ligand_efficiency": ligand_efficiency(best_aff, smiles) if smiles else None,
+        "modes": raw_modes,
+        "contacts": contacts,
+        "svg_2d": render_2d_svg(smiles),
+    }
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description="Dock ligands into a prepared receptor")
     ap.add_argument("--pdb", default="3NT1", help="PDB id (default 3NT1: COX-2 + naproxen)")
