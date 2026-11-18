@@ -22,15 +22,16 @@ docking scores and the evidence behind every link.
 | Extraction + drug-likeness | Config-driven; the Boswellia failure is pinned by regression tests |
 | Condition target sets | Open Targets: colitis (66 targets), IBD (82) |
 | Ranking | Condition overlap as a **gate**, then docking as the primary term, with evidence quality, specificity and a promiscuity penalty |
-| Docking | AutoDock Vina 1.2.7 against three experimental co-crystal structures: COX-2 (3NT1), 5-LOX (3V99), p38-α (3D83) |
+| Docking | AutoDock Vina 1.2.7 against four experimental co-crystal structures: COX-2 (3NT1), 5-LOX (3V99), p38-α (3D83), plus on-demand TNF-α (2AZ5) |
 | Docking panel | 51 compounds × 3 targets — every candidate of every validation case |
+| ADMET + alerts | RDKit QED, BOILED-Egg GI/BBB, PAINS (A/B/C) and Brenk structural alerts (`engine/pipeline/admet.py`) |
 | API | FastAPI, 16 `/v1` endpoints, async runs, PDF reports, network graph, live docking |
 | Queue | Redis (`BRPOPLPUSH`, crash recovery), in-process fallback, standalone worker |
 | Workbench | Next.js 15 app (`web/`) |
 | Rate limits | Per-endpoint, Redis-shared, `Retry-After` + `X-RateLimit-*` |
 | Auth | Optional bearer API keys (client identity for quotas/audit, not user accounts) |
 | Validation | 4 cases, untuned, with ablation, permutation null and a bias-residue control |
-| Tests | **101 passing** (`python -m pytest -q`) |
+| Tests | **108 passing** (`python -m pytest -q`) |
 | CI | GitHub Actions: tests, validation run, queue smoke test, Next.js build — no Docker |
 
 ## The demo
@@ -195,8 +196,9 @@ both binaries are present.
 ### Useful commands
 
 ```bash
-python -m pytest -q                              # 101 tests
+python -m pytest -q                              # 108 tests
 python -m engine.validation --all                # untuned validation, writes results
+python -m engine.pipeline.admet                  # QED, BOILED-Egg GI/BBB, PAINS + Brenk alerts
 python -m engine.live_dock --plant "Zingiber officinale" --part rhizome \
   --condition colitis --targets PTGS2 --compound Gingerol --compound Shogaol
 python -m engine.report --plant "Curcuma longa" --part rhizome \

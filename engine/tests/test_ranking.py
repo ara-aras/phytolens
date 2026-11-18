@@ -114,9 +114,12 @@ def test_summary_shape_and_provenance_keys(ranked):
     assert payload["funnel"]["in_part"] == 168
     assert payload["docking_pending"] is True
     for row in payload["ranked"]:
-        assert {"id", "targets", "overlap", "terms", "docking"} <= set(row)
+        assert {"id", "targets", "overlap", "terms", "docking", "admet"} <= set(row)
+        assert {"qed", "gi_absorption", "pains_alerts", "brenk_alerts"} <= set(row["admet"])
         for gene in row["overlap"]["genes"]:
-            assert {"symbol", "condition_score", "measured", "evidence"} <= set(gene)
+            assert {"symbol", "condition_score", "measured", "support", "sources", "evidence"} <= set(gene)
+            assert gene["support"] in {"measured", "predicted"}
+            assert isinstance(gene["sources"], list) and len(gene["sources"]) >= 1
 
 
 def test_summary_is_json_serialisable(ranked):

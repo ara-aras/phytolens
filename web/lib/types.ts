@@ -11,7 +11,21 @@ export type Gene = {
   symbol: string;
   condition_score: number | null;
   measured: boolean;
+  support?: "measured" | "predicted";
+  sources?: string[];
   evidence: Record<string, unknown>;
+};
+
+export type Admet = {
+  qed: number | null;
+  tpsa: number | null;
+  wlogp: number | null;
+  gi_absorption: string;
+  bbb_permeant: boolean | null;
+  pains_alerts: string[];
+  brenk_alerts: string[];
+  assay_interference: boolean;
+  structural_alerts: number;
 };
 
 export type Ranked = {
@@ -22,6 +36,7 @@ export type Ranked = {
   mw: number | null;
   logp: number | null;
   flags: string[];
+  admet?: Admet;
   targets: { annotated: number; measured: number };
   overlap: { count: number; measured: number; genes: Gene[] };
   terms: Record<string, number>;

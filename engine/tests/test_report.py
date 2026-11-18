@@ -27,6 +27,7 @@ def test_report_is_a_pdf_with_content(tmp_path):
     assert pages >= 2, "caveats belong on their own page"
     assert "Limitations and caveats" in text
     assert "Provenance appendix" in text
+    assert "DATA_LICENSE.md" in text
     assert "Curcuma longa" in text
 
 

@@ -156,21 +156,28 @@ class TargetSpec:
 
 TARGETS: dict[str, TargetSpec] = {
     "PTGS2": TargetSpec(
-        "PTGS2", "3NT1", "NPS", (),
+        "PTGS2", "3NT1", "NPS", ("HEM",),
         "naproxen",
-        "COX-2. The established inflammatory target and the demo's original anchor.",
+        "COX-2. The established inflammatory target and the demo's original anchor. "
+        "Peroxidase heme (HEM A/B 619) is retained 32.5 A from the cyclooxygenase pocket.",
     ),
     "ALOX5": TargetSpec(
         "ALOX5", "3V99", "ACD", ("FE2",),
         "arachidonic acid",
         "5-lipoxygenase, 2.25 A, stable S663D construct. Arachidonic acid marks "
-        "the substrate site; the catalytic Fe2+ is retained.",
+        "the substrate site; the catalytic Fe2+ (FE2 A 701, 7.5 A from box centre) is retained.",
     ),
     "MAPK14": TargetSpec(
         "MAPK14", "3D83", "GK6", (),
         "biphenyl amide inhibitor",
         "p38-alpha MAPK, 1.90 A. The best-resolution p38 structure with a "
         "drug-like inhibitor in the ATP pocket.",
+    ),
+    "TNF": TargetSpec(
+        "TNF", "2AZ5", "307", (),
+        "small-molecule dimer-interface inhibitor 307",
+        "TNF-alpha, 2.10 A. Co-crystallised small-molecule inhibitor at the "
+        "homodimer interface; available for on-demand live docking.",
     ),
 }
 

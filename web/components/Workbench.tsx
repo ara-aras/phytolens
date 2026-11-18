@@ -633,12 +633,19 @@ export default function Workbench() {
                                             gene.measured ? "chip chip-measured" : "chip"
                                           }
                                           title={
-                                            gene.measured
-                                              ? "Measured link (ChEMBL/BindingDB)"
-                                              : "Predicted link (NPASS only)"
+                                            gene.sources && gene.sources.length > 0
+                                              ? `${gene.support ?? (gene.measured ? "measured" : "predicted")} link (${gene.sources.join(" | ")})`
+                                              : gene.measured
+                                                ? "Measured link (ChEMBL/BindingDB)"
+                                                : "Predicted link (NPASS only)"
                                           }
                                         >
                                           {gene.symbol}
+                                          {gene.sources && gene.sources.length > 0 ? (
+                                            <small style={{ marginLeft: 4, opacity: 0.78 }}>
+                                              · {gene.support ?? (gene.measured ? "measured" : "predicted")}
+                                            </small>
+                                          ) : null}
                                         </span>
                                       ))}
                                     </p>
@@ -668,8 +675,23 @@ export default function Workbench() {
                                     </div>
                                     <p className="fineprint">
                                       MW {row.mw ?? "—"} · logP{" "}
-                                      {row.logp != null ? row.logp.toFixed(2) : "—"} ·
-                                      every term is weighted in the config, not in code.
+                                      {row.logp != null ? row.logp.toFixed(2) : "—"}
+                                      {row.admet && (
+                                        <>
+                                          {" "}· QED {row.admet.qed ?? "—"} · GI{" "}
+                                          {row.admet.gi_absorption} · BBB{" "}
+                                          {row.admet.bbb_permeant == null
+                                            ? "—"
+                                            : row.admet.bbb_permeant
+                                              ? "yes"
+                                              : "no"}
+                                          {row.admet.pains_alerts.length > 0 &&
+                                            ` · PAINS: ${row.admet.pains_alerts.join(", ")}`}
+                                          {row.admet.brenk_alerts.length > 0 &&
+                                            ` · Brenk: ${row.admet.brenk_alerts.join(", ")}`}
+                                        </>
+                                      )}{" "}
+                                      · every term is weighted in the config, not in code.
                                     </p>
                                   </div>
                                 </div>

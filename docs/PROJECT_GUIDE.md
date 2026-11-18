@@ -155,7 +155,7 @@ All four cases run with **untuned default weights** against the 51-compound × 3
   - Returns in **`0.08 s`** via the Next.js proxy with `0 fresh Vina runs into ALOX5 · 2 cache hits · AutoDock Vina v1.2.7`.
 
 ### 3.6 Automated Test Suite Output
-- `python -m pytest -q` → **`101 passed in ~5.0s`** (covering extraction regressions, ranking maths, docking cache keys, validation metrics/null baselines, PDF generation, FastAPI lifecycle, Redis `BRPOPLPUSH` queue + crash recovery + inline fallback, 429 rate-limit headers, and 401/403 bearer API key auth).
+- `python -m pytest -q` → **`108 passed in ~5.7s`** (covering extraction regressions, RDKit ADMET/PAINS/Brenk alerts, ranking maths & literature-support tags, docking cache keys & `3V99 Fe²⁺` / `3NT1 HEM` / `2AZ5 TNF` receptor checks, validation metrics/null baselines, PDF generation with `DATA_LICENSE.md` footer, FastAPI lifecycle, Redis `BRPOPLPUSH` queue + crash recovery + inline fallback, 429 rate-limit headers, and 401/403 bearer API key auth).
 
 ---
 

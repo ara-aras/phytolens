@@ -21,15 +21,16 @@ evidence that a product works, not a diagnosis, not a health claim.
 | Extraction + drug-likeness | Config-driven, Boswellia regression pinned by tests |
 | Condition target sets | Open Targets: colitis (66 targets), IBD (82) |
 | Ranking | Gate on condition overlap, capped overlap term, evidence quality, specificity, promiscuity penalty, docking as the primary term |
-| Docking | AutoDock Vina 1.2.7, three experimental co-crystal targets: COX-2 (3NT1), 5-LOX (3V99), p38-α (3D83), content-addressed cache |
+| Docking | AutoDock Vina 1.2.7, four experimental co-crystal targets: COX-2 (3NT1), 5-LOX (3V99), p38-α (3D83), plus on-demand TNF-α (2AZ5), content-addressed cache |
 | Docking panel | 51 compounds × 3 targets — every candidate of every validation case |
+| ADMET + alerts | RDKit QED, BOILED-Egg GI/BBB, PAINS (A/B/C) and Brenk structural alerts (`engine/pipeline/admet.py`) |
 | API | FastAPI, 16 `/v1` endpoints, async runs, PDF reports, network graph, live docking |
 | Queue | Redis (`BRPOPLPUSH`, crash recovery), in-process fallback, standalone worker |
 | Frontend | Next.js 15 workbench (replaced the planned Streamlit shell) |
 | Rate limits | Per-endpoint, Redis-shared, `Retry-After` + `X-RateLimit-*` |
 | Auth | Optional bearer API keys (client identity for quotas/audit, not user accounts) |
-| Validation | 4 cases, untuned, with ablation, permutation null and bias-residue controls |
-| Tests | 101 passing (`python -m pytest -q`) |
+| Validation | 4 cases, untuned, with ablation, permutation null and bias-residue controls + wet-lab protocol (`engine/validation/wetlab_protocol.md`) |
+| Tests | 108 passing (`python -m pytest -q`) |
 | CI | GitHub Actions: tests, validation run, queue smoke test, Next.js build — no Docker |
 
 ## Headline results

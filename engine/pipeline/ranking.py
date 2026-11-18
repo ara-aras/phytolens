@@ -34,6 +34,7 @@ from pathlib import Path
 
 import yaml
 
+from engine.pipeline import admet as adm
 from engine.pipeline import extraction as ex
 
 ENGINE_DIR = Path(__file__).resolve().parents[1]
@@ -103,6 +104,7 @@ def _is_measured(source: str) -> bool:
 class CompoundTargets:
     all_genes: set[str] = field(default_factory=set)
     measured_genes: set[str] = field(default_factory=set)
+    gene_sources: dict[str, list[str]] = field(default_factory=dict)
 
     @property
     def n_all(self) -> int:
@@ -131,6 +133,9 @@ def load_targets(con: sqlite3.Connection, compound_ids: list[str]) -> dict[str, 
             rec.all_genes.add(gene)
             if _is_measured(source):
                 rec.measured_genes.add(gene)
+            srcs = {p.strip() for p in (source or "").split("|") if p.strip()}
+            if srcs:
+                rec.gene_sources[gene] = sorted(set(rec.gene_sources.get(gene, ())) | srcs)
     return out
 
 
@@ -145,11 +150,13 @@ class Scored:
     n_measured: int
     overlap_all: list[str]
     overlap_measured: list[str]
+    overlap_sources: dict[str, list[str]] = field(default_factory=dict)
     terms: dict[str, float] = field(default_factory=dict)
     contributions: dict[str, float] = field(default_factory=dict)
     score: float = 0.0
     rank: int = 0
     docking: dict[str, float] = field(default_factory=dict)
+    admet: dict = field(default_factory=dict)
 
     def as_dict(self, cond: Condition) -> dict:
         return {
@@ -160,6 +167,7 @@ class Scored:
             "mw": self.compound.mw,
             "logp": self.compound.logp,
             "flags": list(self.flags),
+            "admet": self.admet or adm.evaluate_smiles(self.compound.smiles).as_dict(),
             "targets": {"annotated": self.n_all, "measured": self.n_measured},
             "overlap": {
                 "count": len(self.overlap_all),
@@ -169,6 +177,8 @@ class Scored:
                         "symbol": g,
                         "condition_score": cond.scores.get(g),
                         "measured": g in self.overlap_measured,
+                        "support": "measured" if g in self.overlap_measured else "predicted",
+                        "sources": self.overlap_sources.get(g, []),
                         "evidence": cond.evidence.get(g, {}),
                     }
                     for g in sorted(self.overlap_all,
@@ -251,8 +261,11 @@ def score_compound(
         compound=c, flags=flags,
         n_all=ct.n_all, n_measured=ct.n_measured,
         overlap_all=o_all, overlap_measured=o_meas,
+        overlap_sources={g: ct.gene_sources.get(g, ["ChEMBL" if g in o_meas else "NPASS"])
+                         for g in o_all},
         terms=terms, contributions=contributions, score=score,
         docking=dict(sorted(profile.items())),
+        admet=adm.evaluate_smiles(c.smiles).as_dict(),
     )
 
 

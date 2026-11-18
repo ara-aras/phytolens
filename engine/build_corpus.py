@@ -15,7 +15,9 @@ Out:  engine/data/phytolens.db
 """
 from __future__ import annotations
 
+import argparse
 import csv
+import hashlib
 import os
 import sqlite3
 import sys
@@ -258,5 +260,44 @@ def build() -> None:
     con.close()
 
 
-if __name__ == "__main__":
+def verify(db_path: str = DB) -> int:
+    """Verify row counts and print SHA-256 checksum of a built corpus DB."""
+    if not os.path.exists(db_path) or os.path.getsize(db_path) == 0:
+        print(f"missing corpus: {db_path}", file=sys.stderr)
+        return 2
+    h = hashlib.sha256()
+    with open(db_path, "rb") as fh:
+        for chunk in iter(lambda: fh.read(1 << 20), b""):
+            h.update(chunk)
+    con = sqlite3.connect(db_path)
+    try:
+        q = lambda s: con.execute(s).fetchone()[0]
+        counts = {
+            "plants": q("SELECT COUNT(*) FROM plants"),
+            "plant_aliases": q("SELECT COUNT(*) FROM plant_aliases"),
+            "compounds": q("SELECT COUNT(*) FROM compounds"),
+            "plant_compounds": q("SELECT COUNT(*) FROM plant_compounds"),
+            "compound_targets": q("SELECT COUNT(*) FROM compound_targets"),
+        }
+    finally:
+        con.close()
+    print(f"path   : {db_path}")
+    print(f"sha256 : {h.hexdigest()}")
+    for k, v in counts.items():
+        print(f"{k:<18} {v:>8,}")
+    return 0
+
+
+def main(argv: list[str] | None = None) -> int:
+    ap = argparse.ArgumentParser(description="Build or verify the PhytoLens SQLite corpus")
+    ap.add_argument("--verify", action="store_true",
+                    help="verify existing engine/data/phytolens.db and print SHA-256")
+    args = ap.parse_args(argv)
+    if args.verify:
+        return verify()
     build()
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

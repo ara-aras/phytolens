@@ -561,10 +561,20 @@ def get_network(run_id: str) -> dict:
         for gene in row["overlap"]["genes"]:
             gid = f"target:{gene['symbol']}"
             nodes.setdefault(gid, {"id": gid, "label": gene["symbol"], "type": "target"})
-            edges.append({"source": cid, "target": gid,
-                          "measured": gene["measured"]})
-            edges.append({"source": gid, "target": f"condition:{condition['id']}",
-                          "measured": gene["measured"]})
+            edges.append({
+                "source": cid,
+                "target": gid,
+                "measured": gene["measured"],
+                "support": gene.get("support", "measured" if gene["measured"] else "predicted"),
+                "sources": gene.get("sources", []),
+            })
+            edges.append({
+                "source": gid,
+                "target": f"condition:{condition['id']}",
+                "measured": gene["measured"],
+                "support": gene.get("support", "measured" if gene["measured"] else "predicted"),
+                "sources": gene.get("sources", []),
+            })
     degree: dict[str, int] = {}
     for edge in edges:
         degree[edge["source"]] = degree.get(edge["source"], 0) + 1
@@ -701,6 +711,8 @@ def get_structure(target: str) -> dict:
                                    f"panel: {sorted(dk.TARGETS)}")
     meta = panel_meta().get(spec.gene, {})
     pdb_path = dk.RECEPTORS / f"{spec.pdb_id}.pdb"
+    box_path = dk.RECEPTORS / f"{spec.pdb_id}_box.json"
+    box = meta.get("box") or (json.loads(box_path.read_text()) if box_path.exists() else None)
     resolution = dk._resolution(pdb_path) if pdb_path.exists() else None
     return {
         "target": spec.gene,
@@ -713,8 +725,8 @@ def get_structure(target: str) -> dict:
         "complex_with": spec.complex_with,
         "keep_het": list(spec.keep_het),
         "why": spec.why,
-        "box": meta.get("box"),
-        "docked": bool(meta),
+        "box": box,
+        "docked": bool(meta) or (dk.RECEPTORS / f"{spec.pdb_id}.pdbqt").exists(),
     }
 
 

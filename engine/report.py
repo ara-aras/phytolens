@@ -231,7 +231,8 @@ def build_report(result: rk.RankingResult, out_path: str | Path, *,
     story.append(Paragraph("Provenance appendix", s["h2"]))
     prov = [
         ("Plant and compound corpus",
-         "IMPPAT 2.0, CC BY-NC-ND 4.0 (academic / non-commercial; no derivatives)."),
+         "IMPPAT 2.0, CC BY-NC-ND 4.0 (academic / non-commercial; no derivatives). "
+         "See DATA_LICENSE.md."),
         ("Compound properties",
          "RDKit 2025.09.6: Crippen logP, TPSA, HBD/HBA, rotatable bonds."),
         ("Compound-target links",
@@ -279,7 +280,7 @@ def build_report(result: rk.RankingResult, out_path: str | Path, *,
         canvas.setFillColor(MUTED)
         canvas.drawString(16 * mm, 7 * mm,
                           "PhytoLens - hypotheses for laboratory validation. "
-                          "Not a medical device. Not for clinical decisions.")
+                          "Not a medical device. Data terms: DATA_LICENSE.md.")
         canvas.drawRightString(A4[0] - 16 * mm, 7 * mm, f"Page {canvas.getPageNumber()}")
         canvas.restoreState()
 

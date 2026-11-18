@@ -1,0 +1,38 @@
+{
+  "name": "Bisdemethoxycurcumin",
+  "affinity": -7.37,
+  "rmsd_lb": 0.0,
+  "modes": [
+    -7.37,
+    -7.25,
+    -6.856,
+    -6.639,
+    -6.584,
+    -6.555,
+    -6.545,
+    -6.477,
+    -6.448
+  ],
+  "cached": false,
+  "seconds": 6.51,
+  "key": "2336f1fa5000f8f7",
+  "best_pose": "C:\\Projects\\Photolens\\engine\\data\\docking\\cache\\2336f1fa5000f8f7.pdbqt",
+  "smiles": "O=C(CC(=O)/C=C/c1ccc(cc1)O)/C=C/c1ccc(cc1)O",
+  "receptor": "2AZ5",
+  "box": {
+    "center": [
+      -13.872,
+      71.434,
+      26.906
+    ],
+    "size": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "defined_by": "centroid of 307 (80 atoms)"
+  },
+  "exhaustiveness": 4,
+  "seed": 42,
+  "vina": "AutoDock Vina v1.2.7"
+}
