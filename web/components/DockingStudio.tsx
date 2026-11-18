@@ -108,7 +108,6 @@ export default function DockingStudio({
     import("ngl").then(async (NGL) => {
       if (cancelled || !viewportRef.current) return;
 
-      viewportRef.current.innerHTML = "";
       stage = new NGL.Stage(viewportRef.current, {
         backgroundColor: "#101b16",
         tooltip: true,
@@ -254,9 +253,35 @@ export default function DockingStudio({
       } catch {
         /* ignore */
       }
+      if (viewportRef.current) {
+        viewportRef.current.innerHTML = "";
+      }
       stageRef.current = null;
     };
-  }, [pose, activeMode, showSurface, showBox, focusMode, fullscreen]);
+  }, [pose, activeMode, showSurface, showBox]);
+
+  // Resize NGL canvas smoothly when toggling fullscreen + support Esc key to close
+  useEffect(() => {
+    const id = window.setTimeout(() => {
+      try {
+        stageRef.current?.handleResize();
+      } catch {
+        /* ignore */
+      }
+    }, 40);
+    if (!fullscreen) return () => window.clearTimeout(id);
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setFullscreen(false);
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      window.clearTimeout(id);
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [fullscreen]);
 
   // Toggle spin without rebuilding the scene
   useEffect(() => {
@@ -274,41 +299,59 @@ export default function DockingStudio({
   };
 
   return (
-    <section
-      className={`card studio-card ${fullscreen ? "studio-fullscreen" : ""}`}
-      aria-label="3D Molecular Docking Studio"
-    >
-      <div className="studio-head">
-        <div>
-          <span className="eyebrow">3D Molecular Docking &amp; Active-Site Studio</span>
-          <h3 className="studio-title">
-            <span>{selectedCompound.name}</span>
-            <span className="studio-arrow">→</span>
-            <span>
-              {targetMeta.title} ({targetMeta.pdb})
-            </span>
-          </h3>
-          <p className="meta">
-            {pose
-              ? `Co-crystal reference pocket: ${pose.complex_with} (${pose.ligand_code}) · ${pose.vina} · seed ${pose.seed} · exhaustiveness ${pose.exhaustiveness}`
-              : targetMeta.role}
-          </p>
-        </div>
+    <>
+      {fullscreen && (
+        <div
+          className="studio-backdrop"
+          onClick={() => setFullscreen(false)}
+          aria-hidden="true"
+        />
+      )}
+      <section
+        className={`card studio-card ${fullscreen ? "studio-fullscreen" : ""}`}
+        aria-label="3D Molecular Docking Studio"
+      >
+        <div className="studio-head">
+          <div>
+            <span className="eyebrow">3D Molecular Docking &amp; Active-Site Studio</span>
+            <h3 className="studio-title">
+              <span>{selectedCompound.name}</span>
+              <span className="studio-arrow">→</span>
+              <span>
+                {targetMeta.title} ({targetMeta.pdb})
+              </span>
+            </h3>
+            <p className="meta">
+              {pose
+                ? `Co-crystal reference pocket: ${pose.complex_with} (${pose.ligand_code}) · ${pose.vina} · seed ${pose.seed} · exhaustiveness ${pose.exhaustiveness}`
+                : targetMeta.role}
+            </p>
+          </div>
 
-        <div className="studio-controls">
-          <label className="studio-select-wrap">
-            <span>Compound</span>
-            <select
-              value={selectedCompound.id}
-              onChange={(e) => onSelectCompound(e.target.value)}
-            >
-              {ranked.map((row) => (
-                <option key={row.id} value={row.id}>
-                  #{row.rank} {row.name} ({row.score.toFixed(3)})
-                </option>
-              ))}
-            </select>
-          </label>
+          <div className="studio-controls">
+            <div className="studio-top-actions">
+              <label className="studio-select-wrap">
+                <span>Compound</span>
+                <select
+                  value={selectedCompound.id}
+                  onChange={(e) => onSelectCompound(e.target.value)}
+                >
+                  {ranked.map((row) => (
+                    <option key={row.id} value={row.id}>
+                      #{row.rank} {row.name} ({row.score.toFixed(3)})
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <button
+                type="button"
+                className={fullscreen ? "btn btn-primary studio-close-btn" : "btn btn-ghost studio-close-btn"}
+                onClick={() => setFullscreen((v) => !v)}
+                title={fullscreen ? "Close fullscreen (Esc)" : "Expand 3D Studio to fullscreen"}
+              >
+                {fullscreen ? "✕ Exit Fullscreen (Esc)" : "⛶ Expand"}
+              </button>
+            </div>
 
           <div className="studio-targets" role="tablist" aria-label="Docking targets">
             {availableTargets.map((t) => {
@@ -378,7 +421,11 @@ export default function DockingStudio({
             </div>
           )}
 
-          <div className="studio-hud-bottom">
+          <div
+            className="studio-hud-bottom"
+            onMouseDown={(e) => e.stopPropagation()}
+            onPointerDown={(e) => e.stopPropagation()}
+          >
             {pose && pose.modes.length > 0 && (
               <div className="studio-modes" aria-label="Vina binding modes">
                 <span className="hud-label">Vina Modes:</span>
@@ -553,7 +600,8 @@ export default function DockingStudio({
               </div>
             )}
         </div>
-      </div>
-    </section>
+        </div>
+      </section>
+    </>
   );
 }
